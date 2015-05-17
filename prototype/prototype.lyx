@@ -1,0 +1,211 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Shepard tones
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x(t)=\sum_{k=1}^{K}2^{k}\sin(2\pi2^{k}f_{0}t)
+\]
+
+\end_inset
+
+Shepard tones do not have a specifitch pitch height ; instead, they are
+ entirely determined by their pitch chroma.
+ Moreover, Shepard tones are self-similar: 
+\begin_inset Formula $x(2t)\approx x(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Shepard pitch spiral
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\log_{2}\lambda_{1}=\lfloor\log_{2}\lambda_{1}\rfloor+\lbrace\log_{2}\lambda_{1}\rbrace
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Spiral wavelet
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Psi_{\lambda_{2}}(t,\lambda_{1})=\psi_{\alpha}(t)\times\psi_{\beta}(\log_{2}\lambda_{1})\times\psi_{\gamma}(\lfloor\log_{2}\lambda_{1}\rfloor)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+x_{2}(t,\lambda_{1},\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert(t,\lambda_{1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Shepard-Risset glissando
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{\tau}(t)=x\left(\tau(t)\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\tau=\dfrac{T_{\mathrm{chroma}}}{\log2}2^{t/T_{\mathrm{chroma}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $T_{\mathrm{chroma}}$
+\end_inset
+
+ is the duration of a full octave rise in pitch chroma.
+\end_layout
+
+\begin_layout Standard
+The Shepard-Risset glissando yields a simple particular case of a result
+ proven by Joakim Andén on joint time-frequency characterization of chirps:
+\begin_inset Formula 
+\[
+x_{2}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(\frac{\alpha T_{\mathrm{chroma}}}{\beta\log2}\right)
+\]
+
+\end_inset
+
+In other words, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is maximal when the slope 
+\begin_inset Formula $\alpha/\beta$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $\log2/T_{\mathrm{chroma}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Shepard pagoda
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{g}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2\pi2^{k}f_{0}t)
+\]
+
+\end_inset
+
+
+\begin_inset Formula $T_{\mathrm{height}}$
+\end_inset
+
+ is the duration of a full octave rise in pitch height.
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ is a zero-cenetered bump function ; we have chosen a standard Gaussian
+ in our experiments.
+\end_layout
+
+\end_body
+\end_document
