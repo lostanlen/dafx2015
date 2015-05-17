@@ -73,9 +73,13 @@ Shepard tones
 \end_layout
 
 \begin_layout Standard
+A Shepard tone is a sum of sine waves which are one octave apart:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-x(t)=\sum_{k=1}^{K}2^{k}\sin(2\pi2^{k}f_{0}t)
+x(t)=\sum_{k=0}^{K-1}\sin(2\pi2^{k}f_{0}t)
 \]
 
 \end_inset
@@ -189,7 +193,7 @@ Shepard pagoda
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x_{h}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2\pi2^{k}f_{0}t)
+x_{g}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2\pi2^{k}f_{0}t)
 \]
 
 \end_inset
@@ -205,10 +209,6 @@ x_{h}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2
 
  is a zero-cenetered bump function ; we have chosen a standard Gaussian
  in our experiments.
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \end_body

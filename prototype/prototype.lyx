@@ -73,9 +73,13 @@ Shepard tones
 \end_layout
 
 \begin_layout Standard
+A Shepard tone is a sum of sine waves which are one octave apart:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-x(t)=\sum_{k=1}^{K}2^{k}\sin(2\pi2^{k}f_{0}t)
+x(t)=\sum_{k=0}^{K-1}\sin(2\pi2^{k}f_{0}t)
 \]
 
 \end_inset
@@ -102,6 +106,18 @@ Shepard pitch spiral
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The integer part 
+\begin_inset Formula $\lfloor\log_{2}\lambda_{1}\rfloor$
+\end_inset
+
+ is related to pitch height, whereas the fractional part 
+\begin_inset Formula $\{\log_{2}\lambda_{1}\}$
+\end_inset
+
+ is related to pitch chroma.
 \end_layout
 
 \begin_layout Subsection*
