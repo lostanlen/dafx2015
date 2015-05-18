@@ -68,6 +68,70 @@
 
 \begin_body
 
+\begin_layout Title
+Wavelet scattering on the Shepard pitch spiral
+\end_layout
+
+\begin_layout Author
+18 mai 2015
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection*
+On the two dimensions of musical pitch
+\end_layout
+
+\begin_layout Itemize
+Behind the circularity of the musical scale, lies a simple fact: when raising
+ a harmonic note by exactly one octave, even-numbered partials seem unchanged,
+ whereas odd-numbered partials disappear.
+\end_layout
+
+\begin_layout Itemize
+Although frequency is expressed in Hertz as a rectilinear quantity, there
+ are two natural degrees of freedom for pitch.
+\end_layout
+
+\begin_layout Itemize
+Definition of pitch chroma and pitch height.
+\end_layout
+
+\begin_layout Itemize
+Locality relations between pure tones is better expressed in a spiral (Shepard)
+ than on a line.
+\end_layout
+
+\begin_layout Subsection*
+Problem
+\end_layout
+
+\begin_layout Itemize
+The spiral model is well-known in music theory and experimental psychology.
+\end_layout
+
+\begin_layout Itemize
+However, existing methods in audio classification do not fully take advantage
+ from its richness: they either picture pitch on a line (MFCC) or on a circle
+ (chroma features).
+\end_layout
+
+\begin_layout Subsection*
+Contributions
+\end_layout
+
+\begin_layout Itemize
+We present a new representation of sounds that is derived from the Shepard
+ spiral.
+\end_layout
+
+\begin_layout Itemize
+We present a new representation of sounds that disentangles variations in
+ pitch chroma and pitch height by taking pitch circularity into account.
+\end_layout
+
 \begin_layout Subsection*
 Shepard tones
 \end_layout
@@ -135,7 +199,7 @@ Spiral wavelet
 
 \begin_inset Formula 
 \[
-x_{2}(t,\lambda_{1},\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert(t,\lambda_{1})
+x_{2}(t,\lambda_{1},\lambda_{2})=\vert x_{1}\ast\Psi_{\lambda_{2}}\vert(t,\lambda_{1})
 \]
 
 \end_inset
@@ -178,7 +242,7 @@ The Shepard-Risset glissando yields a simple particular case of a result
  proven by Joakim Andén on joint time-frequency characterization of chirps:
 \begin_inset Formula 
 \[
-x_{2}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(\frac{\alpha T_{\mathrm{chroma}}}{\beta\log2}\right)
+x_{2,\tau}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(-\dfrac{\beta\log2}{\alpha T_{\mathrm{chroma}}}\right)
 \]
 
 \end_inset
@@ -219,8 +283,16 @@ x_{g}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2
 \begin_inset Formula $g$
 \end_inset
 
- is a zero-cenetered bump function ; we have chosen a standard Gaussian
- in our experiments.
+ is a zero-centered bump function ; we have chosen a standard Gaussian in
+ our experiments.
+\begin_inset Formula 
+\[
+x_{2,g}(t,\lambda_{1},\lambda_{2})\propto g\left(\dfrac{T_{\text{\mathrm{height}}}+\frac{\gamma}{\beta}}{\alpha T_{\mathrm{height}}}\right)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
