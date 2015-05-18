@@ -252,11 +252,11 @@ Capturing pitch chroma and pitch height velocities
 \end_layout
 
 \begin_layout Subsection
-Shepard tones
+Varying pitch chroma: the Shepard-Risset glissando
 \end_layout
 
 \begin_layout Paragraph*
-Definition
+Shepard tones
 \end_layout
 
 \begin_layout Itemize
@@ -269,10 +269,6 @@ x(t)=\sum_{k=0}^{K-1}\sin(2\pi2^{k}f_{0}t)
 \end_inset
 
 
-\end_layout
-
-\begin_layout Paragraph*
-Shepard tones on the spiral
 \end_layout
 
 \begin_layout Itemize
@@ -288,8 +284,8 @@ Shepard tones are self-similar:
 .
 \end_layout
 
-\begin_layout Subsection
-Varying pitch chroma: the Shepard-Risset glissando
+\begin_layout Paragraph*
+Shepard-Risset glissando
 \end_layout
 
 \begin_layout Itemize
@@ -307,52 +303,38 @@ This corresponds to a uniform motion of the pitch chroma.
 Shepard-Risset glissandi are periodic because of the circularity of chromas.
 \end_layout
 
-\begin_layout Itemize
-A Shepard-Risset glissando is defined as:
-\end_layout
-
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x_{\mathrm{c}}(t)=x\left(\dfrac{2^{V_{\mathrm{c}}t}}{V_{\mathrm{c}}\log2}\right)
+x_{\tau}(t)=x\left(\tau(t)\right)
 \]
 
 \end_inset
 
-where 
-\begin_inset Formula $V_{c}$
-\end_inset
 
- is the pitch chroma velocity, measured in octaves per second.
-\end_layout
-
-\begin_layout Itemize
-The scalogram is proportional to
 \begin_inset Formula 
 \[
-x_{1,\mathrm{c}}(t,\lambda_{1})\propto\widehat{\psi_{\lambda_{1}}}\left(2^{k(t,\lambda_{1})+V_{\mathrm{c}}t}f_{0}\right)
+\tau=\dfrac{}{V_{\mathrm{chroma}}}\dfrac{T_{\mathrm{chroma}}}{\log2}2^{t/T_{\mathrm{chroma}}}
 \]
 
 \end_inset
 
-where the integer-valued function 
-\begin_inset Formula $k(t,\lambda_{1})$
-\end_inset
 
- is the index of the nearest partial from the point 
-\begin_inset Formula $(t,\lambda_{1})$
-\end_inset
-
- in the time-frequency plane.
 \end_layout
 
-\begin_layout Itemize
-The scattering coefficients of the Shepard-Risset glissando can be expressed
- in closed form, by applying a result proven by Joakim Andén on joint time-frequ
-ency characterization of exponential chirps:
+\begin_layout Standard
+\begin_inset Formula $T_{\mathrm{chroma}}$
+\end_inset
+
+ is the duration of a full octave rise in pitch chroma.
+\end_layout
+
+\begin_layout Standard
+The Shepard-Risset glissando yields a simple particular case of a result
+ proven by Joakim Andén on joint time-frequency characterization of chirps:
 \begin_inset Formula 
 \[
-x_{2,c}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(-\dfrac{\beta}{\alpha}V_{\mathrm{c}}\right)
+x_{2,\tau}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(-\dfrac{\beta\log2}{\alpha T_{\mathrm{chroma}}}\right)
 \]
 
 \end_inset
@@ -366,16 +348,10 @@ In other words,
 \end_inset
 
  is equal to 
-\begin_inset Formula $-V_{c}$
+\begin_inset Formula $\log2/T_{\mathrm{chroma}}$
 \end_inset
 
-, that is, when the direction of oscillation is orthogonal to the glissando
- lines.
-\end_layout
-
-\begin_layout Itemize
-The joint scattering transform behaves like an oriented edge detector in
- the time-scale plane.
+.
 \end_layout
 
 \begin_layout Subsection
