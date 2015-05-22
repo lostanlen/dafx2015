@@ -72,12 +72,16 @@
 Wavelet scattering on the Shepard pitch spiral
 \end_layout
 
-\begin_layout Author
-18 mai 2015
-\end_layout
-
 \begin_layout Section
 Introduction
+\end_layout
+
+\begin_layout Paragraph*
+Towards a generic representation for polyphonic audio analysis
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Paragraph*
@@ -134,17 +138,6 @@ We present a new representation of sounds that linearizes the dynamics of
 \end_layout
 
 \begin_layout Itemize
-It is an instance of the scattering transform, a generic operator which
- cascade wavelet convolutions and modulus nonlinearities.
-\end_layout
-
-\begin_layout Itemize
-It is derived from the Shepard pitch spiral, in that convolutions are performed
- in time, log-frequency (correlated to pitch chroma) and octave index (correlate
-d with pitch height).
-\end_layout
-
-\begin_layout Itemize
 We give numerical results on transient signals of varying pitch chroma and
  pitch height, showing that their velocities on the spiral are disentangled
  and characterized.
@@ -164,7 +157,7 @@ status open
 \begin_inset Graphics
 	filename /Users/vlostan/dafx2015/spiral_wavelets.png
 	lyxscale 15
-	width 100text%
+	width 75text%
 
 \end_inset
 
@@ -176,7 +169,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+Wavelets in time, log-frequency and octave index.
 \end_layout
 
 \end_inset
@@ -247,6 +240,39 @@ x_{2}(t,\lambda_{1},\lambda_{2})=\vert x_{1}\ast\Psi_{\lambda_{2}}\vert(t,\lambd
 
 \end_layout
 
+\begin_layout Paragraph*
+Visualization
+\end_layout
+
+\begin_layout Itemize
+We visualize 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ in 2d by fixing 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ The axes correspond to 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Capturing pitch chroma and pitch height velocities
 \end_layout
@@ -271,13 +297,22 @@ x(t)=\sum_{k=0}^{K-1}\sin(2\pi2^{k}f_{0}t)
 
 \end_layout
 
+\begin_layout Itemize
+The original definition definition specifies a bell curve in relative amplitudes
+ across octaves, that we choose to drop for simplicity.
+\end_layout
+
 \begin_layout Paragraph*
 Shepard tones on the spiral
 \end_layout
 
 \begin_layout Itemize
-Shepard tones do not have a specifitch pitch height ; instead, they are
- entirely determined by their pitch chroma.
+Shepard tones do not have a specific pitch height ; instead, they are entirely
+ determined by their pitch chroma.
+\end_layout
+
+\begin_layout Paragraph*
+Self-similarity
 \end_layout
 
 \begin_layout Itemize
@@ -290,6 +325,10 @@ Shepard tones are self-similar:
 
 \begin_layout Subsection
 Varying pitch chroma: the Shepard-Risset glissando
+\end_layout
+
+\begin_layout Paragraph*
+Definition
 \end_layout
 
 \begin_layout Itemize
@@ -319,11 +358,18 @@ x_{\mathrm{c}}(t)=x\left(\dfrac{2^{V_{\mathrm{c}}t}}{V_{\mathrm{c}}\log2}\right)
 
 \end_inset
 
-where 
+
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $V_{c}$
 \end_inset
 
  is the pitch chroma velocity, measured in octaves per second.
+\end_layout
+
+\begin_layout Paragraph*
+First-order coefficients
 \end_layout
 
 \begin_layout Itemize
@@ -346,6 +392,10 @@ where the integer-valued function
  in the time-frequency plane.
 \end_layout
 
+\begin_layout Paragraph*
+Second-order coefficients
+\end_layout
+
 \begin_layout Itemize
 The scattering coefficients of the Shepard-Risset glissando can be expressed
  in closed form, by applying a result proven by Joakim Andén on joint time-frequ
@@ -357,7 +407,7 @@ x_{2,c}(t,\lambda_{1},\lambda_{2})\propto\widehat{\psi}\left(-\dfrac{\beta}{\alp
 
 \end_inset
 
-In other words, 
+Consequently, 
 \begin_inset Formula $x_{2}$
 \end_inset
 
@@ -370,12 +420,57 @@ In other words,
 \end_inset
 
 , that is, when the direction of oscillation is orthogonal to the glissando
- lines.
+ trajectories.
 \end_layout
 
 \begin_layout Itemize
 The joint scattering transform behaves like an oriented edge detector in
  the time-scale plane.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/vlostan/MATLAB/scattering.m/research/dafx15/dafx_fig2a.png
+	lyxscale 75
+	width 40text%
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /Users/vlostan/MATLAB/scattering.m/research/dafx15/dafx_fig2b.png
+	lyxscale 75
+	width 40text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Shepard-Risset glissando: first-order coefficients (left) and second-order
+ spiral coefficients (right).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -390,29 +485,169 @@ Shepard arpeggio
 
 \end_layout
 
+\begin_layout Paragraph*
+Definition
+\end_layout
+
+\begin_layout Itemize
+Less popular than the Shepard-Risset glissando of varying chroma and fixed
+ height, is the 
+\begin_inset Quotes eld
+\end_inset
+
+Shepard arpeggio
+\begin_inset Quotes erd
+\end_inset
+
+ of varying height and fixed chroma.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x_{g}(t)=\sum_{k=1}^{K}2^{k}g\left(\dfrac{t}{T_{\mathrm{height}}}-k\right)\sin(2\pi2^{k}f_{0}t)
+x_{g}(t)=\sum_{k=0}^{K-1}2^{k}g(V_{\mathrm{h}}t-k)\sin(2\pi2^{k}f_{0}t)
 \]
 
 \end_inset
 
 
-\begin_inset Formula $T_{\mathrm{height}}$
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V_{\mathrm{h}}$
 \end_inset
 
- is the duration of a full octave rise in pitch height.
- 
+ is the pitch height velocity, measured in octaves per second.
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $g$
 \end_inset
 
  is a zero-centered bump function ; we have chosen a standard Gaussian in
  our experiments.
+\end_layout
+
+\begin_layout Paragraph*
+First-order coefficients
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-x_{2,g}(t,\lambda_{1},\lambda_{2})\propto g\left(\dfrac{T_{\text{\mathrm{height}}}+\frac{\gamma}{\beta}}{\alpha T_{\mathrm{height}}}\right)
+x_{1,\mathrm{g}}(t,\lambda_{1})\propto g\left(V_{\mathrm{h}}t-k(\lambda_{1})\right)\times\widehat{\psi_{\lambda_{1}}}\left(2^{k(\lambda_{1})}f_{0}\right)
 \]
+
+\end_inset
+
+where the integer-valued function 
+\begin_inset Formula $k(\lambda_{1})$
+\end_inset
+
+ is the index of the nearest partial from the frequency 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Second-order coefficients
+\end_layout
+
+\begin_layout Standard
+We have an approximate closed form if 
+\begin_inset Formula $g$
+\end_inset
+
+ is a Gaussian.
+ For 
+\begin_inset Formula $(t,\lambda_{1})$
+\end_inset
+
+ roughly within the arpeggio, 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+ and 
+\begin_inset Formula $(\alpha,\gamma)$
+\end_inset
+
+ such that 
+\begin_inset Formula $\alpha/\gamma$
+\end_inset
+
+ is close to 
+\begin_inset Formula $-V_{\mathrm{h}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{2,g}(t,\lambda_{1},\lambda_{2})\propto g\left(\dfrac{\dfrac{\alpha}{\gamma}+V_{\mathrm{h}}}{\alpha}\right).
+\]
+
+\end_inset
+
+Consequently, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is maximal when the slope 
+\begin_inset Formula $\alpha/\gamma$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $-V_{h}$
+\end_inset
+
+, that is, when the direction of oscillation is orthogonal to the arpeggio
+ trajectory.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/vlostan/MATLAB/scattering.m/research/dafx15/dafx_fig3a.png
+	lyxscale 75
+	width 40text%
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /Users/vlostan/MATLAB/scattering.m/research/dafx15/dafx_fig3b.png
+	lyxscale 75
+	width 40text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Shepard arpeggio: first-order coefficients (left) and second-order spiral
+ coefficients (right).
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
