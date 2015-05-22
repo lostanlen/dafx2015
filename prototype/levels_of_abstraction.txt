@@ -1,3 +1,24 @@
-Spectrogram-based pattern recognition algorithms, such as sparse coding [Abdallah & Plumbley 2005] and Nonnegative Matrix Factorization [Smaragdis & Brown 2003], in audio signal processing. They are designed to approximate their input by a linear combination of few data-driven templates. Musical chords, for instance, are expected to get decomposed into individual notes. However, most real-world sounds cannot factorized as amplitude-modulated fixed spectra : notably, continuous changes in pitch (vibrato and glissando) as well as in spectral envelope (attack transients and formantic transitions) have a joint time-frequency structure that cannot be matched to a single spectral atom. Time-varying generalizations have been devised to address this shortcoming [Hennequin et al. 2011], but their high number of parameters prevents their robustness in challenging polyphonic contexts.
-Instead of specifying probabilistic priors to help the convergence [Fuentes et al. 2013], we aim to design a template-free, nonlinear, mid-level representation, that disentangles the time variability of pitch and spectral envelope.
-It suggests that basic implementations of existing algorithms could be 
+**Abstract**
+We revisit the pitch spiral model of Shepard, where a transposition by one octave corresponds to a full turn. 
+
+**Introduction**
+*Context*
+Spectrogram-based pattern recognition algorithms, such as sparse coding [Abdallah & Plumbley 2005] and Nonnegative Matrix Factorization [Smaragdis & Brown 2003], are widespread in audio signal processing. They are designed to approximate their input by a linear combination of few data-driven templates. Musical chords, for example, are expected to get decomposed into individual notes.
+
+*Problem*
+However, most real-world sounds cannot factorized as amplitude-modulated fixed spectra : notably, continuous changes in pitch (vibrato and glissando) as well as in spectral envelope (attack transients and formantic transitions) have a joint time-frequency structure that cannot be matched to a single spectral atom. Time-varying, under-constrained generalizations have been devised to address this shortcoming [Hennequin et al. 2011], but their high number of parameters prevents their robustness in challenging polyphonic contexts.
+
+*Goal*
+Instead of specifying probabilistic priors to help the convergence [Fuentes et al. 2013], we aim to design a template-free, nonlinear, mid-level representation, that natively disentangles the time variabilities of pitch and spectral envelope.
+
+*Method*
+The central idea to our representation is that the former correspond to a rigid motion along the log-frequency axis, whereas the latter affect the relative amplitude of harmonics across neighboring octaves.  
+
+To this aim, we revisit the Shepard pitch spiral, a model defined in the 1960s in cognitive psychology 
+
+*Contributions*
+The contributions of this paper are :
+* the introduction of the spiral scattering transform (SST) as a cascade of wavelet operators,
+* a nonstationary formulation of the source-filter convolutional model relying on time warps, and its factorization in the wavelet scalogram,
+* an approximate closed-form expression of Shepard spiral scattering coefficients, showing that variabilities in pitch and spectral envelope get jointly linearized, and stably appear as energy maxima.
+* a visualization of these coefficients in Berio's *Sequenza V*, revealing extended instrumental techniques.
