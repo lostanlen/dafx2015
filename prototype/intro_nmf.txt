@@ -1,7 +1,3 @@
-**Abstract**
-
-We revisit the pitch spiral model of Shepard, where a transposition by one octave corresponds to a full turn. 
-
 **Introduction**
 *Context*
 Spectrogram-based pattern recognition algorithms, such as sparse coding [Abdallah & Plumbley 2005] and Nonnegative Matrix Factorization [Smaragdis & Brown 2003], are widespread in audio signal processing. They are designed to approximate their input by a linear combination of few data-driven templates. Musical chords, for example, are expected to get decomposed into individual notes.
@@ -22,4 +18,3 @@ The contributions of this paper are :
 * an approximate closed-form expression of Shepard spiral scattering coefficients, showing that variabilities in pitch and spectral envelope get jointly linearized, and stably appear as energy maxima.
 * a visualization of these coefficients in Berio's *Sequenza V*, revealing extended instrumental techniques.
 
-**
