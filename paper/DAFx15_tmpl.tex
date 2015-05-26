@@ -195,11 +195,26 @@ octave and chroma.
 \psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t)\quad\mathrm{i.e.}\quad\widehat{\psi_{\lambda_{1}}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)
 \]
 
-The wavelet transform of an audio signal $x(t)$ is defined as the array of convolutions $x \in \psi_{\lambda_1}(t)$ for every audible frequency $\lambda_1$. The modulus of the resulting signals, called \emph{scalogram}, localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$:
+The wavelet transform of an audio signal $x(t)$ is defined as the array of convolutions $x \ast \psi_{\lambda_1}(t)$ for every audible frequency $\lambda_1$. The modulus of the resulting signals, called \emph{scalogram}, localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution:
 
 \[
-U_{1} x (t,\log_{2}\lambda_{1})=\left|x\ast\psi_{\lambda_{1}}\right|(t)
+x_1 (t, \log_{2}\lambda_{1}) = \left| x \ast \psi_{\lambda_{1}} \right| (t).
 \]
+
+The scattering transform has been introduced in signal classification to achieve discriminative invariants to displacement groups, while ensuring stability to small deformations. On one hand, it computes an averaged scalogram $S_1 x$ by applying a lowpass filter $\phi_T$ of time support $T$:
+
+\[
+S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t)
+\]
+
+This averaging discards all variability in $x_1$ at finer time scales than $T$.
+
+\[
+x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) = \left| x_1 \ast \psi_{\lambda_{2}} \right| (t)
+\]
+
+$S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) = x_2 \ast \phi_T (t)$
+
 
 
 %\newpage
