@@ -106,6 +106,7 @@ Let
  respectively denote octave and chroma.
 \begin_inset Formula 
 \[
+\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t)\quad\mathrm{i.e.}\quad\widehat{\psi_{\lambda_{1}}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)
 \]
 
 \end_inset

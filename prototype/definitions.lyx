@@ -112,6 +112,14 @@ Let
 \end_inset
 
 
+\begin_inset Formula 
+\[
+U_{1}(t,\log_{2}\lambda_{1})=\left|x\ast\psi_{\lambda_{1}}\right|(t)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
