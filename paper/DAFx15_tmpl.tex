@@ -201,17 +201,19 @@ The wavelet transform of an audio signal $x(t)$ is defined as the array of convo
 x_1 (t, \log_{2}\lambda_{1}) = \left| x \ast \psi_{\lambda_{1}} \right| (t).
 \]
 
-The scattering transform has been introduced in signal classification to achieve discriminative invariants to displacement groups, while ensuring stability to small deformations. On one hand, it computes an averaged scalogram $S_1 x$ by applying a lowpass filter $\phi_T$ of time support $T$:
+The scattering transform has been introduced in signal classification to achieve discriminative invariants to time shifts, while ensuring stability to small time warps. Invariance up to some maximal time shift $T$ is achieved with a lowpass filter $\phi_T$ of time support $T$. The outcome of this filtering are the constant-Q transform (CQT) coefficients $S_1 x$, indexed by time $t$ and log-frequency $\log_2 \lambda_1$:
 
 \[
-S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t)
+S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t).
 \]
 
-This averaging discards all variability in $x_1$ at finer time scales than $T$.
+This averaging discards all variability in $x_1$ at finer time scales than $T$, that is, higher modulation frequencies than $T^{-1}$. To recover them, the scattering transform convolves $x_1$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity:
 
 \[
 x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) = \left| x_1 \ast \psi_{\lambda_{2}} \right| (t)
 \]
+
+Also known as \emph{amplitude modulation spectrum} three-way array $x_2$
 
 $S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) = x_2 \ast \phi_T (t)$
 
