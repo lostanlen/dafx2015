@@ -169,7 +169,7 @@ Time-varying, under-constrained generalizations have been devised to address thi
 Instead of specifying probabilistic priors to help the convergence [Fuentes et al. 2013], we aim to design a template-free, nonlinear, mid-level representation, that natively disentangles the time variabilities of pitch and spectral envelope.
 
 The central idea to our representation is that the former correspond to rigid motions along the log-frequency axis, whereas the latter affect the relative amplitude of harmonics across neighboring octaves.
-This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same "chroma", i.e. musical pitch class [Shepard 1964].
+This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same musical pitch class or "chroma" [Shepard 1964].
 By means of a multivariable wavelet transform (see Fig. 1), which consists of joint time-chroma-octave convolutions, changes in pitch and spectral envelope are respectively captured as angular and radial motions on the spiral.
 
 The contributions of this paper are:
@@ -186,13 +186,17 @@ a visualization of these coefficients in Berio's \emph{Sequenza V}, revealing ex
 
 \section{Shepard spiral scattering}
 
-Let $\psi(t)=\vert\psi\vert(t)\mathrm{e}^{2\pi\mathrm{i}t}$ a "mother wavelet" of dimensionless center frequency $1$ and bandwidth $Q^{-1}$. The quality factor $Q$ is an integer in the typical range $12$\textendash$24$.
+Let $\psi(t)=\vert\psi\vert(t)\mathrm{e}^{2\pi\mathrm{i}t}$ a "mother wavelet" of dimensionless center frequency $1$ and bandwidth $Q^{-1}$.
+The quality factor $Q$ is an integer in the typical range $12$\textendash$24$.
 Center frequencies of the subsequent wavelet filter bank are of the
 form $\lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$, where the indices
 $j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote
-octave and chroma.
+octave and chroma. The Fourier transform $\widehat{\psi}(\omega)$ of $\psi(t)$ is dilated by resolutions $\lambda_1$ to obtain wavelets $\widehat{\psi_{\lambda_1}}$ in the frequency domain:
+
 \[
-\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t)\quad\mathrm{i.e.}\quad\widehat{\psi_{\lambda_{1}}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)
+\widehat{\psi_{\lambda_{1}}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)
+\quad\mathrm{i.e.}\quad
+\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \]
 
 The wavelet transform of an audio signal $x(t)$ is defined as the array of convolutions $x \ast \psi_{\lambda_1}(t)$ for every audible frequency $\lambda_1$. The modulus of the resulting signals, called \emph{scalogram}, localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution:
@@ -201,23 +205,54 @@ The wavelet transform of an audio signal $x(t)$ is defined as the array of convo
 x_1 (t, \log_{2}\lambda_{1}) = \left| x \ast \psi_{\lambda_{1}} \right| (t).
 \]
 
-The scattering transform has been introduced in signal classification to achieve discriminative invariants to time shifts, while ensuring stability to small time warps. Invariance up to some maximal time shift $T$ is achieved with a lowpass filter $\phi_T$ of time support $T$. The outcome of this filtering are the constant-Q transform (CQT) coefficients $S_1 x$, indexed by time $t$ and log-frequency $\log_2 \lambda_1$:
+The constant-Q transform (CQT) $S_1 x$ corresponds to a lowpass filtering of $x_1$ with a window $\phi(t)$ of size $T$.
 
 \[
-S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t).
+S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t) = \left| x \ast \psi_{\lambda_{1}} \right| \ast \phi_T (t).
 \]
 
-This averaging discards all variability in $x_1$ at finer time scales than $T$, that is, higher modulation frequencies than $T^{-1}$. To recover them, the scattering transform convolves $x_1$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity:
+There is a well-known dilemma in choosing $T$. Too small, the constant-Q matrix lacks invariance to time shifts, which will prevent any learning step to generalize from $S_1 x$ ; too large, discriminative information is discarded.
+
+In order to combine the best of both worlds, the scattering transform recovers finer time scales than $T$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity [Andén Mallat 2011].
 
 \[
-x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) = \left| x_1 \ast \psi_{\lambda_{2}} \right| (t)
+x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) =
+\left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t) 
 \]
 
-Also known as \emph{amplitude modulation spectrum} three-way array $x_2$
+Also known as \emph{amplitude modulation spectrum} [Thompson Atlas 2003], the three-way array $x_2$ is then averaged in time to achieve as much invariance as the constant-Q spectrum $S_1 x$:
 
-$S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) = x_2 \ast \phi_T (t)$
+\[
+S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
+\left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t)  \ast \phi_T (t).
+\]
+
+The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition [Andén et Malla 2011] than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
+
+It should be noted that, while the definition above successfully describes the average spectral envelope and amplitude modulation of a signal, it decomposes and averages each frequency band separately. Hence, it cannot properly characterize the joint time-frequency structure of natural sounds.
+
+Cepstral coefficients, which pictures pitch on a line, does not involve pitch circularity. Conversely, chroma features are insensible to octave transpositions.
+
+\[
+\log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}
+\]
+
+\[
+\Psi_{\lambda_2}(t, \log_2 \lambda_1) =
+\psi_{\alpha}(t) \times
+\psi_{\beta}(\log_2 \lambda_1) \times
+\psi_{\gamma}(\lfloor \log_2 \lambda_1 \rfloor)
+\]
+
+The integer part $\lfloor \log_2 \lambda_1 \rfloor$ is the octave index (related to perceived pitch height), whereas the fractional part $\{ \log_2 \lambda_1 \}$ is related to pitch chroma.
+
+\section{Deformations of the source-filter model}
 
 
+
+\section{Conclusions}
+
+Future work will be devoted to evaluating the discriminative power of Shepard spiral scattering coefficients over a variety of classification pipelines. Our representation also encompass automatic music transcription, perceptual similarity learning, and new audio transformations as potential applications.
 
 %\newpage
 \nocite{*}
