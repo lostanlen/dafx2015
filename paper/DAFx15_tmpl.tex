@@ -38,6 +38,7 @@
 
 %------------------------------------------------------------------------------------------
 \documentclass[twoside,a4paper]{article}
+
 \usepackage{dafx_15}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{euscript}
@@ -170,7 +171,7 @@ Instead of specifying probabilistic priors to help the convergence [Fuentes et a
 
 The central idea to our representation is that the former correspond to rigid motions along the log-frequency axis, whereas the latter affect the relative amplitude of harmonics across neighboring octaves.
 This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same musical pitch class or "chroma" [Shepard 1964].
-By means of a multivariable wavelet transform (see Fig. 1), which consists of joint time-chroma-octave convolutions, changes in pitch and spectral envelope are respectively captured as angular and radial motions on the spiral.
+By means of a multivariable wavelet transform (see Fig. \ref{fig:spiral-wavelets}), which consists of joint time-chroma-octave convolutions, changes in pitch and spectral envelope are respectively captured as angular and radial motions on the spiral.
 
 The contributions of this paper are:
 \begin{itemize}
@@ -183,6 +184,19 @@ an approximate closed-form expression of Shepard spiral scattering coefficients,
 \item
 a visualization of these coefficients in Berio's \emph{Sequenza V}, revealing extended instrumental techniques.
 \end{itemize}
+
+\begin{figure}[t]
+	\begin{center}
+		\setlength{\unitlength}{1cm}
+		\begin{picture}(8.5,5.0)
+		\put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/raw_fig1.png}}
+		\end{picture}
+	\end{center}
+	\protect\caption{
+\label{fig:spiral-wavelets}
+}
+\end{figure}
+
 
 \section{Shepard spiral scattering}
 
