@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{Abdallah2004}
+S.~Abdallah and M.~Plumbley,
+\newblock ``{Polyphonic music transcription by non-negative sparse coding of
+  power spectra},''
+\newblock in {\em Proc. ISMIR}, 2004, vol. 510, pp. 10--14.
+
+\bibitem{Smaragdis2003}
+P.~Smaragdis and J.C. Brown,
+\newblock ``{Non-negative matrix factorization for polyphonic music
+  transcription},''
+\newblock in {\em 2003 IEEE Workshop on Applications of Signal Processing to
+  Audio and Acoustics (IEEE Cat. No.03TH8684)}, 2003.
+
+\bibitem{Hennequin2011}
+R.~Hennequin, R.~Badeau, and B.~David,
+\newblock ``{NMF with time-frequency activations to model nonstationary audio
+  events},''
+\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
+  vol. 19, no. 4, pp. 744--753, 2011.
+
+\bibitem{Fuentes2013}
+B.~Fuentes, R.~Badeau, and G.~Richard,
+\newblock ``{Harmonic adaptive latent component analysis of audio and
+  application to music transcription},''
+\newblock {\em IEEE Transactions on Audio, Speech and Language Processing},
+  vol. 21, no. 9, pp. 1854--1866, 2013.
+
+\bibitem{Shepard1964}
+R.~Shepard,
+\newblock ``{Circularity in Judgments of Relative Pitch},'' 1964.
+
+\bibitem{Anden2014}
+J.~And\'{e}n and S.~Mallat,
+\newblock ``{Deep Scattering Spectrum},''
+\newblock {\em IEEE Transactions on Signal Processing}, vol. 62, no. 16, pp.
+  4114--4128, 2014.
+
+\end{thebibliography}

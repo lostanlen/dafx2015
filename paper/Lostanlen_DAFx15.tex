@@ -38,7 +38,6 @@
 
 %------------------------------------------------------------------------------------------
 \documentclass[twoside,a4paper]{article}
-
 \usepackage{dafx_15}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{euscript}
@@ -157,20 +156,21 @@ Paris, France\\
 \maketitle
 
 \begin{abstract}
+We present a new reprensetation of sounds that liearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
 \end{abstract}
 
 \section{Introduction}
-Spectrogram-based pattern recognition algorithms, such as sparse coding [Abdallah Plumbley 2005] and Nonnegative Matrix Factorization [Smaragdis Brown 2003], are widespread in audio signal processing.
+Spectrogram-based pattern recognition algorithms, such as sparse coding \cite{Abdallah2004} and Nonnegative Matrix Factorization \cite{Smaragdis2003}, are widespread in audio signal processing.
 They are designed to approximate their input by a linear combination of few data-driven templates.
 Musical chords, for example, are expected to get decomposed into individual notes.
 
 However, most natural sounds cannot be factorized as amplitude-modulated fixed spectra: notably, continuous changes in pitch (e.g. vibrato, glissando) as well as in spectral envelope (e.g. attack transients, formantic transitions) have a joint time-frequency structure that cannot be matched to a single spectral atom.
-Time-varying, under-constrained generalizations have been devised to address this shortcoming [Hennequin et al. 2011], but their high number of parameters prevents their robustness in challenging polyphonic contexts.
+Time-varying, under-constrained generalizations have been devised to address this shortcoming \cite{Hennequin2011}, but their high number of parameters prevents their robustness in challenging polyphonic contexts.
 
-Instead of specifying probabilistic priors to help the convergence [Fuentes et al. 2013], we aim to design a template-free, nonlinear, mid-level representation, that natively disentangles the time variabilities of pitch and spectral envelope.
+Instead of specifying probabilistic priors to help the convergence \cite{Fuentes2013}, we aim to design a template-free, nonlinear, mid-level representation, that natively disentangles the time variabilities of pitch and spectral envelope.
 
 The central idea to our representation is that the former correspond to rigid motions along the log-frequency axis, whereas the latter affect the relative amplitude of harmonics across neighboring octaves.
-This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same musical pitch class or "chroma" [Shepard 1964].
+This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same musical pitch class or "chroma" \cite{Shepard1964}.
 By means of a multivariable wavelet transform (see Fig. \ref{fig:spiral-wavelets}), which consists of joint time-chroma-octave convolutions, changes in pitch and spectral envelope are respectively captured as angular and radial motions on the spiral.
 
 The contributions of this paper are:
@@ -227,7 +227,7 @@ S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t) = \left| x \ast \psi_{\lambda_
 
 There is a well-known dilemma in choosing $T$. Too small, the constant-Q matrix lacks invariance to time shifts, which will prevent any learning step to generalize from $S_1 x$ ; too large, discriminative information is discarded.
 
-In order to combine the best of both worlds, the scattering transform recovers finer time scales than $T$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity [Andén Mallat 2011].
+In order to combine the best of both worlds, the scattering transform recovers finer time scales than $T$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity \cite{Anden2014}.
 
 \[
 x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) =
@@ -241,11 +241,9 @@ S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
 \left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t)  \ast \phi_T (t).
 \]
 
-The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition [Andén et Malla 2011] than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
+The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition \cite{Anden2014} than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
 
 It should be noted that, while the definition above successfully describes the average spectral envelope and amplitude modulation of a signal, it decomposes and averages each frequency band separately. Hence, it cannot properly characterize the joint time-frequency structure of natural sounds.
-
-Cepstral coefficients, which pictures pitch on a line, does not involve pitch circularity. Conversely, chroma features are insensible to octave transpositions.
 
 \[
 \log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}
@@ -262,15 +260,25 @@ The integer part $\lfloor \log_2 \lambda_1 \rfloor$ is the octave index (related
 
 \section{Deformations of the source-filter model}
 
+\[
+x(t) = \left[ e_{\theta}\ast h_{\zeta} (t) \right]
+\]
 
+\[
+S_1 x(t,\log_2 \lambda_1) \propto
+\widehat{\psi_{\lambda_1}}\left( 2^{k(t,\log_2 \lambda_1) + LDLD[\theta](t)} f_0 \right) \times
+g\left(  \right)
+\]
 
 \section{Conclusions}
+
+The spiral model is well-known in music theory and experimental psychology. However, existing methods in audio signal processing do not fully take advantage from its richness, as they either picture pitch on a line (e.g. MFCC) or on a circle (e.g. chroma features).
 
 Future work will be devoted to evaluating the discriminative power of Shepard spiral scattering coefficients over a variety of classification pipelines. Our representation also encompass automatic music transcription, perceptual similarity learning, and new audio transformations as potential applications.
 
 %\newpage
 \nocite{*}
 \bibliographystyle{IEEEbib}
-\bibliography{DAFx15_tmpl} % requires file DAFx15_tmpl.bib
+\bibliography{Lostanlen_DAFx15} % requires file DAFx15_tmpl.bib
  
 \end{document}
