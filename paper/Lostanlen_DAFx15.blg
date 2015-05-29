@@ -3,46 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Lostanlen_DAFx15.aux
 The style file: IEEEbib.bst
 Database file #1: Lostanlen_DAFx15.bib
-Warning--I didn't find a database entry for "Andé2014PhD"
-You've used 7 entries,
+You've used 8 entries,
             1838 wiz_defined-function locations,
-            513 strings with 4781 characters,
-and the built_in function-call counts, 1550 in all, are:
-= -- 142
-> -- 54
+            518 strings with 4944 characters,
+and the built_in function-call counts, 1767 in all, are:
+= -- 164
+> -- 62
 < -- 2
-+ -- 21
-- -- 14
-* -- 117
-:= -- 242
-add.period$ -- 7
-call.type$ -- 7
-change.case$ -- 6
++ -- 24
+- -- 16
+* -- 136
+:= -- 277
+add.period$ -- 8
+call.type$ -- 8
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 67
-empty$ -- 163
-format.name$ -- 14
-if$ -- 346
+cite$ -- 8
+duplicate$ -- 75
+empty$ -- 184
+format.name$ -- 16
+if$ -- 393
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 5
-newline$ -- 37
-num.names$ -- 7
-pop$ -- 24
+int.to.str$ -- 8
+missing$ -- 6
+newline$ -- 42
+num.names$ -- 8
+pop$ -- 25
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 29
+skip$ -- 31
 stack$ -- 0
-substring$ -- 111
-swap$ -- 17
+substring$ -- 130
+swap$ -- 18
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 16
-width$ -- 8
-write$ -- 77
-(There was 1 warning)
+while$ -- 19
+width$ -- 9
+write$ -- 88

@@ -200,6 +200,8 @@ a visualization of these coefficients in Berio's \emph{Sequenza V}, revealing ex
 
 \section{Shepard spiral scattering}
 
+\subsection{Time scattering}
+
 Let $\psi(t)=\vert\psi\vert(t)\mathrm{e}^{2\pi\mathrm{i}t}$ a "mother wavelet" of dimensionless center frequency $1$ and bandwidth $Q^{-1}$.
 The quality factor $Q$ is an integer in the typical range $12$\textendash$24$.
 Center frequencies of the subsequent wavelet filter bank are of the
@@ -244,6 +246,8 @@ S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
 
 The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition \cite{Anden2014DSS} than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
 
+\subsection{Joint time-frequency scattering}
+
 Due to the constant-Q property, $Sx$ is stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone.
 This implies that small modulations, such as tremolo and vibrato, are accurately linearized in rate and depth \cite{Anden2012}.
 
@@ -254,12 +258,18 @@ To stabilize $x_2$ with respect to these variations, Andén \cite{Anden2014PhD} h
 \psi_{\lambda_2}(t,\log_2 \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log_2 \lambda_1)
 \]
 
-The equation below introduces a "joint time-frequency scattering" transform, as opposed to the plain "time scattering" transform of Equation \ref{eq:time-scattering}.
+The equation below introduces a "joint time-frequency scattering" transform, as opposed to the plain "time scattering" transform of Equation \ref{eq:time-scattering}:
+
+\[
+x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}(t,\log_2 \lambda_1)\vert .
+\]
+
+The joint time-frequency scattering transform corresponds to the "cortical transform" introduced by Shamma to formalize his findings in auditory neuroscience.
+
+\subsection{Spiral scattering}
+
 
 --- DRAFT BELOW---
-
-
-It should be noted that, while the definition above successfully describes the average spectral envelope and amplitude modulation of a signal, it decomposes and averages each frequency band separately. Hence, it cannot properly characterize the joint time-frequency structure of natural sounds.
 
 \[
 \log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}
