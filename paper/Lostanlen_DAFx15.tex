@@ -232,6 +232,7 @@ In order to combine the best of both worlds, the scattering transform recovers f
 \[
 x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) =
 \left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t) 
+\label{eq:time-scattering}
 \]
 
 Also known as \emph{amplitude modulation spectrum}, the three-way array $x_2$ is then averaged in time to achieve as much invariance as the constant-Q spectrum $S_1 x$:
@@ -243,15 +244,17 @@ S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
 
 The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition \cite{Anden2014DSS} than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
 
-TODO MOTIVATE JOINT
-%The scattering transform $Sx$ defined above is stable to time warps of $x(t)$ as long as they do not exceed $Q^{-1}$, i.e. typically one semitone.
-%This is useful in audio classification where a small deformation of the signal does not alter its class membership.
+Due to the constant-Q property, $Sx$ is stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone.
+This implies that small modulations, such as tremolo and vibrato, are accurately linearized in rate and depth \cite{Anden2012}.
 
+However, the definition above is unstable to the variability in pitch and spectral envelope, for which the activation of frequency bands is highly correlated in time.
 To stabilize $x_2$ with respect to these variations, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as two-dimensional functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. 
 
 \[
 \psi_{\lambda_2}(t,\log_2 \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log_2 \lambda_1)
 \]
+
+The equation below introduces a "joint time-frequency scattering" transform, as opposed to the plain "time scattering" transform of Equation \ref{eq:time-scattering}.
 
 --- DRAFT BELOW---
 
