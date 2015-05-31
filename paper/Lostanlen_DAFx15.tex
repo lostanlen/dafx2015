@@ -255,7 +255,7 @@ The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven t
 Due to the constant-Q property, $Sx$ is stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone.
 This implies that small modulations, such as tremolo and vibrato, are accurately linearized in rate and depth \cite{Anden2012}.
 
-However, the definition above is unstable to the variability in pitch and spectral envelope, for which the activation of frequency bands is highly correlated in time.
+However, the definition above is unstable to the variability in pitch and spectral envelope, for which the activations of frequency bands is highly correlated in time.
 To stabilize $x_2$ with respect to these variations, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as two-dimensional functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. 
 
 \begin{equation}
@@ -276,7 +276,7 @@ The joint time-frequency scattering transform corresponds to the "cortical trans
 
 The time-frequency scattering transform presented above provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure in quasi-periodic signals, which are ubiquitous in audio recordings. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
-In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering trasnform to encompass motion across octaves, in conjuntion with motion along neighbouring constant-Q bands.
+In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass motion across octaves, in conjuntion with motion along neighbouring constant-Q bands.
 We roll up the log-frequency variable $\log_2 \lambda_1$ into a Shepard pitch spiral (see Fig. \ref{fig:spiral-wavelets}), making one full turn at each octave. Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log_2 \lambda_1$, pitch chroma and pitch height in the Shepard spiral correspond to integer part $\lfloor \log_2 \lambda_1 \rfloor$ and fractional part $\{ \log_2 \lambda_1 \}$:
 
 \begin{equation}
@@ -299,14 +299,29 @@ We cascade three one-dimensional wavelet transforms in time, log-frequency, and 
 The definitions for $x_2$ and $S_1 x$ are the same as Equations \ref{} and \ref{}.
 Since its Fourier transform $\widehat{\psi_{\lambda_2}}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$. Both velocities are measures in octaves per second.
 
-
---- DRAFT BELOW---
+\begin{figure}[t]
+	\begin{center}
+		\setlength{\unitlength}{1cm}
+		\begin{picture}(6,5.5)
+		\put(0,0){\includegraphics[width=6cm]{../figures/gretsi_fig1.png}}
+		\end{picture}
+	\end{center}
+	\protect\caption{
+\label{fig:berio-scalogram}
+}
+\end{figure}
 
 \section{Deformations of the source-filter model}
 
 \begin{equation}
-x(t) = \left[ e_{\theta}\ast h_{\nu} (t) \right]
+x(t) = \left[ e_{\theta}(t) \ast h_{\nu}(t) \right]
+\label{fig:source-filter-definition}
 \end{equation}
+
+In this section, we show that second-order spiral coefficients $x_2$ linearize the derivatives of the diffeomorphisms $\theta(t)$ and $\tau(t)$.
+
+We show three resul
+
 
 \begin{figure}[t]
 	\begin{center}

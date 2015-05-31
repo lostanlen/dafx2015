@@ -733,47 +733,26 @@ We define the source response
 
 .
  Let 
-\begin_inset Formula $k(\lambda_{1})=\left\lfloor \lambda_{1}/f_{0}\right\rceil $
-\end_inset
-
- be the index of the closest partial to the frequency 
-\begin_inset Formula $\lambda_{1}$
-\end_inset
-
-.
- 
-\begin_inset Formula 
-\[
-e_{1}(\log_{2}\lambda_{1})=\widehat{\psi}\left(2^{-\log_{2}\lambda_{1}}k(\lambda_{1})f_{0}\right).
-\]
-
+\begin_inset Formula $k(\lambda_{1})=\left\lfloor f_{0}/\\lambda\right\rceil $
 \end_inset
 
  
 \begin_inset Formula 
 \[
-x_{1}(t,\log_{2}\lambda_{1})=e_{1}(\log_{2}\lambda_{1}-\log_{2}\dot{\theta}(t))\times h_{1}(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t))
+e(\log_{2}\lambda_{1})=\widehat{\psi}\left(2^{-\log_{2}\lambda_{1}}kf_{0}\right).
 \]
 
 \end_inset
 
-
+For a quality factor large enough, 
 \begin_inset Formula 
 \[
-\log_{2}\dot{\theta}(u)=\log_{2}\dot{\theta}(t)+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}u+o(u^{2})
+x_{1}(t,\log_{2}\lambda_{1})=E(\log_{2}\lambda_{1}-\log_{2}\dot{\theta}(t))\times H(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t))
 \]
 
 \end_inset
 
-and same for 
-\begin_inset Formula $\log_{2}\dot{\nu}(u)$
-\end_inset
 
- around 
-\begin_inset Formula $t$
-\end_inset
-
-.
 \end_layout
 
 \end_body

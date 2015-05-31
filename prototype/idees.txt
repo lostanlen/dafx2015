@@ -1,0 +1,18 @@
+Idées de la transformée en spirale
+
+**Auto-similarité**
+* on décompose un signal périodique en une somme de signaux auto-similaires, les Shepard tones
+* les séries de Fourier ont besoin de la période pour estimer la régularité d'un signal
+
+**Hypothèse après factorisation**
+L'ondelette en octave ne "voit pas" le spectre harmonique, car celui-ci est auto-similaire (sauf à la fréquence fondamentale).
+L'ondelette en chromas ne "voit presque pas" le filtre, car celui-ci est très régulier sur l'axe log-fréquentiel.
+
+**F0 as an edge**
+Seule la fréquence fondamentale est un edge dans la représentation en spirale. Même quand hauteur et filtre varient. Cette idée est probablement utile en transcription.
+
+**Convolution avec le Shepard arpeggio**.
+En considérant que la pente gamma/alpha est de l'ordre de nu'' / nu', on peut appliquer Fubini à l'intégrale double temps-octave car
+1. dans la direction oscillante, c'est le module de l'ondelette qui domine dans la décroissance
+2. dans la direction de phase constante, c'est l'enveloppe du filtre qui domine.
+On a donc une closed form des coefficients x2 (puis S2x) autour de leur maximum, ainsi que la position du maximum : gamma = nu''/nu' * alpha. 
