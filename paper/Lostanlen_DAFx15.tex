@@ -328,7 +328,7 @@ Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency,
 whereas $\dot{\nu}(t)$ accounts for a local dilation of the spectral
 envelope $\vert\widehat{h}\vert(\omega)$.
 We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular over the support of first-order wavelets,
-the local maxima of $Sx_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
+the local maxima of $x_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
 This plane satisfies the Cartesian equation
 
 \begin{equation}
@@ -437,7 +437,15 @@ x_2(t,\log_2 \lambda_1, \log_2 \lambda_2) = \\
 \label{eq:x2-spiral}
 \end{multline}
 
-The Fourier spectrum $\vert \widehat{\psi_\alpha}(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula.
+The Fourier spectrum $\vert \widehat{\psi_\alpha}(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if
+
+\begin{equation}
+\left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
+\quad \text{and} \quad
+\left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
+\end{equation}
+
+In particular, the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\nu(t)$, i.e. where the relative velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ cross zero.
 
 \begin{figure}[t]
 	\begin{center}
