@@ -34,8 +34,6 @@
 \def\paperauthorC{Joseph Fourier}
 \def\paperauthorD{Claude Shannon}
 
-\hyphenation{Facto-rization}
-
 %------------------------------------------------------------------------------------------
 \documentclass[twoside,a4paper]{article}
 \usepackage{dafx_15}
@@ -98,6 +96,7 @@
 Paris, France\\
 {\tt \href{mailto:vincent.lostanlen@ens.fr}{vincent.lostanlen@ens.fr}}
 }
+
 %-----------------------------------SINGLE-AUTHOR HEADER ENDS------------------------------------------------------
 
 %---------------TWO-AUTHOR HEADER STARTS (uncomment below if your paper has two authors)-----------------------
@@ -146,6 +145,7 @@ Paris, France\\
 %-------------------------------------FOUR-AUTHOR HEADER ENDS------------------------------------------------------
 
 \begin{document}
+
 % more pdf-tex settings:
 \ifpdf % used graphic file format for pdflatex
   \DeclareGraphicsExtensions{.png,.jpg,.pdf}
@@ -156,7 +156,7 @@ Paris, France\\
 \maketitle
 
 \begin{abstract}
-We present a new reprensetation of sounds that liearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
+We present a new representation of sounds that liearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
 \end{abstract}
 
 \section{Introduction}
@@ -327,15 +327,18 @@ x(t)=[e_{\theta}\ast h_{\nu}](t).
 Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency,
 whereas $\dot{\nu}(t)$ accounts for a local dilation of the spectral
 envelope $\vert\widehat{h}\vert(\omega)$.
-We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular,
+We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular over the support of first-order wavelets,
 the local maxima of $Sx_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
 This plane satisfies the Cartesian equation
 
 \begin{equation}
-\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta+\dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma=\alpha.
+\alpha +
+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta + 
+\dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma = 0.
 \label{eq:cartesian-equation}
 \end{equation}
 
+This result is likely to help automated transcription of polyphonic music, since notes overlapping both in time and frequency could be disentangled according to their respective source-filter velocities.
 Let $e_{\theta,1}(t,\log_{2}\lambda_{1})$ and $h_{\nu,1}(t,\log_{2}\lambda_{1})$
 be the respective scalograms of $e_{\theta}(t)$ and $h_{\nu}(t)$.
 Our proof is driven by two properties:
@@ -353,44 +356,47 @@ h_{\nu,1}(t,\log_{2}\lambda_{1})\approx h_{\nu,1}(t,\log_{2}\lambda_{1}+\chi).
 \end{equation}
 \end{enumerate}
 
-The first step is to linearize the diffeomorphisms $\theta(t)$ and $\nu(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. 
+Given $\lambda_1$ near $p f_0 \dot{\theta}(t)$ where $p \in \mathbb{N}$, the first step is to linearize $\theta(t)$ and $\nu(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work with the following assumptions:
 
-Around the $p^\text{th}$
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item $Q$ large enough to discriminate the $p^\text{th}$ partial: $Q>2p$,
+\item slowly varying source: $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty} \ll \lambda_{1}/Q$, and
+\item slowly varying filter: $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$.
+\end{enumerate}
 
-To capitalize on these two identities, we factorize the scalogram
-$x_{1}$ as the product of the scalograms $e_{1}$ and $h_{1}$, translated
-along the log-frequency axis at respective velocities $\log_{2}\dot{\theta}(t)$
-and $\log_{2}\dot{\nu}(t)$: 
-
+According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to $e_1$ at the log-frequency $\log_2 \lambda_1$. For lack of any interference, $e_1$ is constant through time, and we may drop the dependency in $t$:
 \begin{equation}
-e_{\theta,1}(t,\log_2 \lambda_1) = e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t)), and
+e_{1}(\log_2 \lambda_1) = \vert \widehat{\psi_{\lambda_1}}(p f_0) \vert
+\label{eq:e1}
 \end{equation}
 
+According to (b), the scalogram of the deformed source can be replaced by the scalogram of the original source translated along the log-frequency at the velocity $\log_2 \dot{\theta}(t)$:
+
 \begin{equation}
-h_{\nu,1}(t,\log_2 \lambda_1) = h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t)).
+e_{\theta,1}(t,\log_2 \lambda_1) = e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t)).
+\label{eq:e-theta-1}
 \end{equation}
 
-This factorization is achieved by linearizing $\theta(t)$ and $\nu(t)$
-over the support of the first-order wavelet, and by converting the
-local dilation of the signal into a dilation of the wavelet by means
-of an affine change of variables. 
-
-\begin{itemize}
-\item slowly varying source: $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty} \ll \lambda_{1}/Q$,
-\item Q large enough to discriminate the $p^\text{th}$ partial: $Q>2p$,
-\item slowly varying filter: $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$, and
-\item smooth spectral envelope: $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$.
-\end{itemize}
-
-Additionally, the scalogram $x_1$ of the deformed source-filter model gets factorized as a product between the scalograms of the deformed source and the deformed filter:
+Similarly, we leverage (c) to linearize $\nu(t)$ over the support of $\psi_{\lambda_1}(t)$. The spectral smoothness assumption allows to approximate $\hat{h}(\omega)$ by a constant over the frequential support of the wavelet, hence to factorize the filtering as a product:
 
 \begin{equation}
-x_1 = e_{\theta,1} \times h_{\nu,1}.
+\left[ h_\nu \ast \psi_{\lambda_1} \right] =
+h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t))
+\psi_{\lambda_1}\left( \frac{\nu(t)}{\dot{\nu}(t)} \right).
+\label{eq:h-nu-1}
+\end{equation}
+
+By plugging Equation \ref{eq:e-theta-1} into Equation \ref{eq:h-nu-1}, $x_1$ appears is a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log_2 \dot{\theta}(t)$ and $\log_2 \dot{\nu}(t)$:
+
+\begin{multline}
+x_1(t,\log_2 \lambda_1) = \\
+e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t))
+h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t)).
 \label{eq:factorization}
-\end{equation}
+\end{multline}
 
-All wavelets are designed to carry a negligible mean value, i.e. convolving
-them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
+The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\nu}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
 
 \begin{equation}
 e_{\theta,1}\overset{j}{\ast}\psi_{\gamma}\approx0
@@ -399,7 +405,7 @@ h_{\nu,1}\overset{\chi}{\ast}\psi_{\beta}\approx0.
 \label{eq:zero-mean}
 \end{equation}
 
-Gathering Equations \ref{eq:factorization} and \ref{eq:zero-mean} into Equation \ref{eq:x2-joint} yields:
+Gathering Equations \ref{eq:factorization} and \ref{eq:zero-mean} into the definition of spiral scattering yields
 
 \begin{equation}
 x_1 \overset{t,\chi,j}{\ast} \psi_{\lambda_2} = \left[
@@ -407,9 +413,31 @@ x_1 \overset{t,\chi,j}{\ast} \psi_{\lambda_2} = \left[
 \times
 \left( h_{1,\nu} \overset{j}{\ast} \psi_{\gamma} \right)
 \right]
-\overset{t}{\ast} \psi_\alpha
+\overset{t}{\ast} \psi_\alpha,
 \end{equation}
 
+where the superscripts $t$, $\chi$ and $j$ denote convolutions along time, chromas and octaves respectively.
+
+As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log_2 \lambda_1 - \log_2 p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log_2 \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the convolution $[h_{\nu,1} \overset{j}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
+\begin{equation}
+\alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
+\quad
+\text{and}
+\quad
+\alpha \geq \left \vert \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right \vert,
+\end{equation}
+
+the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
+
+\begin{multline}
+x_2(t,\log_2 \lambda_1, \log_2 \lambda_2) = \\
+\vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
+\vert h_{\nu,1} \overset{j}{\ast} \psi_\gamma \vert \times
+\left \vert \widehat{\psi_{\alpha}} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\label{eq:x2-spiral}
+\end{multline}
+
+The Fourier spectrum $\vert \widehat{\psi_\alpha}(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula.
 
 \begin{figure}[t]
 	\begin{center}
