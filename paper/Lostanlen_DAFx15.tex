@@ -276,11 +276,11 @@ The joint time-frequency scattering transform corresponds to the "cortical trans
 
 The time-frequency scattering transform presented above provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure in quasi-periodic signals, which are ubiquitous in audio recordings. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
-In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass motion across octaves, in conjuntion with motion along neighbouring constant-Q bands.
+In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass motion across octaves, in conjunction with motion along neighboring constant-Q bands.
 We roll up the log-frequency variable $\log_2 \lambda_1$ into a Shepard pitch spiral (see Fig. \ref{fig:spiral-wavelets}), making one full turn at each octave. Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log_2 \lambda_1$, pitch chroma and pitch height in the Shepard spiral correspond to integer part $\lfloor \log_2 \lambda_1 \rfloor$ and fractional part $\{ \log_2 \lambda_1 \}$:
 
 \begin{equation}
-\log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}
+\log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}.
 \label{eq:integer-part-and-fractional-part}
 \end{equation}
 
@@ -313,14 +313,102 @@ Since its Fourier transform $\widehat{\psi_{\lambda_2}}$  is centered at $(\alph
 
 \section{Deformations of the source-filter model}
 
+Let $e(t)=\sum_{n}\delta(t-2\pi f_{0}^{-1}n)$ be a harmonic signal and
+$t\mapsto\theta(t)$ a time warp function. We define a warped source
+as $e_{\theta}(t)=(e\circ\theta)(t)$. Similarly, we compose a
+filter $h(t)$ and a warp $t\mapsto\nu(t)$ to define $h_{\nu}(t)=(h\circ\nu)(t)$.
+The warped source-filter model is
+
 \begin{equation}
-x(t) = \left[ e_{\theta}(t) \ast h_{\nu}(t) \right]
-\label{fig:source-filter-definition}
+x(t)=[e_{\theta}\ast h_{\nu}](t).
+\label{eq:source-filter}
 \end{equation}
 
-In this section, we show that second-order spiral coefficients $x_2$ linearize the derivatives of the diffeomorphisms $\theta(t)$ and $\tau(t)$.
+Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency,
+whereas $\dot{\nu}(t)$ accounts for a local dilation of the spectral
+envelope $\vert\widehat{h}\vert(\omega)$.
+We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular,
+the local maxima of $Sx_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
+This plane satisfies the Cartesian equation
 
-We show three resul
+\begin{equation}
+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta+\dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma=\alpha.
+\label{eq:cartesian-equation}
+\end{equation}
+
+Let $e_{\theta,1}(t,\log_{2}\lambda_{1})$ and $h_{\nu,1}(t,\log_{2}\lambda_{1})$
+be the respective scalograms of $e_{\theta}(t)$ and $h_{\nu}(t)$.
+Our proof is driven by two properties:
+\begin{enumerate}
+\item \emph{Harmonicity}. For any small octave difference $\vert j \vert \in \mathbb{N}$,
+\begin{equation}
+e_{\theta,1}(t,\log_{2}\lambda_{1})\approx e_{\theta,1}(t,\log_{2}\lambda_{1}+j).
+\label{eq:harmonicity}
+\end{equation}
+ 
+\item \emph{Spectral smoothness}.  For any chroma difference $\vert \chi \vert < 1$,
+\begin{equation}
+h_{\nu,1}(t,\log_{2}\lambda_{1})\approx h_{\nu,1}(t,\log_{2}\lambda_{1}+\chi).
+\label{eq:spectral-smoothness}
+\end{equation}
+\end{enumerate}
+
+The first step is to linearize the diffeomorphisms $\theta(t)$ and $\nu(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. 
+
+Around the $p^\text{th}$
+
+To capitalize on these two identities, we factorize the scalogram
+$x_{1}$ as the product of the scalograms $e_{1}$ and $h_{1}$, translated
+along the log-frequency axis at respective velocities $\log_{2}\dot{\theta}(t)$
+and $\log_{2}\dot{\nu}(t)$: 
+
+\begin{equation}
+e_{\theta,1}(t,\log_2 \lambda_1) = e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t)), and
+\end{equation}
+
+\begin{equation}
+h_{\nu,1}(t,\log_2 \lambda_1) = h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t)).
+\end{equation}
+
+This factorization is achieved by linearizing $\theta(t)$ and $\nu(t)$
+over the support of the first-order wavelet, and by converting the
+local dilation of the signal into a dilation of the wavelet by means
+of an affine change of variables. 
+
+\begin{itemize}
+\item slowly varying source: $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty} \ll \lambda_{1}/Q$,
+\item Q large enough to discriminate the $p^\text{th}$ partial: $Q>2p$,
+\item slowly varying filter: $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$, and
+\item smooth spectral envelope: $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$.
+\end{itemize}
+
+Additionally, the scalogram $x_1$ of the deformed source-filter model gets factorized as a product between the scalograms of the deformed source and the deformed filter:
+
+\begin{equation}
+x_1 = e_{\theta,1} \times h_{\nu,1}.
+\label{eq:factorization}
+\end{equation}
+
+All wavelets are designed to carry a negligible mean value, i.e. convolving
+them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
+
+\begin{equation}
+e_{\theta,1}\overset{j}{\ast}\psi_{\gamma}\approx0
+\quad\mbox{and}\quad
+h_{\nu,1}\overset{\chi}{\ast}\psi_{\beta}\approx0.
+\label{eq:zero-mean}
+\end{equation}
+
+Gathering Equations \ref{eq:factorization} and \ref{eq:zero-mean} into Equation \ref{eq:x2-joint} yields:
+
+\begin{equation}
+x_1 \overset{t,\chi,j}{\ast} \psi_{\lambda_2} = \left[
+\left( e_{1,\theta} \overset{\chi}{\ast} \psi_{\beta} \right)
+\times
+\left( h_{1,\nu} \overset{j}{\ast} \psi_{\gamma} \right)
+\right]
+\overset{t}{\ast} \psi_\alpha
+\end{equation}
 
 
 \begin{figure}[t]
@@ -337,7 +425,7 @@ We show three resul
 
 \section{Conclusions}
 
-The spiral model is well-known in music theory and experimental psychology. However, existing methods in audio signal processing do not fully take advantage from its richness, as they either picture pitch on a line (e.g. MFCC) or on a circle (e.g. chroma features).
+The spiral model we have presented is well-known in music theory and experimental psychology. However, existing methods in audio signal processing do not fully take advantage from its richness, as they either picture pitch on a line (e.g. MFCC) or on a circle (e.g. chroma features).
 
 Future work will be devoted to evaluating the discriminative power of Shepard spiral scattering coefficients over a variety of classification pipelines. Our representation also encompass automatic music transcription, perceptual similarity learning, and new audio transformations as potential applications.
 

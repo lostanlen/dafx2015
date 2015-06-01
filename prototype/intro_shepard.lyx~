@@ -154,14 +154,6 @@ status open
 \end_inset
 
 
-\begin_inset Graphics
-	filename /Users/vlostan/dafx2015/spiral_wavelets.png
-	lyxscale 15
-	width 75text%
-
-\end_inset
-
-
 \begin_inset space \hfill{}
 \end_inset
 
@@ -174,10 +166,6 @@ Wavelets in time, log-frequency and octave index.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -667,13 +655,228 @@ Deformations of the source-filter model
 \end_layout
 
 \begin_layout Standard
+Let 
+\begin_inset Formula $\sum_{n}\delta(t-2\pi f_{0}^{-1}n)$
+\end_inset
+
+ be a harmonic signal and 
+\begin_inset Formula $t\mapsto\theta(t)$
+\end_inset
+
+ a time warp function ; we define the warped source as 
+\begin_inset Formula $e_{\theta}(t)=(e\circ\theta)(t)$
+\end_inset
+
+.
+ Similarly, we start from a filter 
+\begin_inset Formula $h(t)$
+\end_inset
+
+ and a warp 
+\begin_inset Formula $t\mapsto\nu(t)$
+\end_inset
+
+ to define 
+\begin_inset Formula $h_{\nu}(t)=(h\circ\nu)(t)$
+\end_inset
+
+.
+ The warped source-filter model is the signal 
 \begin_inset Formula 
 \[
-x(t)=\left[e_{\theta}\ast h_{\nu}\right](t)
+x(t)=[e_{\theta}\ast h_{\nu}(t)].
 \]
 
 \end_inset
 
+Observe that 
+\begin_inset Formula $\dot{\theta}(t)$
+\end_inset
+
+ induces a change of fundamental frequency, whereas 
+\begin_inset Formula $\dot{\nu}(t)$
+\end_inset
+
+ accounts for a local dilation of the spectral envelope 
+\begin_inset Formula $\vert\widehat{h}\vert(\omega)$
+\end_inset
+
+.
+ We show in this section that, for 
+\begin_inset Formula $\dot{\theta}(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{\nu}(t)$
+\end_inset
+
+ reasonably regular, the local maxima of the corresponding second-order
+ coefficients 
+\begin_inset Formula $Sx_{2}$
+\end_inset
+
+ appear as a plane in the 
+\begin_inset Formula $(\alpha,\beta,\gamma)$
+\end_inset
+
+ space.
+ This plane satisfies the Cartesian equation
+\begin_inset Formula 
+\[
+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta+\dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma=\alpha.
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $e_{\theta,1}(t,\log_{2}\lambda_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $h_{\nu,1}(t,\log_{2}\lambda_{1})$
+\end_inset
+
+ be the respective scalograms of 
+\begin_inset Formula $e_{\theta}(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $h_{\nu}(t)$
+\end_inset
+
+.
+ Our proof is driven by two facts:
+\end_layout
+
+\begin_layout Enumerate
+The scalogram of the warped harmonic source is constant across octaves:
+ 
+\begin_inset Formula 
+\[
+e_{\theta,1}(t,\log_{2}\lambda_{1})\approx e_{\theta,1}(t,\log_{2}\lambda_{1}+j)\mbox{ for }j\in\mathbb{Z}.
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+The scalogram of the warped filter is almost constant along chromas: 
+\begin_inset Formula 
+\[
+h_{\nu,1}(t,\log_{2}\lambda_{1})\approx h_{\nu,1}(t,\log_{2}\lambda_{1}+\chi)\mbox{ for }\vert\chi\vert<1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All wavelets are designed to carry a negligible mean value, i.e.
+ convolving them with a constant yields zero.
+ Therefore, the two facts above imply 
+\begin_inset Formula 
+\[
+e_{\theta,1}\overset{j}{\ast}\psi_{\gamma}\approx0\quad\mbox{and}\quad h_{\nu,1}\overset{\chi}{\ast}\psi_{\beta}\approx0.
+\]
+
+\end_inset
+
+To capitalize on these two identities, we factorize the scalogram 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ as the product of the scalograms 
+\begin_inset Formula $e_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+, translated along the log-frequency axis at respective velocities 
+\begin_inset Formula $\log_{2}\dot{\theta}(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\log_{2}\dot{\nu}(t)$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+x_{1}(t,\log_{2}\lambda_{1})=e_{1}(\log_{2}\lambda_{1}-\log_{2}\dot{\theta}(t))\times h_{1}(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t)).
+\]
+
+\end_inset
+
+This factorization is achieved by linearizing 
+\begin_inset Formula $\theta(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\nu(t)$
+\end_inset
+
+ over the support of the first-order wavelet, and by converting the local
+ dilation of the signal into a dilation of the wavelet by means of an affine
+ change of variables.
+ The assumptions involved are:
+\end_layout
+
+\begin_layout Enumerate
+slowly varying source: 
+\begin_inset Formula $\Vert\ddot{\theta}/\dot{\theta}\Vert\ll\lambda_{1}/Q$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+slowly varying filter: 
+\begin_inset Formula $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+smooth spectral envelope: 
+\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+Q large enough to discriminate the 
+\begin_inset Formula $k^{\mbox{th}}$
+\end_inset
+
+ partial from its neighbors: 
+\begin_inset Formula $Q>2k$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+x_{1}\ast\psi_{\lambda_{2}}=\left[\left(e_{\theta,1}\ast\psi_{\beta}\right)\times\left(h_{\nu,1}\ast\psi_{\gamma}\right)\right]\ast\psi_{\alpha}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This theoretical result is likely to cause an increase of performance in
+ signal classification and blind source separation.
+ 
+\end_layout
+
+\begin_layout Standard
 In this section, we show that second-order spiral coefficients linearize
  the derivatives of the diffeomorphisms 
 \begin_inset Formula $\theta(t)$
@@ -688,38 +891,6 @@ In this section, we show that second-order spiral coefficients linearize
 
 \begin_layout Standard
 Our assumptions are:
-\end_layout
-
-\begin_layout Enumerate
-slowly varying source: 
-\begin_inset Formula $\Vert\ddot{\theta}/\dot{\theta}\Vert\ll\lambda_{1}/Q$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-slowly varying filter: 
-\begin_inset Formula $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-smooth spectral envelope: 
-\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-low-rank partial: 
-\begin_inset Formula $Q>2k$
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
