@@ -17,4 +17,3 @@ The contributions of this paper are :
 * a nonstationary formulation of the source-filter convolutional model relying on time warps, and its factorization in the wavelet scalogram,
 * an approximate closed-form expression of Shepard spiral scattering coefficients, showing that variabilities in pitch and spectral envelope get jointly linearized, and stably appear as energy maxima.
 * a visualization of these coefficients in Berio's *Sequenza V*, revealing extended instrumental techniques.
-
