@@ -160,30 +160,15 @@ We present a new representation of sounds that liearizes the dynamics of pitch c
 \end{abstract}
 
 \section{Introduction}
-Spectrogram-based pattern recognition algorithms, such as sparse coding \cite{Abdallah2004} and Nonnegative Matrix Factorization \cite{Smaragdis2003}, are widespread in audio signal processing.
-They are designed to approximate their input by a linear combination of few data-driven templates.
-Musical chords, for example, are expected to get decomposed into individual notes.
 
-However, most natural sounds cannot be factorized as amplitude-modulated fixed spectra: notably, continuous changes in pitch (e.g. vibrato, glissando) as well as in spectral envelope (e.g. attack transients, formantic transitions) have a joint time-frequency structure that cannot be matched to a single spectral atom.
-Time-varying, under-constrained generalizations have been devised to address this shortcoming \cite{Hennequin2011}, but their high number of parameters prevents their robustness in challenging polyphonic contexts.
+Understanding the natural regularities in audio signals is essential to the design of a useful representation for classification, blind source separation, automated transcription, as well as other processing tasks. It is well known that a wavelet decomposition followed by complex modulus brings short-term regularity along the time axis, as it locally replaces oscillatory components by their envelopes. After this operation, longer-term regularities appear. In this article, we show that the same "scattering" scheme of wavelet convolutions of complex modulus, can be applied to encompass them.
 
-Instead of specifying probabilistic priors to help the convergence \cite{Fuentes2013}, we aim to design a template-free, nonlinear, mid-level representation, that natively disentangles the time variabilities of pitch and spectral envelope.
+First, local continuity in frequency modulation cause a slow rigid motion along the log-frequency axis. Second, harmonic sounds exhibit a comb-like spectrum, which conveys the global evolution of the spectral envelope. This comb looks highly irregular: unlike frequency modulation, it cannot be captured efficiently with local convolutions in time and log-frequency.
 
-The central idea to our representation is that the former correspond to rigid motions along the log-frequency axis, whereas the latter affect the relative amplitude of harmonics across neighboring octaves.
-This distinction can be conceptually emphasized by arranging the log-frequency axis in a spiral, hence aligning frequency bins that share the same musical pitch class or "chroma" \cite{Shepard1964}.
-By means of a multivariable wavelet transform (see Fig. \ref{fig:spiral-wavelets}), which consists of joint time-chroma-octave convolutions, changes in pitch and spectral envelope are respectively captured as angular and radial motions on the spiral.
+To recover regularity across partials, we capitalize on the fact that power-of-two harmonics are distant from exactly one octave. By rolling up the log-frequency axis in a spiral, such that octave intervals correspond to full turns, these partials get aligned on a radius. Consequently, introducing the integer-valued octave variable reveals harmonic regularity that was not explicit in the plane of time and log-frequency. Once specified the variables of time, log-frequency, and octave index, our transform merely consists in cascading three wavelet decompositions along them and applying complex modulus.
 
-The contributions of this paper are:
-\begin{itemize}
-\item
-the introduction of the Shepard spiral scattering transform as a cascade of wavelet operators,
-\item
-a nonstationary formulation of the source-filter convolutional model relying on time warps, and its factorization in the wavelet scalogram,
-\item
-an approximate closed-form expression of Shepard spiral scattering coefficients, showing that variabilities in pitch and spectral envelope get jointly linearized, and stably appear as energy maxima.
-\item
-a visualization of these coefficients in Berio's \emph{Sequenza V}, revealing extended instrumental techniques.
-\end{itemize}
+Section 2 gives a formal definition of the spiral scattering transform. Section 3 introduces a nonstationary formulation of the source-filter model relying on time warps, and shows that its variabilities in pitch and spectral envelope are jointly linearized by the spiral scattering transform.
+Section 4 provides a visual interpretation of the spiral wavelet coefficients in a music signal with extended instrumental techniques.
 
 \begin{figure}[t]
 	\begin{center}
@@ -202,21 +187,28 @@ a visualization of these coefficients in Berio's \emph{Sequenza V}, revealing ex
 
 \subsection{Time scattering}
 
-Let $\psi(t)=\vert\psi\vert(t)\mathrm{e}^{2\pi\mathrm{i}t}$ a "mother wavelet" of dimensionless center frequency $1$ and bandwidth $Q^{-1}$.
-The quality factor $Q$ is an integer in the typical range $12$\textendash$24$.
-Center frequencies of the subsequent wavelet filter bank are of the
-form $\lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$, where the indices
-$j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote
-octave and chroma. The Fourier transform $\widehat{\psi}(\omega)$ of $\psi(t)$ is dilated by resolutions $\lambda_1$ to obtain wavelets $\widehat{\psi_{\lambda_1}}$ in the frequency domain:
+We denote the Fourier transform of a signal $x(t)$ by
+$
+\widehat{x}(\omega) = \allowbreak \int x(u) \exp (-\mathrm{i}\omega u)\,\mathrm{d}u.
+$
+An analytic mother wavelet is a complex filter $\psi(t)$
+whose Fourier transform $\widehat{\psi}(\omega)$ is concentrated over the
+frequency interval $[1-2^{1/2Q},1+2^{1/2Q}]$. Dilations of this wavelet filter
+defines a family of filters centered at frequencies $\lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$ where the indices $j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
 
 \begin{equation}
-\widehat{\psi_{\lambda_{1}}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)
+\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
 \quad\mathrm{i.e.}\quad
 \psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \label{eq:wavelet-dilations}
 \end{equation}
 
-The wavelet transform of an audio signal $x(t)$ is defined as the array of convolutions $x \ast \psi_{\lambda_1}(t)$ for every audible frequency $\lambda_1$. The modulus of the resulting signals, called \emph{scalogram}, localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution:
+The wavelet transform convolves a signal $x$ with the wavelet filter bank. The scalogram $x_1$ localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution:
+
+\begin{equation}
+	x_1(t, \log \lambda_1) = |x \overset{t}{\ast} \psi_{\lambda_1} (t)|~
+	\quad \text{for all } \lambda_1 > 0~,
+\end{equation}
 
 \begin{equation}
 x_1 (t, \log_{2}\lambda_{1}) = \left| x \ast \psi_{\lambda_{1}} \right| (t).
@@ -299,6 +291,8 @@ We cascade three one-dimensional wavelet transforms in time, log-frequency, and 
 The definitions for $x_2$ and $S_1 x$ are the same as Equations \ref{} and \ref{}.
 Since its Fourier transform $\widehat{\psi_{\lambda_2}}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$. Both velocities are measures in octaves per second.
 
+Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by R. Shepard, J.C. Risset, and D. Deutsch to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex\cite{WUP+99}.
+
 \begin{figure}[t]
 	\begin{center}
 		\setlength{\unitlength}{1cm}
@@ -307,7 +301,8 @@ Since its Fourier transform $\widehat{\psi_{\lambda_2}}$  is centered at $(\alph
 		\end{picture}
 	\end{center}
 	\protect\caption{
-\label{fig:berio-scalogram}
+	Two spiral wavelets $\psi_{\lambda_2}(t,\log_2 \lambda_1, \lfloor \log_2 \lambda_1 \rfloor)$ in the time-frequency plane, with different values of $\lambda_2 = (\alpha,\beta,\gamma)$. Left: $\alpha^{-1} = 120\text{ms}$, $\beta^{-1} = - 0.25\text{ octave}$, $\gamma^{-1} = +2\text{ octaves}$. Right: $\alpha^{-1} = 60\text{ ms}$, $\beta^{-1} = +0.5\text{ octave}$,  $\gamma^{-1} = -4\text{ octaves}$. Darker color levels corresponds to greater values of the real part.
+\label{fig:unrolled-spiral-wavelets}
 }
 \end{figure}
 
