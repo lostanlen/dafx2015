@@ -1,12 +1,11 @@
 **Introduction**
-The information conveyed by the spectro-temporal evolution of harmonic spectra is essential to audio classification, blind source separation, automated transcription, as well as other processing tasks. 
+The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, automated transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures. 
+On one hand, spectrogram-based pattern recognition algorithms are exposed to detection errors as they impose strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization ([Hennequin et al.]) are under-constrained and thus may fail to converge to a satisfying solution.
+In this article, we address the problem of capturing time-frequency harmonic structures without having to track individual partials nor detect harmonic templates.
+The biggest challenge in 
 
-Other techniques, such as NMF and SC, are under-constrained and thus may fail to converge to a meaningful decomposition in challenging polyphonic contexts.
+The harmonic comb is made of isolated peaks along the log-frequency axis of constant-Q filters.
 
-In this article, we address the problem of capturing time-frequency harmonic structures without having to track individual partials.
-
-
-The harmonic comb looks highly irregular in log-frequency : unlike frequency modulation, it cannot be captured efficiently 
 
 To recover regularity across partials, we capitalize on the fact that power-of-two harmonics are distant from exactly one octave. By rolling up the log-frequency axis in a spiral, such that octave intervals correspond to full turns, these partials get aligned on a radius. Consequently, introducing the integer-valued octave variable reveals harmonic regularity that was not explicit in the plane of time and log-frequency.
 

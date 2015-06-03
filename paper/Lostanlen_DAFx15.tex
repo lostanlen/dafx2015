@@ -163,7 +163,8 @@ We present a new representation of sounds that liearizes the dynamics of pitch c
 
 \section{Introduction}
 
-Understanding the natural regularities in audio signals is essential to the design of a useful representation for classification, blind source separation, automated transcription, as well as other processing tasks. It is well known that a wavelet decomposition followed by complex modulus brings short-term regularity along the time axis, as it locally replaces oscillatory components by their envelopes. After this operation, longer-term regularities appear. In this article, we show that the same "scattering" scheme of wavelet convolutions of complex modulus, can be applied to encompass them.
+The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, automated transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures. 
+On one hand, spectrogram-based pattern recognition algorithms \cite{} are exposed to detection errors as they impose strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization \cite{Hennequin2011} are under-constrained and thus may fail to converge to a satisfying solution. In this article, we address the problem of characterizing harmonic structures without resorting to any detection nor learning step.
 
 First, local continuity in frequency modulation cause a slow rigid motion along the log-frequency axis. Second, harmonic sounds exhibit a comb-like spectrum, which conveys the global evolution of the spectral envelope. This comb looks highly irregular: unlike frequency modulation, it cannot be captured efficiently with local convolutions in time and log-frequency.
 
@@ -179,9 +180,8 @@ Section 4 provides a visual interpretation of the spiral wavelet coefficients in
 		\put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/raw_fig1.png}}
 		\end{picture}
 	\end{center}
-	\protect\caption{
-	The spiral wavelet is a product of wavelets along time $t$, log-frequency $\log \lambda_1$ (angular variable), and octave index $j$ (radial variable).
-	Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus.
+\protect\caption{
+The spiral wavelet is a product of wavelets along time $t$, log-frequency $\log \lambda_1$ (angular variable), and octave index $j$ (radial variable).Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus. Partials of an hypothetical harmonic sound are marked as thick dots.
 \label{fig:spiral-wavelets}
 }
 \end{figure}
@@ -251,7 +251,7 @@ Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time war
 
 \subsection{Joint time-frequency scattering}
 
-The time scattering transform decomposes and averages each frequency band separately, and so cannot properly capture the coherence of time-frequency structures, such as those induced by pitch contour. To remedy this, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
+The time scattering transform defined in Equation (\ref{eq:x2-time}) decomposes each frequency band separately, and so cannot properly capture the coherence of time-frequency structures, such as those induced by pitch contour. To remedy this, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
 
 \begin{equation}
 \psi_{\lambda_2}(t,\log \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log \lambda_1).
@@ -273,9 +273,10 @@ The joint time-frequency scattering transform corresponds to the "cortical trans
 
 \subsection{Spiral scattering}
 
-The time-frequency scattering transform presented above provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure in quasi-periodic signals, which are ubiquitous in audio recordings. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
+The time-frequency scattering transform defined in Equation (\ref{x2-joint}) provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure of voiced sounds, such as vowels or musical notes. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
-In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass motion across octaves, in conjunction with motion along neighboring constant-Q bands.
+In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass regularity in time across octaves, in conjunction with regularity along neighboring constant-Q bands.
+
 We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral making one full turn at each octave (see Fig. \ref{fig:spiral-wavelets}). Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log \lambda_1$, pitch chroma and pitch height in the spiral correspond to integer part $\lfloor \log \lambda_1 \rfloor$ and fractional part $\{ \log \lambda_1 \}$:
 
 \begin{equation}
@@ -283,7 +284,7 @@ We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral makin
 \label{eq:integer-part-and-fractional-part}
 \end{equation}
 
-In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with chroma scattering for $\beta^-1$ of the order of a few semitones.
+In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with chroma scattering for $\beta^{-1}$ of the order of a few semitones.
 
 We cascade three one-dimensional wavelet transforms in time, log-frequency, and octave index, to build a so-called spiral scattering transform:
 
@@ -321,7 +322,7 @@ x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})
 \label{eq:x2-spiral}
 \end{equation}
 
-Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by R. Shepard, J.C. Risset, and D. Deutsch to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex\cite{WUP+99}.
+Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by Shepard \cite{Shepard1964}, Risset \cite{Risset1969}, and Deutsch \cite{Deutsch2008} to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex \cite{Warren2003}.
 
 \begin{figure}[t]
 	\begin{center}
