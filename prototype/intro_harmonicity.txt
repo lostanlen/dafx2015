@@ -1,0 +1,14 @@
+**Introduction**
+The information conveyed by the spectro-temporal evolution of harmonic spectra is essential to audio classification, blind source separation, automated transcription, as well as other processing tasks. 
+
+Other techniques, such as NMF and SC, are under-constrained and thus may fail to converge to a meaningful decomposition in challenging polyphonic contexts.
+
+In this article, we address the problem of capturing time-frequency harmonic structures without having to track individual partials.
+
+
+The harmonic comb looks highly irregular in log-frequency : unlike frequency modulation, it cannot be captured efficiently 
+
+To recover regularity across partials, we capitalize on the fact that power-of-two harmonics are distant from exactly one octave. By rolling up the log-frequency axis in a spiral, such that octave intervals correspond to full turns, these partials get aligned on a radius. Consequently, introducing the integer-valued octave variable reveals harmonic regularity that was not explicit in the plane of time and log-frequency.
+
+Once specified the variables of time, log-frequency, and octave index, our transform merely consists in cascading three wavelet decompositions along them and applying complex modulus. Section 2 gives a formal definition of the spiral wavelet transform. Section 3 introduces a nonstationary formulation of the source-filter model relying on time warps, and shows that its variabilities in pitch and spectral envelope are jointly linearized by the spiral scattering transform.
+Section 4 provides a visual interpretation of the spiral wavelet coefficients in a music signal with extended instrumental techniques.

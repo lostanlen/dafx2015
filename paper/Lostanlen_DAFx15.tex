@@ -96,6 +96,8 @@
 Paris, France\\
 {\tt \href{mailto:vincent.lostanlen@ens.fr}{vincent.lostanlen@ens.fr}}
 }
+\usepackage{amsopn}
+\DeclareMathOperator{\sign}{sign}
 
 %-----------------------------------SINGLE-AUTHOR HEADER ENDS------------------------------------------------------
 
@@ -187,78 +189,78 @@ Section 4 provides a visual interpretation of the spiral wavelet coefficients in
 
 \subsection{Time scattering}
 
-We denote the Fourier transform of a signal $x(t)$ by
-$
-\widehat{x}(\omega) = \allowbreak \int x(u) \exp (-\mathrm{i}\omega u)\,\mathrm{d}u.
-$
-An analytic mother wavelet is a complex filter $\psi(t)$
+An analytic "mother" wavelet is a complex filter $\psi(t)$
 whose Fourier transform $\widehat{\psi}(\omega)$ is concentrated over the
-frequency interval $[1-2^{1/2Q},1+2^{1/2Q}]$. Dilations of this wavelet filter
-defines a family of filters centered at frequencies $\lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$ where the indices $j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
+dimensionless frequency interval $[1-2^{1/2Q},1+2^{1/2Q}]$, where the quality factor $Q$ is in the typical range $12$\textendash$24$. Dilations of this wavelet
+define a family of bandpass filters centered at frequencies
+$ \lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$,
+where the indices $j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
 
 \begin{equation}
-\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
-\quad\mathrm{i.e.}\quad
-\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
+	\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
+	\quad\mathrm{i.e.}\quad
+	\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \label{eq:wavelet-dilations}
 \end{equation}
 
-The wavelet transform convolves a signal $x$ with the wavelet filter bank. The scalogram $x_1$ localize the power spectrum of $x(t)$ around the log-frequencies $\log_2 \lambda_1 = j_1 + \frac{\chi_1}{Q}$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution:
+The wavelet transform convolves an input signal $x(t)$ with the filter bank of $\psi_{\lambda_1}$'s. Its modulus is the wavelet "scalogram"
 
 \begin{equation}
-	x_1(t, \log \lambda_1) = |x \overset{t}{\ast} \psi_{\lambda_1} (t)|~
-	\quad \text{for all } \lambda_1 > 0~,
-\end{equation}
-
-\begin{equation}
-x_1 (t, \log_{2}\lambda_{1}) = \left| x \ast \psi_{\lambda_{1}} \right| (t).
+	x_1(t, \log \lambda_1) =
+	|x \overset{t}{\ast} \psi_{\lambda_1}| \quad \text{for all } \lambda_1 > 0,
 \label{eq:scalogram}
 \end{equation}
 
-The constant-Q transform (CQT) $S_1 x$ corresponds to a lowpass filtering of $x_1$ with a window $\phi(t)$ of size $T$.
+whose frequential axis is uniformly sampled by the binary logarithm $\log \lambda_1$. The scalogram $x_1$ localizes the energy of $x(t)$ around the frequencies $\lambda_1$ over durations $2 Q \lambda_1^{-1}$, trading frequency resolution for time resolution.
+
+The constant-Q transform (CQT) $S_1 x$ corresponds to a lowpass filtering of $x_1$ with a window $\phi(t)$ of size $T$:
 
 \begin{equation}
-S_1 x (t, \log_2 \lambda_1) = x_1 \ast \phi_T (t) = \left| x \ast \psi_{\lambda_{1}} \right| \ast \phi_T (t).
+S_1 x (t, \log \lambda_1) =
+x_1 \overset{t}{\ast} \phi_T =
+| x \overset{t}{\ast} \psi_{\lambda_{1}} | \overset{t}{\ast} \phi_T.
 \label{eq:S1}
 \end{equation}
 
-There is a well-known dilemma in choosing $T$. Too small, the constant-Q matrix lacks invariance to time shifts, which will prevent any learning step to generalize from $S_1 x$ ; too large, discriminative information is discarded.
-
-In order to combine the best of both worlds, the scattering transform recovers finer time scales than $T$ with a second filterbank of wavelets $\psi_{\lambda_2}(t)$ of center frequencies $\lambda_2$, and applies complex modulus to improve regularity \cite{Anden2014DSS}. The wavelets $\psi_{\lambda_2}(t)$ have a quality factor in the range  $1$\textendash$2$, though we choose to keep the same notation $\psi$ for simplicity.
+To recover the amplitude modulations lost when averaging by $\phi_T$ in
+Equation (\ref{eq:S1}), the time scattering transform also convolves $x_1$ with a second filterbank of wavelets $\psi_{\lambda_2}$ and applies complex modulus to get
 
 \begin{equation}
-x_2 (t, \log_2 \lambda_1, \log_2 \lambda_2) =
-\left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t) 
-\label{eq:time-scattering}
+x_2 (t, \log \lambda_1, \log \lambda_2) =
+\vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert =
+\vert \vert x \overset{t}{\ast} \psi_{\lambda_{1}} \vert
+\overset{t}{\ast} \psi_{\lambda_{2}} \vert.
+\label{eq:x2-time}
 \end{equation}
 
-Also known as \emph{amplitude modulation spectrum}, the three-way array $x_2$ is then averaged in time to achieve as much invariance as the constant-Q spectrum $S_1 x$:
+The wavelets $\psi_{\lambda_2}(t)$ have a quality factor in the range $1$\textendash$2$, though we choose to keep the same notation $\psi$ for simplicity. Like in Equation (\ref{eq:S1}), averaging in time creates invariance to translation in time up to $T$, yielding
 
 \begin{equation}
 S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
-\left| \left| x \ast \psi_{\lambda_{1}} \right|  \ast \psi_{\lambda_{2}} \right| (t)  \ast \phi_T (t).
+x_2 \overset{t}{\ast} \phi =
+\vert \vert x \overset{t}{\ast} \psi_{\lambda_{1}} \vert
+\overset{t}{\ast} \psi_{\lambda_{2}} \vert
+\overset{t}{\ast} \phi_T.
 \label{eq:S2-time}
 \end{equation}
 
-The concatenated scattering representation $Sx = \{S_1 x, S_2 x \}$ has proven to achieve higher accuracy in music genre classification as well as phoneme recognition \cite{Anden2014DSS} than audio features derived from $S_1 x$ only, such as Mel-frequency cepstral coefficients (MFCC).
+Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone. This implies that small modulations, such as tremolo and vibrato, are accurately linearized \cite{Anden2012}.
 
 \subsection{Joint time-frequency scattering}
 
-Due to the constant-Q property, $Sx$ is stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone.
-This implies that small modulations, such as tremolo and vibrato, are accurately linearized in rate and depth \cite{Anden2012}.
-
-However, the definition above is unstable to the variability in pitch and spectral envelope, for which the activations of frequency bands is highly correlated in time.
-To stabilize $x_2$ with respect to these variations, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as two-dimensional functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. 
+The time scattering transform decomposes and averages each frequency band separately, and so cannot properly capture the relationship between temporal structures across frequencies. To remedy this, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
 
 \begin{equation}
-\psi_{\lambda_2}(t,\log_2 \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log_2 \lambda_1)
+\psi_{\lambda_2}(t,\log \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log \lambda_1).
 \label{eq:wavelet-joint}
 \end{equation}
 
-The equation below introduces a "joint time-frequency scattering" transform, as opposed to the plain "time scattering" transform of Equation \ref{eq:time-scattering}:
+We write $\overset{\chi}{\ast}$ to denote convolutions along the log-frequency axis, i.e. along chromas.  Wavelet scattering is extended to two-dimensional convolutions by plugging Equation (\ref{eq:wavelet-joint}) into the definition of $x_2$ in Equation (\ref{eq:x2-time}).
 
 \begin{equation}
-x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}(t,\log_2 \lambda_1)\vert .
+x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2}) = 
+\vert x_{1} \overset{t, \chi}{\ast} \psi_{\lambda_{2}} \vert =
+\vert x_{1} \overset{t}{\ast} \psi_{\alpha} \overset{\chi}{\ast} \psi_{\beta} \vert.
 \label{eq:x2-joint}
 \end{equation}
 
@@ -281,15 +283,38 @@ In this setting, the fundamental frequency $f_0$ is aligned with its power-of-tw
 We cascade three one-dimensional wavelet transforms in time, log-frequency, and octave index, to build a so-called Shepard spiral scattering transform, or alternatively "Shepardlet transform":
 
 \begin{equation}
-\psi_{\lambda_2}(t, \log_2 \lambda_1) =
+\psi_{\lambda_2}(t, \log \lambda_1) =
 \psi_{\alpha}(t) \times
 \psi_{\beta}(\log_2 \lambda_1) \times
-\psi_{\gamma}(\lfloor \log_2 \lambda_1 \rfloor)
+\psi_{\gamma}(\lfloor \log \lambda_1 \rfloor)
 \label{eq:wavelet-shepard}
 \end{equation}
 
-The definitions for $x_2$ and $S_1 x$ are the same as Equations \ref{} and \ref{}.
+To ensure invertibility and energy conservation, the quefrencies $\beta$ and $\gamma$ must take negative values, including zero. We adopt the shorthand notation
+
+\begin{equation}
+\log \lambda =
+\left( \log \alpha,
+\log \vert \beta \vert, \sign \beta,
+\log \vert \gamma \vert, \sign \gamma \right)
+\end{equation}
+
+In the special case $\beta = 0$, $\psi_\beta$ is no longer a wavelet but a low-pass filter whose support covers one octave. By convention, the corresponding log-frequency index is $\log \vert \beta \vert = - \infty$. The same remark applies to $\psi_{\gamma}$ for $\gamma=0$, which covers six octaves.
+
 Since its Fourier transform $\widehat{\psi_{\lambda_2}}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$. Both velocities are measures in octaves per second.
+
+We write $\overset{j}{\ast}$ to denote convolutions across neighboring octaves.
+The definition for $x_2$ is the same as Equation \ref{eq:x2-joint}:
+
+\begin{equation}
+\begin{split}
+x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})
+& = \vert x_{1} \overset{t,\chi,j}{\ast} \psi_{\lambda_{2}}\vert \\
+&= \vert x_{1} \overset{t}{\ast} \psi_\alpha \overset{\chi}{\ast} \psi_\beta \overset{j}{\ast} \psi_\gamma \vert
+.
+\end{split}
+\label{eq:x2-spiral}
+\end{equation}
 
 Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by R. Shepard, J.C. Risset, and D. Deutsch to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex\cite{WUP+99}.
 
