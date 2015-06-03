@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  3 JUN 2015 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  3 JUN 2015 19:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -457,7 +457,7 @@ Overfull \hbox (1.12991pt too wide) in paragraph at lines 172--174
 -ing trans-
  []
 
-<../figures/fig1/raw_fig1.png, id=38, 698.61pt x 380.42125pt>
+<../figures/fig1/raw_fig1.png, id=54, 698.61pt x 380.42125pt>
 File: ../figures/fig1/raw_fig1.png Graphic file (type png)
 
 <use ../figures/fig1/raw_fig1.png>
@@ -469,14 +469,14 @@ Overfull \hbox (4.2678pt too wide) in paragraph at lines 180--181
  []
 
 
-Overfull \hbox (3.54462pt too wide) in paragraph at lines 192--198
+Overfull \hbox (3.54462pt too wide) in paragraph at lines 195--201
 \T1/ptm/m/n/9 An an-a-lytic "mother" wavelet is a com-plex fil-ter $\OML/cmm/m/
 it/9  \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )$ \T1/ptm/m/n/9 whose Fo
 urier
  []
 
 
-Overfull \hbox (3.31618pt too wide) in paragraph at lines 214--215
+Overfull \hbox (3.31618pt too wide) in paragraph at lines 217--218
 \T1/ptm/m/n/9 around the fre-quen-cies $\OML/cmm/m/it/9 ^^U[]$ \T1/ptm/m/n/9 ov
 er du-ra-tions $\OT1/cmr/m/n/9 2\OML/cmm/m/it/9 Q^^U[]$\T1/ptm/m/n/9 , trad-ing
  fre-quency
@@ -489,47 +489,44 @@ er du-ra-tions $\OT1/cmr/m/n/9 2\OML/cmm/m/it/9 Q^^U[]$\T1/ptm/m/n/9 , trad-ing
 
  <../figures/fig1/raw_fig1.png>]
 
-LaTeX Warning: Citation `WUP+99' on page 2 undefined on input line 319.
+LaTeX Warning: Citation `WUP+99' on page 2 undefined on input line 324.
 
-<../figures/gretsi_fig1.png, id=73, 250.1847pt x 241.65282pt>
+<../figures/gretsi_fig1.png, id=88, 250.1847pt x 241.65282pt>
 File: ../figures/gretsi_fig1.png Graphic file (type png)
 
 <use ../figures/gretsi_fig1.png>
-Package pdftex.def Info: ../figures/gretsi_fig1.png used on input line 325.
+Package pdftex.def Info: ../figures/gretsi_fig1.png used on input line 330.
 (pdftex.def)             Requested size: 170.71652pt x 164.90065pt.
  [2]
-Overfull \hbox (1.35762pt too wide) in paragraph at lines 401--402
+Overfull \hbox (1.35762pt too wide) in paragraph at lines 403--404
 \T1/ptm/m/n/9 mate $[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 !\OT1/cmr/m/n/9 )$ \T1/pt
 m/m/n/9 by a con-stant over the fre-quen-tial sup-port of the wavelet,
  []
 
 
-Overfull \hbox (7.36441pt too wide) in paragraph at lines 441--442
+Overfull \hbox (7.36441pt too wide) in paragraph at lines 447--448
 \T1/ptm/m/n/9 fixed $[][] \OML/cmm/m/it/9 ^^U[]$\T1/ptm/m/n/9 , we ob-tain an i
 n-stan-ta-neous fre-quency of $\OMS/cmsy/m/n/9 ^^@\OML/cmm/m/it/9 ^^L[]\OT1/cmr
 /m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 =[]\OT1/cmr/m/n/9 (\OM
 L/cmm/m/it/9 t\OT1/cmr/m/n/9 )$\T1/ptm/m/n/9 .
  []
 
-<../figures/fig4/raw_fig4.png, id=95, 437.635pt x 346.29375pt>
+[3 <../figures/gretsi_fig1.png>]
+<../figures/fig4/raw_fig4.png, id=127, 437.635pt x 346.29375pt>
 File: ../figures/fig4/raw_fig4.png Graphic file (type png)
 
 <use ../figures/fig4/raw_fig4.png>
-Package pdftex.def Info: ../figures/fig4/raw_fig4.png used on input line 474.
+Package pdftex.def Info: ../figures/fig4/raw_fig4.png used on input line 480.
 (pdftex.def)             Requested size: 170.71652pt x 135.08571pt.
- [3 <../figures/gretsi_fig1.png>]
-(./Lostanlen_DAFx15.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 493.
- [4
-
- <../figures/fig4/raw_fig4.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 493.
-
-(./Lostanlen_DAFx15.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 493.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 493.
+ (./Lostanlen_DAFx15.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 499.
+ [4 <../figures/fig4/raw_fig4.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 499.
+ (./Lostanlen_DAFx15.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 499.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 499.
 Package rerunfilecheck Info: File `Lostanlen_DAFx15.out' has not changed.
-(rerunfilecheck)             Checksum: D283E0D41E997E03103BC31C04DFFBF3;552.
+(rerunfilecheck)             Checksum: A037F46CF78BCD253F2536D87998C601;920.
 
 
 LaTeX Warning: There were undefined references.
@@ -537,14 +534,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 493.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 499.
  )
 (\end occurred when \ifx on line 59 was incomplete) 
 Here is how much of TeX's memory you used:
- 8112 strings out of 493117
- 119463 string characters out of 6135433
- 218477 words of memory out of 5000000
- 11380 multiletter control sequences out of 15000+600000
+ 8114 strings out of 493117
+ 119505 string characters out of 6135433
+ 217477 words of memory out of 5000000
+ 11382 multiletter control sequences out of 15000+600000
  44374 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,17n,38p,704b,371s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -564,10 +561,10 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Lostanlen_DAFx15.pdf (4 pages, 1247369 bytes).
+Output written on Lostanlen_DAFx15.pdf (4 pages, 1249466 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
+ 205 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
  53 named destinations out of 1000 (max. 500000)
- 80 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

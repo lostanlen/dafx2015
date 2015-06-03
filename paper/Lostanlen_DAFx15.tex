@@ -180,12 +180,15 @@ Section 4 provides a visual interpretation of the spiral wavelet coefficients in
 		\end{picture}
 	\end{center}
 	\protect\caption{
+	The spiral wavelet is a product of wavelets along time $t$, log-frequency $\log \lambda_1$ (angular variable), and octave index $j$ (radial variable).
+	Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus.
 \label{fig:spiral-wavelets}
 }
 \end{figure}
 
 
 \section{From time scattering to spiral scattering}
+This section builds the spiral scattering transform progressively as a cascade of wavelet transforms along time, log-frequency, and octave index.
 
 \subsection{Time scattering}
 
@@ -194,7 +197,7 @@ whose Fourier transform $\widehat{\psi}(\omega)$ is concentrated over the
 dimensionless frequency interval $[1-2^{1/2Q},1+2^{1/2Q}]$, where the quality factor $Q$ is in the typical range $12$\textendash$24$. Dilations of this wavelet
 define a family of bandpass filters centered at frequencies
 $ \lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$,
-where the indices $j_{1} \in \mathbb{Z}$ and $\chi_1 \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
+where the indices $j_{1} \in \mathbb{Z}$ and $\chi_{1} \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
 
 \begin{equation}
 	\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
@@ -236,7 +239,7 @@ x_2 (t, \log \lambda_1, \log \lambda_2) =
 The wavelets $\psi_{\lambda_2}(t)$ have a quality factor in the range $1$\textendash$2$, though we choose to keep the same notation $\psi$ for simplicity. Like in Equation (\ref{eq:S1}), averaging in time creates invariance to translation in time up to $T$, yielding
 
 \begin{equation}
-S_2 x (t, \log_2 \lambda_1, \log_2 \lambda_2) =
+S_2 x (t, \log \lambda_1, \log \lambda_2) =
 x_2 \overset{t}{\ast} \phi =
 \vert \vert x \overset{t}{\ast} \psi_{\lambda_{1}} \vert
 \overset{t}{\ast} \psi_{\lambda_{2}} \vert
@@ -244,43 +247,45 @@ x_2 \overset{t}{\ast} \phi =
 \label{eq:S2-time}
 \end{equation}
 
-Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time warps of $x(t)$, as long as they do not exceed $Q^{-1}$, i.e. one semitone. This implies that small modulations, such as tremolo and vibrato, are accurately linearized \cite{Anden2012}.
+Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time warps of $x(t)$ as long as they do not exceed $Q^{-1}$, i.e. one semitone. This implies that small modulations, such as tremolo and vibrato, are accurately linearized \cite{Anden2012}.
 
 \subsection{Joint time-frequency scattering}
 
-The time scattering transform decomposes and averages each frequency band separately, and so cannot properly capture the relationship between temporal structures across frequencies. To remedy this, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
+The time scattering transform decomposes and averages each frequency band separately, and so cannot properly capture the coherence of time-frequency structures, such as those induced by pitch contour. To remedy this, Andén \cite{Anden2014PhD} has redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is measured in Hertz and $\beta$ is measured in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
 
 \begin{equation}
 \psi_{\lambda_2}(t,\log \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log \lambda_1).
 \label{eq:wavelet-joint}
 \end{equation}
 
-We write $\overset{\chi}{\ast}$ to denote convolutions along the log-frequency axis, i.e. along chromas.  Wavelet scattering is extended to two-dimensional convolutions by plugging Equation (\ref{eq:wavelet-joint}) into the definition of $x_2$ in Equation (\ref{eq:x2-time}).
+We write $\overset{\chi_{1}}{\ast}$ to denote convolutions along the log-frequency axis, i.e. along chromas.  Wavelet scattering is extended to two-dimensional convolutions by plugging Equation (\ref{eq:wavelet-joint}) into the definition of $x_2$ in Equation (\ref{eq:x2-time}).
 
 \begin{equation}
-x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2}) = 
-\vert x_{1} \overset{t, \chi}{\ast} \psi_{\lambda_{2}} \vert =
-\vert x_{1} \overset{t}{\ast} \psi_{\alpha} \overset{\chi}{\ast} \psi_{\beta} \vert.
+x_{2}(t,\log \lambda_{1},\log \lambda_{2}) = 
+\vert x_{1} \overset{t, \chi_{1}}{\ast} \psi_{\lambda_{2}} \vert =
+\vert x_{1} \overset{t}{\ast} \psi_{\alpha} \overset{\chi_{1}}{\ast} \psi_{\beta} \vert.
 \label{eq:x2-joint}
 \end{equation}
 
 The joint time-frequency scattering transform corresponds to the "cortical transform" introduced by Shamma to formalize his findings in auditory neuroscience.
+
+
 
 \subsection{Spiral scattering}
 
 The time-frequency scattering transform presented above provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure in quasi-periodic signals, which are ubiquitous in audio recordings. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
 In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass motion across octaves, in conjunction with motion along neighboring constant-Q bands.
-We roll up the log-frequency variable $\log_2 \lambda_1$ into a Shepard pitch spiral (see Fig. \ref{fig:spiral-wavelets}), making one full turn at each octave. Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log_2 \lambda_1$, pitch chroma and pitch height in the Shepard spiral correspond to integer part $\lfloor \log_2 \lambda_1 \rfloor$ and fractional part $\{ \log_2 \lambda_1 \}$:
+We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral making one full turn at each octave (see Fig. \ref{fig:spiral-wavelets}). Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log \lambda_1$, pitch chroma and pitch height in the spiral correspond to integer part $\lfloor \log \lambda_1 \rfloor$ and fractional part $\{ \log \lambda_1 \}$:
 
 \begin{equation}
-\log_2 \lambda_1 = \lfloor \log_2 \lambda_1 \rfloor + \{ \log_2 \lambda_1 \}.
+\log \lambda_1 = \lfloor \log \lambda_1 \rfloor + \{ \log \lambda_1 \}.
 \label{eq:integer-part-and-fractional-part}
 \end{equation}
 
-In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with short-range time-frequency scattering.
+In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with chroma scattering for $\beta^-1$ of the order of a few semitones.
 
-We cascade three one-dimensional wavelet transforms in time, log-frequency, and octave index, to build a so-called Shepard spiral scattering transform, or alternatively "Shepardlet transform":
+We cascade three one-dimensional wavelet transforms in time, log-frequency, and octave index, to build a so-called spiral scattering transform:
 
 \begin{equation}
 \psi_{\lambda_2}(t, \log \lambda_1) =
@@ -309,8 +314,8 @@ The definition for $x_2$ is the same as Equation \ref{eq:x2-joint}:
 \begin{equation}
 \begin{split}
 x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})
-& = \vert x_{1} \overset{t,\chi,j}{\ast} \psi_{\lambda_{2}}\vert \\
-&= \vert x_{1} \overset{t}{\ast} \psi_\alpha \overset{\chi}{\ast} \psi_\beta \overset{j}{\ast} \psi_\gamma \vert
+& = \vert x_{1} \overset{t,\chi_{1},j}{\ast} \psi_{\lambda_{2}}\vert \\
+&= \vert x_{1} \overset{t}{\ast} \psi_\alpha \overset{\chi_{1}}{\ast} \psi_\beta \overset{j}{\ast} \psi_\gamma \vert
 .
 \end{split}
 \label{eq:x2-spiral}
@@ -331,8 +336,16 @@ Rolling up pitches into a spiral is a well-established idea in music, if only be
 }
 \end{figure}
 
-\section{Deformations of the source-filter model}
 
+
+
+
+\section{Deformations of the source-filter model}
+A classical model for voiced speech production consists in the convolution of a harmonic glottal source $e(t)$ with a vocal tract filter $h(t)$.
+Introducing independent deformations to both components brings realistic variability to pitch and spectral envelope.
+This section studies the decomposition of the deformed source-filter model in the spiral scattering transform.
+
+\subsection{Overview}
 Let $e(t)=\sum_{n}\delta(t-2\pi f_{0}^{-1}n)$ be a harmonic signal and
 $t\mapsto\theta(t)$ a time warp function. We define a warped source
 as $e_{\theta}(t)=(e\circ\theta)(t)$. Similarly, we compose a
@@ -340,7 +353,7 @@ filter $h(t)$ and a warp $t\mapsto\nu(t)$ to define $h_{\nu}(t)=(h\circ\nu)(t)$.
 The warped source-filter model is
 
 \begin{equation}
-x(t)=[e_{\theta}\ast h_{\nu}](t).
+x(t)=[e_{\theta} \overset{t}{\ast} h_{\nu}](t).
 \label{eq:source-filter}
 \end{equation}
 
@@ -361,21 +374,10 @@ This plane satisfies the Cartesian equation
 This result is likely to help automated transcription of polyphonic music, since notes overlapping both in time and frequency could be disentangled according to their respective source-filter velocities.
 Let $e_{\theta,1}(t,\log_{2}\lambda_{1})$ and $h_{\nu,1}(t,\log_{2}\lambda_{1})$
 be the respective scalograms of $e_{\theta}(t)$ and $h_{\nu}(t)$.
-Our proof is driven by two properties:
-\begin{enumerate}
-\item \emph{Harmonicity}. For any small octave difference $\vert j \vert \in \mathbb{N}$,
-\begin{equation}
-e_{\theta,1}(t,\log_{2}\lambda_{1})\approx e_{\theta,1}(t,\log_{2}\lambda_{1}+j).
-\label{eq:harmonicity}
-\end{equation}
- 
-\item \emph{Spectral smoothness}.  For any chroma difference $\vert \chi \vert < 1$,
-\begin{equation}
-h_{\nu,1}(t,\log_{2}\lambda_{1})\approx h_{\nu,1}(t,\log_{2}\lambda_{1}+\chi).
-\label{eq:spectral-smoothness}
-\end{equation}
-\end{enumerate}
 
+
+
+\subsection{Source-filter factorization in the scalogram}
 Given $\lambda_1$ near $p f_0 \dot{\theta}(t)$ where $p \in \mathbb{N}$, the first step is to linearize $\theta(t)$ and $\nu(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work with the following assumptions:
 
 \renewcommand{\labelenumi}{(\alph{enumi})}
@@ -416,28 +418,32 @@ h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t)).
 \label{eq:factorization}
 \end{multline}
 
+\subsection{Harmonicity and spectral smoothness properties}
 The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\nu}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
 
 \begin{equation}
 e_{\theta,1}\overset{j}{\ast}\psi_{\gamma}\approx0
 \quad\mbox{and}\quad
-h_{\nu,1}\overset{\chi}{\ast}\psi_{\beta}\approx0.
+h_{\nu,1}\overset{\chi_{1}}{\ast}\psi_{\beta}\approx0.
 \label{eq:zero-mean}
 \end{equation}
 
 Gathering Equations \ref{eq:factorization} and \ref{eq:zero-mean} into the definition of spiral scattering yields
 
 \begin{equation}
-x_1 \overset{t,\chi,j}{\ast} \psi_{\lambda_2} = \left[
-\left( e_{1,\theta} \overset{\chi}{\ast} \psi_{\beta} \right)
+x_1 \overset{t,\chi_{1},j}{\ast} \psi_{\lambda_2} = \left[
+\left( e_{1,\theta} \overset{\chi_{1}}{\ast} \psi_{\beta} \right)
 \times
 \left( h_{1,\nu} \overset{j}{\ast} \psi_{\gamma} \right)
 \right]
 \overset{t}{\ast} \psi_\alpha,
 \end{equation}
 
-where the superscripts $t$, $\chi$ and $j$ denote convolutions along time, chromas and octaves respectively.
+where the superscripts $t$, $\chi_{1}$ and $j$ denote convolutions along time, chromas and octaves respectively.
 
+
+
+\subsection{Extraction of instantaneous frequencies}
 As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log_2 \lambda_1 - \log_2 p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log_2 \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the convolution $[h_{\nu,1} \overset{j}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
 \begin{equation}
 \alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
@@ -453,11 +459,11 @@ the envelopes of these two convolutions are almost constant over the support of 
 x_2(t,\log_2 \lambda_1, \log_2 \lambda_2) = \\
 \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
 \vert h_{\nu,1} \overset{j}{\ast} \psi_\gamma \vert \times
-\left \vert \widehat{\psi_{\alpha}} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
 \label{eq:x2-spiral}
 \end{multline}
 
-The Fourier spectrum $\vert \widehat{\psi_\alpha}(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if
+The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ have small relative variations:
 
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
@@ -465,7 +471,7 @@ The Fourier spectrum $\vert \widehat{\psi_\alpha}(\omega) \vert$ of $\psi_\alpha
 \left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
 \end{equation}
 
-An important caveat is that the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\nu(t)$, i.e. where the relative velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ cross zero.
+An important caveat is that the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\nu(t)$, i.e. where the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ cross zero.
 
 \begin{figure}[t]
 	\begin{center}
