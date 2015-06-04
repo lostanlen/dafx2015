@@ -1,10 +1,30 @@
 \begin{thebibliography}{10}
 
+\bibitem{Kereliuk2008}
+Corey Kereliuk and Philippe Depalle,
+\newblock ``{Improved Hidden Markov Model Partial Tracking Through
+  Time-frequency Analysis},''
+\newblock in {\em Proc. of the 11th Int. Conference on Digital Audio Effects
+  (DAFx-08)}, 2008, pp. 1--6.
+
+\bibitem{Hennequin2011}
+R.~Hennequin, R.~Badeau, and B.~David,
+\newblock ``{NMF with Time-frequency Activations to Model Nonstationary Audio
+  Events},''
+\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
+  vol. 19, no. 4, pp. 744--753, 2011.
+
 \bibitem{Anden2012}
 Joakim And\'{e}n and St\'{e}phane Mallat,
 \newblock ``{Scattering Representation of Modulated Sounds},''
 \newblock {\em Proc. of the 15th Int. Conference on Digital Audio Effects
   (DAFx-12)}, , no. 3, pp. 15--18, 2012.
+
+\bibitem{Anden2014DSS}
+J.~And\'{e}n and S.~Mallat,
+\newblock ``{Deep Scattering Spectrum},''
+\newblock {\em IEEE Transactions on Signal Processing}, vol. 62, no. 16, pp.
+  4114--4128, 2014.
 
 \bibitem{Anden2014PhD}
 Joakim And\'{e}n,
@@ -34,37 +54,12 @@ Jason~D. Warren, Stefan Uppenkamp, Roy~D. Patterson, and Timothy~D. Griffiths,
 \newblock {\em Annals of the New York Academy of Sciences}, vol. 999, no. 17,
   pp. 212--214, 2003.
 
-\bibitem{Abdallah2004}
-S.~Abdallah and M.~Plumbley,
-\newblock ``{Polyphonic Music Transcription By Non-negative Sparse Coding of
-  Power Spectra},''
-\newblock in {\em Proc. ISMIR}, 2004, vol. 510, pp. 10--14.
-
-\bibitem{Smaragdis2003}
-P.~Smaragdis and J.C. Brown,
-\newblock ``{Non-negative Matrix Factorization For Polyphonic Music
-  Transcription},''
-\newblock in {\em 2003 IEEE Workshop on Applications of Signal Processing to
-  Audio and Acoustics (IEEE Cat. No.03TH8684)}, 2003.
-
-\bibitem{Anden2014DSS}
-J.~And\'{e}n and S.~Mallat,
-\newblock ``{Deep Scattering Spectrum},''
-\newblock {\em IEEE Transactions on Signal Processing}, vol. 62, no. 16, pp.
-  4114--4128, 2014.
-
-\bibitem{Hennequin2011}
-R.~Hennequin, R.~Badeau, and B.~David,
-\newblock ``{NMF with Time-frequency Activations to Model Nonstationary Audio
-  Events},''
-\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
-  vol. 19, no. 4, pp. 744--753, 2011.
-
-\bibitem{Fuentes2013}
-B.~Fuentes, R.~Badeau, and G.~Richard,
-\newblock ``{Harmonic-adaptive Latent Component Analysis of Audio and
-  Application to Music Transcription},''
-\newblock {\em IEEE Transactions on Audio, Speech and Language Processing},
-  vol. 21, no. 9, pp. 1854--1866, 2013.
+\bibitem{Delprat1992}
+N~Delprat, B~Escudi\'{e}, P~Guillemain, R~Kronland-Martinet, Ph~Tchamitchian,
+  and B~Torresani,
+\newblock ``{Asymptotic Wavelet and Gabor Analysis: Extraction of Instantaneous
+  Frequencies},''
+\newblock {\em IEEE Transactions on Information Theory}, vol. 38, pp. 644--664,
+  1992.
 
 \end{thebibliography}

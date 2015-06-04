@@ -1,28 +1,29 @@
-@inproceedings{Abdallah2004,
-abstract = {We present a system for adaptive spectral basis decompo- sition that learns to identify independent spectral features given a sequence of short-term Fourier spectra. When ap- plied to recordings of polyphonic piano music, the indi- vidual notes are identified as salient features, and hence each short-term spectrum is decomposed into a sum of note spectra; the resulting encoding can be used as a ba- sis for polyphonic transcription. The system is based on a probabilistic model equivalent to a form of noisy inde- pendent component analysis (ICA) or sparse coding with non-negativity constraints. We introduce a novel mod- ification to this model that recognises that a short-term Fourier spectrum can be thought of as a noisy realisation of the power spectral density of an underlying Gaussian process, where the noise is essentially multiplicative and non-Gaussian. Results are presented for an analysis of a live recording of polyphonic piano music.},
-author = {Abdallah, S. and Plumbley, M.},
-booktitle = {Proc. ISMIR},
-file = {:Users/vlostan/Library/Application Support/Mendeley Desktop/Downloaded/13cb17a77bfb6a63682bbfe25937878c88cd8dbd.pdf:pdf},
-isbn = {84-88042-44-2},
+@inproceedings{Kereliuk2008,
+author = {Kereliuk, Corey and Depalle, Philippe},
+booktitle = {Proc. of the 11th Int. Conference on Digital Audio Effects (DAFx-08)},
+file = {:Users/vlostan/Library/Application Support/Mendeley Desktop/Downloaded/1630ad07f86846264cd6e76ffd25d1cb1c636f9b.pdf:pdf},
 mendeley-groups = {DAF-x 2015},
-pages = {10--14},
-title = {{Polyphonic Music Transcription By Non-negative Sparse Coding of Power Spectra}},
-url = {http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.110.4043\&amp;rep=rep1\&amp;type=pdf},
-volume = {510},
-year = {2004}
+pages = {1--6},
+title = {{Improved Hidden Markov Model Partial Tracking Through Time-frequency Analysis}},
+url = {http://www.music.mcgill.ca/~corey/papers/KereliukDepalleDAFx08.pdf},
+year = {2008}
 }
 
-@inproceedings{Smaragdis2003,
-abstract = { We present a methodology for analyzing polyphonic musical passages comprised of notes that exhibit a harmonically fixed spectral profile (such as piano notes). Taking advantage of this unique note structure, we can model the audio content of the musical passage by a linear basis transform and use non-negative matrix decomposition methods to estimate the spectral profile and the temporal information of every note. This approach results in a very simple and compact system that is not knowledge-based, but rather learns notes by observation.},
-author = {Smaragdis, P. and Brown, J.C.},
-booktitle = {2003 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (IEEE Cat. No.03TH8684)},
-doi = {10.1109/ASPAA.2003.1285860},
-isbn = {0-7803-7850-4},
+@article{Hennequin2011,
+abstract = {Real-world sounds often exhibit time-varying spectral shapes, as observed in the spectrogram of a harpsichord tone or that of a transition between two pronounced vowels. Whereas the standard non-negative matrix factorization (NMF) assumes fixed spectral atoms, an extension is proposed where the temporal activations (coefficients of the decomposition on the spectral atom basis) become frequency dependent and follow a time-varying autoregressive moving average (ARMA) modeling. This extension can thus be interpreted with the help of a source/filter paradigm and is referred to as source/filter factorization. This factorization leads to an efficient single-atom decomposition for a single audio event with strong spectral variation (but with constant pitch). The new algorithm is tested on real audio data and shows promising results.},
+author = {Hennequin, R. and Badeau, R. and David, B.},
+issn = {1558-7916},
+journal = {IEEE Transactions on Audio, Speech, and Language Processing},
+keywords = {Music Information Retrieval,Non-negative Matrix Factorisation,Unsupervised Machine Learning},
 mendeley-groups = {DAF-x 2015},
-title = {{Non-negative Matrix Factorization For Polyphonic Music Transcription}},
-year = {2003}
+number = {4},
+pages = {744--753},
+publisher = {IEEE},
+title = {{NMF with Time-frequency Activations to Model Nonstationary Audio Events}},
+url = {file:///Users/vincent/Documents/Papers/Hennequin/Hennequin, 2011 - NMF with time?frequency activations to model nonstationary audio events.pdf papers://616814c5-046b-40e4-b13b-55fce5f60979/Paper/p6962},
+volume = {19},
+year = {2011}
 }
-
 
 
 
@@ -57,6 +58,17 @@ volume = {62},
 year = {2014}
 }
 
+@article{Delprat1992,
+author = {Delprat, N and Escudi\'{e}, B and Guillemain, P and Kronland-Martinet, R and Tchamitchian, Ph and Torresani, B},
+file = {:private/var/folders/g4/tj0645wn5gn1\_0fzbhn38w500000gn/T/com.apple.Preview/PreviewTemp-ar3X2a/ieee.pdf:pdf},
+journal = {IEEE Transactions on Information Theory},
+mendeley-groups = {DAF-x 2015},
+pages = {644--664},
+title = {{Asymptotic Wavelet and Gabor Analysis: Extraction of Instantaneous Frequencies}},
+volume = {38},
+year = {1992}
+}
+
 @article{Deutsch2008,
 abstract = {This paper describes an algorithm for producing pitch circularity using tones that each comprise a full harmonic series, and reports an experiment that demonstrates such circularity. Banks of 12 tones (i.e., scales) were created, with F0 varying in semitone steps. For each scale, as F0 descended, the amplitudes of the odd-numbered harmonics were reduced relative to the even-numbered ones by 3.5 dB for each semitone step. In consequence, the tone with the lowest F0 was heard as though displaced up an octave. In an experiment employing two such scales, all possible ordered tone pairs from each scale were presented, making 132 ordered tone pairs for each scale. Sixteen subjects judged for each tone pair whether the second tone was higher or lower than the first. The data derived from these pairwise comparisons were subjected to Kruskal's nonmetric multidimensional scaling, and excellent circularities were obtained. Individual differences in the subjects' judgments were also explored. The findings support the argument that musical pitch should be characterized as varying along two dimensions: the monotonic dimension of pitch height and the circular dimension of pitch class.},
 author = {Deutsch, Diana and Dooley, Kevin and Henthorn, Trevor},
@@ -72,38 +84,6 @@ title = {{Pitch circularity from tones comprising full harmonic series.}},
 url = {http://www.dooleykevin.com/pitch.circularity.08.pdf},
 volume = {124},
 year = {2008}
-}
-
-@article{Hennequin2011,
-abstract = {Real-world sounds often exhibit time-varying spectral shapes, as observed in the spectrogram of a harpsichord tone or that of a transition between two pronounced vowels. Whereas the standard non-negative matrix factorization (NMF) assumes fixed spectral atoms, an extension is proposed where the temporal activations (coefficients of the decomposition on the spectral atom basis) become frequency dependent and follow a time-varying autoregressive moving average (ARMA) modeling. This extension can thus be interpreted with the help of a source/filter paradigm and is referred to as source/filter factorization. This factorization leads to an efficient single-atom decomposition for a single audio event with strong spectral variation (but with constant pitch). The new algorithm is tested on real audio data and shows promising results.},
-author = {Hennequin, R. and Badeau, R. and David, B.},
-issn = {1558-7916},
-journal = {IEEE Transactions on Audio, Speech, and Language Processing},
-keywords = {Music Information Retrieval,Non-negative Matrix Factorisation,Unsupervised Machine Learning},
-mendeley-groups = {DAF-x 2015},
-number = {4},
-pages = {744--753},
-publisher = {IEEE},
-title = {{NMF with Time-frequency Activations to Model Nonstationary Audio Events}},
-url = {file:///Users/vincent/Documents/Papers/Hennequin/Hennequin, 2011 - NMF with time?frequency activations to model nonstationary audio events.pdf papers://616814c5-046b-40e4-b13b-55fce5f60979/Paper/p6962},
-volume = {19},
-year = {2011}
-}
-
-@article{Fuentes2013,
-author = {Fuentes, B. and Badeau, R. and Richard, G.},
-doi = {10.1109/TASL.2013.2260741},
-file = {:Users/vlostan/Library/Application Support/Mendeley Desktop/Downloaded/9026f092040f421808192ba1fc564fa0311bcfbc.pdf:pdf},
-issn = {15587916},
-journal = {IEEE Transactions on Audio, Speech and Language Processing},
-keywords = {Automatic transcription,multipitch estimation,nonnegative matrix factorization,probabilistic latent component analysis},
-mendeley-groups = {DAF-x 2015},
-number = {9},
-pages = {1854--1866},
-title = {{Harmonic-adaptive Latent Component Analysis of Audio and Application to Music Transcription}},
-url = {http://www.benoit-fuentes.fr/articles/Fuentes2013\_TASLP/Fuentes2013\_TASLP.pdf},
-volume = {21},
-year = {2013}
 }
 
 @article{Risset1969,
