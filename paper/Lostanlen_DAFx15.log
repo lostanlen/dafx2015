@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  4 JUN 2015 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  4 JUN 2015 19:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -451,7 +451,7 @@ ble at
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 162.
 
-Overfull \hbox (1.12991pt too wide) in paragraph at lines 173--176
+Overfull \hbox (1.12991pt too wide) in paragraph at lines 177--180
 []\T1/ptm/m/n/9 Section 2 gives a for-mal def-i-ni-tion of the spi-ral scat-ter
 -ing trans-
  []
@@ -460,28 +460,18 @@ Overfull \hbox (1.12991pt too wide) in paragraph at lines 173--176
 File: ../figures/fig1/raw_fig1.png Graphic file (type png)
 
 <use ../figures/fig1/raw_fig1.png>
-Package pdftex.def Info: ../figures/fig1/raw_fig1.png used on input line 181.
+Package pdftex.def Info: ../figures/fig1/raw_fig1.png used on input line 185.
 (pdftex.def)             Requested size: 241.84842pt x 131.69823pt.
 
-Overfull \hbox (4.2678pt too wide) in paragraph at lines 182--183
+Overfull \hbox (4.2678pt too wide) in paragraph at lines 186--187
  [] 
  []
 
 
-Underfull \vbox (badness 1708) has occurred while \output is active []
-
-
-Overfull \hbox (3.54462pt too wide) in paragraph at lines 196--202
+Overfull \hbox (3.54462pt too wide) in paragraph at lines 200--206
 \T1/ptm/m/n/9 An an-a-lytic "mother" wavelet is a com-plex fil-ter $\OML/cmm/m/
 it/9  \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )$ \T1/ptm/m/n/9 whose Fo
 urier
- []
-
-
-Overfull \hbox (3.31618pt too wide) in paragraph at lines 216--217
-\T1/ptm/m/n/9 around the fre-quen-cies $\OML/cmm/m/it/9 ^^U[]$ \T1/ptm/m/n/9 ov
-er du-ra-tions $\OT1/cmr/m/n/9 2\OML/cmm/m/it/9 Q^^U[]$\T1/ptm/m/n/9 , trad-ing
- fre-quency
  []
 
 [1{/Users/vlostan/Library/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex
@@ -490,39 +480,46 @@ er du-ra-tions $\OT1/cmr/m/n/9 2\OML/cmm/m/it/9 Q^^U[]$\T1/ptm/m/n/9 , trad-ing
 
 
  <../figures/fig1/raw_fig1.png>]
-Overfull \hbox (1.04341pt too wide) in paragraph at lines 272--273
+Overfull \hbox (3.31618pt too wide) in paragraph at lines 220--221
+\T1/ptm/m/n/9 around the fre-quen-cies $\OML/cmm/m/it/9 ^^U[]$ \T1/ptm/m/n/9 ov
+er du-ra-tions $\OT1/cmr/m/n/9 2\OML/cmm/m/it/9 Q^^U[]$\T1/ptm/m/n/9 , trad-ing
+ fre-quency
+ []
+
+
+Overfull \hbox (1.04341pt too wide) in paragraph at lines 276--277
 \T1/ptm/m/n/9 across oc-taves at fixed chroma, in con-junc-tion with reg-u-lar-
 ity along
  []
 
-<../figures/gretsi_fig1.png, id=94, 250.1847pt x 241.65282pt>
+<../figures/gretsi_fig1.png, id=92, 250.1847pt x 241.65282pt>
 File: ../figures/gretsi_fig1.png Graphic file (type png)
 
 <use ../figures/gretsi_fig1.png>
-Package pdftex.def Info: ../figures/gretsi_fig1.png used on input line 292.
+Package pdftex.def Info: ../figures/gretsi_fig1.png used on input line 296.
 (pdftex.def)             Requested size: 170.71652pt x 164.90065pt.
  [2 <../figures/gretsi_fig1.png>]
-Overfull \hbox (12.8532pt too wide) in paragraph at lines 351--358
+Overfull \hbox (12.8532pt too wide) in paragraph at lines 356--363
 \T1/ptm/m/n/9 Observe that $[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )
 $ \T1/ptm/m/n/9 in-duces a change of fun-da-men-tal fre-quency, whereas
  []
 
 
-Overfull \hbox (7.10054pt too wide) in paragraph at lines 363--365
+Overfull \hbox (7.10054pt too wide) in paragraph at lines 368--370
 \T1/ptm/m/n/9 and fre-quency could be re-solved ac-cord-ing to their re-spec-ti
 ve source-
  []
 
 
-LaTeX Warning: Reference `eq:harmonicity' on page 3 undefined on input line 366
+LaTeX Warning: Reference `eq:harmonicity' on page 3 undefined on input line 371
 .
 
 
 LaTeX Warning: Reference `eq:spectral-smoothess' on page 3 undefined on input l
-ine 366.
+ine 371.
 
 
-Overfull \hbox (25.7373pt too wide) in paragraph at lines 428--429
+Overfull \hbox (28.08461pt too wide) in paragraph at lines 433--434
 \T1/ptm/m/n/9 the in-stan-ta-neous fre-quency of the con-vo-lu-tion $\OT1/cmr/m
 /n/9 [\OML/cmm/m/it/9 h[] []  []\OT1/cmr/m/n/9 ]$ \T1/ptm/m/n/9 is $\OMS/cmsy/m
 /n/9 ^^@\OML/cmm/m/it/9 ^^M[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )\
@@ -530,19 +527,19 @@ OML/cmm/m/it/9 =[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )$\T1/ptm/m/n
 /9 .
  []
 
-[3] <../figures/fig4/raw_fig4.png, id=148, 437.635pt x 346.29375pt>
+[3] <../figures/fig4/raw_fig4.png, id=147, 437.635pt x 346.29375pt>
 File: ../figures/fig4/raw_fig4.png Graphic file (type png)
 
 <use ../figures/fig4/raw_fig4.png>
-Package pdftex.def Info: ../figures/fig4/raw_fig4.png used on input line 456.
+Package pdftex.def Info: ../figures/fig4/raw_fig4.png used on input line 461.
 (pdftex.def)             Requested size: 170.71652pt x 135.08571pt.
  (./Lostanlen_DAFx15.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 473.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 478.
  [4 <../figures/fig4/raw_fig4.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 473.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 478.
  (./Lostanlen_DAFx15.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 473.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 473.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 478.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 478.
 Package rerunfilecheck Info: File `Lostanlen_DAFx15.out' has not changed.
 (rerunfilecheck)             Checksum: A037F46CF78BCD253F2536D87998C601;920.
 
@@ -552,7 +549,7 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 473.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 478.
  )
 (\end occurred when \ifx on line 59 was incomplete) 
 Here is how much of TeX's memory you used:
@@ -562,7 +559,7 @@ Here is how much of TeX's memory you used:
  11386 multiletter control sequences out of 15000+600000
  44995 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,38p,700b,371s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,38p,699b,371s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/tex
 mf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2014/texmf-dist/font
@@ -579,7 +576,7 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Lostanlen_DAFx15.pdf (4 pages, 1251996 bytes).
+Output written on Lostanlen_DAFx15.pdf (4 pages, 1252478 bytes).
 PDF statistics:
  221 PDF objects out of 1000 (max. 8388607)
  192 compressed objects within 2 object streams
