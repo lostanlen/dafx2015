@@ -654,7 +654,7 @@ The Shepard arpeggio: first-order coefficients (left) and second-order spiral
 Deformations of the source-filter model
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Let 
 \begin_inset Formula $\sum_{n}\delta(t-2\pi f_{0}^{-1}n)$
 \end_inset
@@ -748,7 +748,7 @@ Let
  Our proof is driven by two facts:
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 The scalogram of the warped harmonic source is constant across octaves:
  
 \begin_inset Formula 
@@ -761,7 +761,7 @@ e_{\theta,1}(t,\log_{2}\lambda_{1})\approx e_{\theta,1}(t,\log_{2}\lambda_{1}+j)
  
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 The scalogram of the warped filter is almost constant along chromas: 
 \begin_inset Formula 
 \[
@@ -773,7 +773,7 @@ h_{\nu,1}(t,\log_{2}\lambda_{1})\approx h_{\nu,1}(t,\log_{2}\lambda_{1}+\chi)\mb
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 All wavelets are designed to carry a negligible mean value, i.e.
  convolving them with a constant yields zero.
  Therefore, the two facts above imply 
@@ -826,7 +826,7 @@ This factorization is achieved by linearizing
  The assumptions involved are:
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 slowly varying source: 
 \begin_inset Formula $\Vert\ddot{\theta}/\dot{\theta}\Vert\ll\lambda_{1}/Q$
 \end_inset
@@ -834,7 +834,7 @@ slowly varying source:
 ,
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 slowly varying filter: 
 \begin_inset Formula $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$
 \end_inset
@@ -842,15 +842,15 @@ slowly varying filter:
 ,
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 smooth spectral envelope: 
 \begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$
 \end_inset
 
-, and
+,
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Q large enough to discriminate the 
 \begin_inset Formula $k^{\mbox{th}}$
 \end_inset

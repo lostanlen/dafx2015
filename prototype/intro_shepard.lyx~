@@ -847,7 +847,7 @@ smooth spectral envelope:
 \begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q/\lambda_{1}$
 \end_inset
 
-,
+, and
 \end_layout
 
 \begin_layout Enumerate

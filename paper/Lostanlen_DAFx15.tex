@@ -160,15 +160,13 @@ Paris, France\\
 \maketitle
 
 \begin{abstract}
-We present a new representation of sounds that liearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
+We present a new representation of sounds that linearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
 \end{abstract}
 
 \section{Introduction}
 
 The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, automated transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures. 
 On one hand, spectrogram-based pattern recognition algorithms \cite{Kereliuk2008} are exposed to detection errors as they impose strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization \cite{Hennequin2011} are under-constrained and thus may fail to converge to a satisfying solution. In this article, we address the problem of characterizing harmonic structures without any detection nor training step.
-
-First, local continuity in frequency modulation cause a slow rigid motion along the log-frequency axis. Second, harmonic sounds exhibit a comb-like spectrum, which conveys the global evolution of the spectral envelope. This comb looks highly irregular: unlike frequency modulation, it cannot be captured efficiently with local convolutions in time and log-frequency.
 
 To recover regularity across partials, we capitalize on the fact that power-of-two harmonics are distant from exactly one octave. By rolling up the log-frequency axis in a spiral, such that octave intervals correspond to full turns, these partials get aligned on a radius. Consequently, introducing the integer-valued octave variable reveals harmonic regularity that was not explicit in the plane of time and log-frequency. Once specified the variables of time, log-frequency, and octave index, our transform merely consists in cascading three wavelet decompositions along them and applying complex modulus.
 
@@ -271,12 +269,18 @@ The joint time-frequency scattering transform corresponds to the "cortical trans
 
 The time-frequency scattering transform defined in Equation (\ref{eq:x2-joint}) provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure of voiced sounds, such as vowels or musical notes. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
-In order to disentangle variabilities in pitch and spectral envelope, we extend the joint time-frequency scattering transform to encompass regularity in time across octaves, in conjunction with regularity along neighboring constant-Q bands. Just like wavelet filterbanks along time and log-frequency have been defined in the two previous subsections, we deal here with regularity across octaves by introducing a third wavelet filterbank.
+In order to capture this information, we extend the joint time-frequency scattering transform to encompass regularity in time across octaves at fixed chroma, in conjunction with regularity along neighboring constant-Q bands. Just like wavelet filterbanks along time and log-frequency have been defined in the two previous subsections, we deal here with regularity across octaves by introducing a third wavelet filterbank.
 
 We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral making one full turn at each octave (see Figure \ref{fig:spiral-wavelets}). Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log \lambda_1$, pitch chroma and pitch height in the spiral correspond to integer part $\lfloor \log \lambda_1 \rfloor$ and fractional part $\{ \log \lambda_1 \}$:
+
 \begin{equation}
-\log \lambda_1 = \lfloor \log \lambda_1 \rfloor + \{ \log \lambda_1 \}.
-\label{eq:integer-part-and-fractional-part}
+\begin{split}
+\log \lambda_1
+&= \lfloor \log \lambda_1 \rfloor + \{ \log \lambda_1 \} \\
+&= j_1 + \frac{\chi_1}{Q}
+.
+\end{split}
+\label{eq:integer-part and fractional part}
 \end{equation}
 
 In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with convolutions along chromas for $\beta^{-1}$ of the order of a few semitones.
@@ -289,7 +293,7 @@ In this setting, the fundamental frequency $f_0$ is aligned with its power-of-tw
 		\end{picture}
 	\end{center}
 	\protect\caption{
-	Two spiral wavelets $\psi_{\lambda_2}(t,\log_2 \lambda_1, \lfloor \log_2 \lambda_1 \rfloor)$ in the time-frequency plane, with different values of $\lambda_2 = (\alpha,\beta,\gamma)$. Left: $\alpha^{-1} = 120\text{ ms}$, $\beta^{-1} = - 0.25\text{ octave}$, $\gamma^{-1} = +2\text{ octaves}$. Right: $\alpha^{-1} = 60\text{ ms}$, $\beta^{-1} = +0.5\text{ octave}$,  $\gamma^{-1} = -4\text{ octaves}$. Darker color levels corresponds to greater values of the real part.
+	Two spiral wavelets $\psi_{\lambda_2}(t,\log \lambda_1, \lfloor \log \lambda_1 \rfloor)$ in the time-frequency plane, with different values of $\lambda_2 = (\alpha,\beta,\gamma)$. Left: $\alpha^{-1} = 120\text{ ms}$, $\beta^{-1} = - 0.25\text{ octave}$, $\gamma^{-1} = +2\text{ octaves}$. Right: $\alpha^{-1} = 60\text{ ms}$, $\beta^{-1} = +0.5\text{ octave}$,  $\gamma^{-1} = -4\text{ octaves}$. Darker color levels corresponds to greater values of the real part.
 \label{fig:unrolled-spiral-wavelets}
 }
 \end{figure}
@@ -298,7 +302,7 @@ The wavelet $\psi_{\lambda_2}$ is now defined as a product between wavelets in t
 \begin{equation}
 \psi_{\lambda_2}(t, \log \lambda_1) =
 \psi_{\alpha}(t) \times
-\psi_{\beta}(\log_2 \lambda_1) \times
+\psi_{\beta}(\log \lambda_1) \times
 \psi_{\gamma}(\lfloor \log \lambda_1 \rfloor).
 \label{eq:wavelet-shepard}
 \end{equation}
@@ -316,7 +320,7 @@ We write $\overset{j}{\ast}$ to denote convolutions across neighboring octaves.
 The definition for $x_2$ is comparable to Equations \ref{eq:x2-time} and \ref{eq:x2-joint}:
 \begin{equation}
 \begin{split}
-x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})
+x_{2}(t,\log \lambda_{1},\log \lambda_{2})
 & = \vert x_{1} \overset{t,\chi_{1},j}{\ast} \psi_{\lambda_{2}}\vert \\
 &= \vert x_{1} \overset{t}{\ast} \psi_\alpha \overset{\chi_{1}}{\ast} \psi_\beta \overset{j}{\ast} \psi_\gamma \vert
 .
@@ -359,7 +363,7 @@ This plane satisfies the Cartesian equation
 \end{equation}
 This result means that harmonic sounds overlapping both in time and frequency could be resolved according to their respective source-filter velocities.
 
-Our proof is driven by harmonicity and spectral smoothness properties \textemdash{} Equations (\ref{eq:harmonicity}) and (\ref{eq:spectral-smoothess}) \textemdash{} and derives the Equation (\ref{eq:cartesian-equation}) from the computation of wavelet ridges on the pitch spiral \cite{Delprat1992}.
+Our proof is driven by harmonicity and spectral smoothness properties \textemdash{} Equations (\ref{eq:harmonicity}) and (\ref{eq:spectral-smoothess}) \textemdash{} and derives Equation (\ref{eq:cartesian-equation}) from the computation of wavelet ridges on the pitch spiral \cite{Delprat1992}.
 
 
 
@@ -373,30 +377,29 @@ Given $\lambda_1$ near $p f_0 \dot{\theta}(t)$ where $p \in \mathbb{N}$, we line
 \item slowly varying filter: $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$.
 \end{enumerate}
 
-Let $e_{\theta,1}(t,\log_{2}\lambda_{1})$ and $h_{\nu,1}(t,\log_{2}\lambda_{1})$
-be the respective scalograms of $e_{\theta}(t)$ and $h_{\nu}(t)$. According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to $e_1$ at the log-frequency $\log_2 \lambda_1$. For lack of any interference, $e_1$ is constant through time, and we may drop the dependency in $t$:
+According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to the scalogram $e_1 = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert$ of $e(t)$ at the log-frequency $\log \lambda_1$. For lack of any interference, $e_1$ is constant through time, and we may drop the dependency in $t$:
 \begin{equation}
-e_{1}(\log_2 \lambda_1) = \vert \widehat{\psi_{\lambda_1}}(p f_0) \vert
+e_{1}(\log \lambda_1) = \vert \widehat{\psi_{\lambda_1}}(p f_0) \vert.
 \label{eq:e1}
 \end{equation}
 
-According to (b), the scalogram of the deformed source can be replaced by the scalogram of the original source translated along the log-frequency at the velocity $\log_2 \dot{\theta}(t)$:
+According to (b), the scalogram $e_{\theta,1} = \vert e_{\theta} \ast \psi_{\lambda_1} \vert$ of the deformed source $e_\theta (t)$ can be replaced by the scalogram of the original source translated along the log-frequency at the velocity $\log \dot{\theta}(t)$:
 \begin{equation}
-e_{\theta,1}(t,\log_2 \lambda_1) = e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t)).
+e_{\theta,1}(t,\log \lambda_1) = e_{1}(\log \lambda_1 - \log \dot{\theta}(t)).
 \label{eq:e-theta-1}
 \end{equation}
 According to (c), we linearize $\nu(t)$ over the support of $\psi_{\lambda_1}(t)$. The spectral smoothness assumption allows to approximate $\hat{h}(\omega)$ by a constant over the frequential support of the wavelet, hence to factorize the filtering as a product:
 \begin{equation}
 \left[ h_\nu \ast \psi_{\lambda_1} \right] =
-h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t))
+h_{1}(\log \lambda_1 - \log \dot{\nu}(t)) \times
 \psi_{\lambda_1}\left( \frac{\nu(t)}{\dot{\nu}(t)} \right).
 \label{eq:h-nu-1}
 \end{equation}
-By plugging Equation \ref{eq:e-theta-1} into Equation \ref{eq:h-nu-1}, $x_1$ appears is a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log_2 \dot{\theta}(t)$ and $\log_2 \dot{\nu}(t)$:
+By plugging Equation \ref{eq:e-theta-1} into Equation \ref{eq:h-nu-1}, $x_1$ appears is a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log \dot{\theta}(t)$ and $\log \dot{\nu}(t)$:
 \begin{multline}
-x_1(t,\log_2 \lambda_1) = \\
-e_{1}(\log_2 \lambda_1 - \log_2 \dot{\theta}(t))
-h_{1}(\log_2 \lambda_1 - \log_2 \dot{\nu}(t)).
+x_1(t,\log \lambda_1) = \\
+e_{1}(\log \lambda_1 - \log \dot{\theta}(t))
+h_{1}(\log \lambda_1 - \log \dot{\nu}(t)).
 \label{eq:factorization}
 \end{multline}
 
@@ -422,7 +425,7 @@ where the superscripts $t$, $\chi_{1}$ and $j$ denote convolutions along time, c
 
 
 \subsection{Extraction of instantaneous frequencies}
-As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log_2 \lambda_1 - \log_2 p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log_2 \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the convolution $[h_{\nu,1} \overset{j}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
+As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the convolution $[h_{\nu,1} \overset{j}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
 \begin{equation}
 \alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
 \quad
@@ -432,7 +435,7 @@ As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast}
 \end{equation}
 the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
 \begin{multline}
-x_2(t,\log_2 \lambda_1, \log_2 \lambda_2) = \\
+x_2(t,\log \lambda_1, \log \lambda_2) = \\
 \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
 \vert h_{\nu,1} \overset{j}{\ast} \psi_\gamma \vert \times
 \left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
