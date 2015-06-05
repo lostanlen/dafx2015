@@ -93,9 +93,9 @@
 \paperauthorA, \paperauthorB
 \sthanks{This work is supported by the ERC InvariantClass 320959. The source code to reproduce figures and experiments is available
 at \texttt{www.github.com/lostanlen/scattering.m}.}}
-{\href{http://di.ens.fr/data/}{Dept. of Computer Science}, \\
+{\href{http://di.ens.fr/data/}{Department of Computer Science},
 \'{E}cole normale sup\'{e}rieure \\
-Paris, France\\
+Paris, France \\
 {\tt \href{mailto:vincent.lostanlen@ens.fr}{vincent.lostanlen@ens.fr}}
 }
 \usepackage{amsopn}
@@ -160,19 +160,19 @@ Paris, France\\
 \maketitle
 
 \begin{abstract}
-We present a new representation of sounds that linearizes the dynamics of pitch chroma and pitch height, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the Shepard pitch spiral, in that convolutions are performed in time, log-frequency (correlated to pitch chroma) and octave index (correlated to pitch height).
+We present a new representation of harmonic sounds that linearizes the dynamics of pitch and spectral envelope, while remaining stable to deformations in the time-frequency plane. It is an instance of the scattering transform, a generic operator which cascades wavelet convolutions and modulus nonlinearities. It is derived from the pitch spiral, in that convolutions are successively performed in time, log-frequency, and octave index. We give a closed-form approximation of spiral scattering coefficients for a nonstationary generalization of the harmonic source-filter model.
 \end{abstract}
 
 \section{Introduction}
 
-The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, automated transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures. 
-On one hand, spectrogram-based pattern recognition algorithms \cite{Kereliuk2008} are exposed to detection errors as they impose strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization \cite{Hennequin2011} are under-constrained and thus may fail to converge to a satisfying solution. In this article, we address the problem of characterizing harmonic structures without any detection nor training step.
+The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures. 
+On one hand, spectrogram-based pattern recognition algorithms \cite{Kereliuk2008} are exposed to detection errors as they impose strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization \cite{Hennequin2011} are under-constrained and thus may fail to converge to a satisfying solution. In this article, we address the characterization of harmonic structures without any detection nor training step.
 
-Wavelets have long proven to provide meaningful, sparse activations as long as they operate on a dimension on which the signal has already some regularity. Although a single sine wave draws a regular edge on the time-frequency plane, a harmonic comb is made of distant sharp peaks over the log-frequency axis, an irregular pattern that is hard to characterize globally. This irregularity weakens the discriminative power of existing template-free representations, such as Mel-frequency cepstral coefficients (MFCC).
+Wavelets have long proven to provide meaningful, sparse activations as long as they operate on a dimension on which the signal has already some regularity. Although a single sine wave draws a regular edge on the time-frequency plane, a harmonic comb is made of distant sharp peaks over the log-frequency axis, an irregular pattern that is hard to characterize globally. This irregularity weakens the discriminative power of existing representations, such as Mel-frequency cepstral coefficients (MFCC).
 
 To recover regularity across partials within a wavelet framework, we capitalize on the fact that power-of-two harmonics are exactly one octave apart. By rolling up the log-frequency axis in a spiral, such that octave intervals correspond to full turns, these partials get aligned on a radius. Consequently, introducing the integer-valued octave variable reveals harmonic regularity that was not explicit in the plane of time and log-frequency.
 
-Once specified the variables of time, log-frequency, and octave index, our representation merely consists in cascading three wavelet decompositions along them and applying complex modulus. Thus, the constant-Q scalogram into "scattered" channels over which main factors of time variability are disentangled and regularized, yet harmonicity is preserved.
+Once specified the variables of time, log-frequency, and octave index, our representation merely consists in cascading three wavelet decompositions along them and applying complex modulus. Thus, the constant-Q scalogram is "scattered" into channels over which main factors of time variability are disentangled and regularized, yet harmonicity is preserved.
 
 Section 2 gives a formal definition of the spiral scattering transform.
 Section 3 introduces a nonstationary formulation of the source-filter model relying on time warps, and shows that its variabilities in pitch and spectral envelope are jointly linearized by the spiral scattering transform.
