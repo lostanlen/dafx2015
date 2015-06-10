@@ -179,13 +179,13 @@ Section 2 gives a formal definition of the spiral scattering transform. Section 
 \begin{figure}[t]
 	\begin{center}
 		\setlength{\unitlength}{1cm}
-		\begin{picture}(8.5,5.0)
-		\put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/raw_fig1.png}}
+		\begin{picture}(8.5,5.5)
+		\put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/dafx_fig1.png}}
 		\end{picture}
 	\end{center}
 \protect\caption{
-The spiral wavelet is a product of wavelets along time $t$, log-frequency $\log \lambda_1$ (angular variable), and octave index $j_1$ (radial variable). Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus.
-%Partials of an hypothetical harmonic sound are marked as thick dots.
+The spiral wavelet is a product of wavelets along time, log-frequency, and octave index. Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus.
+Partials of an hypothetical harmonic sound are marked as thick dots.
 \label{fig:spiral-wavelets}
 }
 \end{figure}
@@ -197,7 +197,7 @@ This section builds the spiral scattering transform progressively as a cascade o
 \subsection{Time scattering}
 
 An analytic "mother" wavelet is a complex filter $\psi(t)$
-whose Fourier transform $\widehat{\psi}(\omega)$ is concentrated over the
+whose Fou\-rier transform $\widehat{\psi}(\omega)$ is concentrated over the
 dimensionless frequency interval $[1-2^{1/2Q},1+2^{1/2Q}]$, where the quality factor $Q$ is in the typical range $12$\textendash$24$. Dilations of this wavelet
 define a family of bandpass filters centered at frequencies
 $ \lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$,
@@ -277,12 +277,7 @@ In order to capture this information, we extend the joint time-frequency scatter
 We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral making one full turn at each octave (see Figure \ref{fig:spiral-wavelets}). Since a frequency interval of one octave corresponds to one unit in binary logarithms $\log \lambda_1$, pitch height and pitch chroma in the spiral correspond to integer part $\lfloor \log \lambda_1 \rfloor$ and fractional part $\{ \log \lambda_1 \}$:
 
 \begin{equation}
-\begin{split}
-\log \lambda_1
-&= \lfloor \log \lambda_1 \rfloor + \{ \log \lambda_1 \} \\
-&= j_1 + \frac{\chi_1}{Q}
-.
-\end{split}
+\log \lambda_1 = \lfloor \log \lambda_1 \rfloor + \{ \log \lambda_1 \} = j_1 + \frac{\chi_1}{Q}.
 \label{eq:integer-part and fractional part}
 \end{equation}
 
@@ -353,8 +348,8 @@ The warped source-filter model is
 x(t)=[e_{\theta} \overset{t}{\ast} h_{\nu}](t).
 \label{eq:source-filter}
 \end{equation}
-Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency,
-whereas $\dot{\nu}(t)$ accounts for a local dilation of the spectral
+Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency, where\-as
+$\dot{\nu}(t)$ accounts for a local dilation of the spectral
 envelope $\vert\widehat{h}\vert(\omega)$.
 We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular over the support of first-order wavelets,
 the local maxima of $x_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
@@ -385,9 +380,7 @@ Given $\lambda_1$ near $p f_0 \dot{\theta}(t)$ where $p \in \mathbb{N}$, we line
 According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to the scalogram $e_1 = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert$ of $e(t)$ at the log-frequency $\log \lambda_1$. For lack of any interference, $e_1$ is constant through time, and we may drop the dependency in $t$:
 \begin{equation}
 e_{1}(\log \lambda_1) = \vert \widehat{\psi_{\lambda_1}}(p f_0) \vert.
-\label{eq:e1}
 \end{equation}
-
 According to (b), the scalogram $e_{\theta,1} = \vert e_{\theta} \ast \psi_{\lambda_1} \vert$ of the deformed source $e_\theta (t)$ can be replaced by the scalogram of the original source translated along the log-frequency at the velocity $\log \dot{\theta}(t)$:
 \begin{equation}
 e_{\theta,1}(t,\log \lambda_1) = e_{1}(\log \lambda_1 - \log \dot{\theta}(t)).
@@ -431,7 +424,7 @@ where the superscripts $t$, $\chi_{1}$ and $j_{1}$ denote convolutions along tim
 
 
 \subsection{Extraction of instantaneous frequencies}
-As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the convolution $[h_{\nu,1} \overset{j_{1}}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
+As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} ]$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the filter after convolution across octaves $[h_{\nu,1} \overset{j_{1}}{\ast} \psi_{\gamma}]$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
 \begin{equation}
 \alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
 \quad
@@ -439,13 +432,13 @@ As a final step, we state that the phase of $[ e_{\theta,1} \overset{\chi}{\ast}
 \quad
 \alpha \geq \left \vert \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right \vert,
 \end{equation}
-the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
+the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$ \cite{Delprat1992}. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
 \begin{multline}
 x_2(t,\log \lambda_1, \log \lambda_2) = \\
 \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
 \vert h_{\nu,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
 \left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
-\label{eq:x2-spiral}
+\label{eq:x2-sourcefilter}
 \end{multline}
 The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation \ref{eq:cartesian-equation} follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ have small relative variations:
 \begin{equation}
@@ -458,21 +451,23 @@ An important caveat is that the inequalities above do not hold at inflexion poin
 \begin{figure}[t]
 	\begin{center}
 		\setlength{\unitlength}{1cm}
-		\begin{picture}(8,11)
+		\begin{picture}(8,10.5)
 		\put(0,0){\includegraphics[width=8cm]{../figures/fig3/dafx_fig3.png}}
 		\end{picture}
 	\end{center}
 	\protect\caption{
 	Top: scalogram of a musical note from Berio's \emph{Sequenza V} for trombone, around 3'45".
 	Observe that the attack part (a) has increasing pitch and increasing brightness, whereas the release part (b) has decreasing pitch and decreasing brightness.
-	Bottom: spiral scattering coefficients for $t$ and $\log \lambda_1$ specified by (a) and (b), $\alpha^-1$ fixed at 46 ms, $\beta^{-1}$ ranging from $-1\text{ octave}$ to $+1\text{ octave}$, and $\gamma^{-1}$ ranging from $-4\text{ octaves}$ to $+1\text{ octaves}$. As expected, highest values are concentrated in the bottom left corner for (a), resp. in the top right corner for (b).
+	Bottom: spiral scattering coefficients for $t$ and $\log \lambda_1$ specified by (a) and (b), $\alpha^-1$ fixed at 46 ms, $\beta^{-1}$ ranging from $-1\text{ octave}$ to $+1\text{ octave}$, and $\gamma^{-1}$ ranging from $-4\text{ octaves}$ to $+1\text{ octaves}$. As expected, highest values are concentrated in the bottom left corner for (a) and in the top right corner for (b).
 \label{fig:berio-scalogram}
 }
 \end{figure}
 
+In the example of a trombone signal, glissando can be modelized by $\ddot{\theta} / \dot{\theta}(t)$ in the source-filter model, whereas the brassiness profile induces a timbral velocity $\ddot{\nu}(t) / \dot{\nu}(t)$. Figure 3 illustrates that these two velocities are stably disentangled and characterized.
+
 \section{Conclusions}
 
-The spiral model we have presented is well-known in music theory and experimental psychology. However, existing methods in audio signal processing do not fully take advantage from its richness, as they either picture pitch on a line (e.g. MFCC) or on a circle (e.g. chroma features).
+The spiral model we have presented is well-known in music theory and experimental psychology. However, existing methods in audio signal processing do not fully take advantage from its richness, as they either picture pitch on a line (e.g. MFCC) or on a circle (e.g. chroma features). In this article, we have shown how spiral scattering can represent the transientness of harmonic sounds.
 
 %\newpage
 \nocite{*}

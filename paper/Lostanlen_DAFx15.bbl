@@ -4,27 +4,24 @@
 C.~Kereliuk and P.~Depalle,
 \newblock ``{Improved Hidden Markov Model Partial Tracking Through
   Time-frequency Analysis},''
-\newblock in {\em Proc. of the 11th Int. Conference on Digital Audio Effects
-  (DAFx-08)}, 2008, pp. 1--6.
+\newblock in {\em Proc. DAFx}, 2008, pp. 1--6.
 
 \bibitem{Hennequin2011}
 R.~Hennequin, R.~Badeau, and B.~David,
 \newblock ``{NMF with Time-frequency Activations to Model Nonstationary Audio
   Events},''
-\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
-  vol. 19, no. 4, pp. 744--753, 2011.
+\newblock {\em IEEE Trans. Audio, Speech, Language Process.}, vol. 19, no. 4,
+  pp. 744--753, 2011.
 
 \bibitem{Anden2012}
 J.~And\'{e}n and S.~Mallat,
 \newblock ``{Scattering Representation of Modulated Sounds},''
-\newblock {\em Proc. of the 15th Int. Conference on Digital Audio Effects
-  (DAFx-12)}, , no. 3, pp. 15--18, 2012.
+\newblock {\em Proc. DAFx}, , no. 3, pp. 15--18, 2012.
 
 \bibitem{Anden2014DSS}
 J.~And\'{e}n and S.~Mallat,
 \newblock ``{Deep Scattering Spectrum},''
-\newblock {\em IEEE Transactions on Signal Processing}, vol. 62, no. 16, pp.
-  4114--4128, 2014.
+\newblock {\em IEEE Trans. Sig. Proc.}, vol. 62, no. 16, pp. 4114--4128, 2014.
 
 \bibitem{Anden2014PhD}
 J.~And\'{e}n,
@@ -45,21 +42,18 @@ J.-C. Risset,
 \bibitem{Deutsch2008}
 D.~Deutsch, K.~Dooley, and T.~Henthorn,
 \newblock ``{Pitch circularity from tones comprising full harmonic series.},''
-\newblock {\em The Journal of the Acoustical Society of America}, vol. 124, no.
-  1, pp. 589--597, 2008.
+\newblock {\em J. Acoust. Soc. Am.}, vol. 124, no. 1, pp. 589--597, 2008.
 
 \bibitem{Warren2003}
 J.~Warren, S.~Uppenkamp, R.~Patterson, and T.~Griffiths,
 \newblock ``{Analyzing Pitch Chroma and Pitch Height in the Human Brain},''
-\newblock {\em Annals of the New York Academy of Sciences}, vol. 999, no. 17,
-  pp. 212--214, 2003.
+\newblock {\em Ann. N. Y. Acad. Sci.}, vol. 999, no. 17, pp. 212--214, 2003.
 
 \bibitem{Delprat1992}
 N.~Delprat, B.~Escudi\'{e}, P.~Guillemain, R.~Kronland-Martinet,
   P.~Tchamitchian, and B.~Torr\'{e}sani,
 \newblock ``{Asymptotic Wavelet and Gabor Analysis: Extraction of Instantaneous
   Frequencies},''
-\newblock {\em IEEE Transactions on Information Theory}, vol. 38, pp. 644--664,
-  1992.
+\newblock {\em IEEE Trans. Inf. Theory}, vol. 38, pp. 644--664, 1992.
 
 \end{thebibliography}
