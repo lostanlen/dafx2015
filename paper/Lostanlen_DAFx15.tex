@@ -378,13 +378,16 @@ Given $\lambda_1$ near the $p^{\textrm{th}}$ partial p \dot{\theta}(t)$ where $p
 \item spectral smoothness: $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty} \ll Q / \lambda_{1}$.
 \end{enumerate}
 
-According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to the scalogram $e_1 = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert$ of $e(t)$ at the log-frequency $\log \lambda_1$. For lack of any interference, $e_1$ is constant through time, and we may drop the dependency in $t$:
+According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to the scalogram of the source at the log-frequency $\log \lambda_1$. For lack of any interference, this scalogram is constant through time, and we may drop the dependency in $t$:
 \begin{equation}
-e_{1}(\log \lambda_1) = \vert \widehat{\psi_{\lambda_1}}(p f_0) \vert.
+\vert e \overset{t}{\ast} \psi_{\lambda_1} \vert =
+\vert \widehat{\psi_{\lambda_1}}(p) \vert.
 \end{equation}
-According to (b), the scalogram $e_{\theta,1} = \vert e_{\theta} \ast \psi_{\lambda_1} \vert$ of the deformed source $e_\theta (t)$ can be replaced by the scalogram of the original source translated along the log-frequency at the velocity $\log \dot{\theta}(t)$:
+According to (b), the scalogram of the warped source $e_\theta (t)$ can be replaced by the scalogram of the original source translated along the log-frequency axis at the velocity $\log \dot{\theta}(t)$:
 \begin{equation}
-e_{\theta,1}(t,\log \lambda_1) = e_{1}(\log \lambda_1 - \log \dot{\theta}(t)).
+\vert e_{\theta} \overset{\ast}{t} \psi_{\lambda_1} \vert (t) =
+\vert e \overset{t}{\ast} \psi_{\lambda_1} \vert (\theta(t)) =
+\vert \widehat{\psi_{\lambda_1}}(p \dot{\theta}(t)) \vert.
 \label{eq:e-theta-1}
 \end{equation}
 According to (c), we linearize $\nu(t)$ over the support of $\psi_{\lambda_1}(t)$.
