@@ -177,12 +177,12 @@ Once specified the variables of time, log-frequency, and octave index, our repre
 Section 2 gives a formal definition of the spiral scattering transform. Section 3 introduces a nonstationary formulation of the source-filter model relying on time warps, and shows that its variabilities in pitch and spectral envelope are jointly linearized by the spiral scattering transform. Section 4 provides a visual interpretation of the spiral scattering coefficients of a nonstationary musical note.
 
 \begin{figure}[t]
-	\begin{center}
-		\setlength{\unitlength}{1cm}
-		\begin{picture}(8.5,5.5)
-		\put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/dafx_fig1.png}}
-		\end{picture}
-	\end{center}
+    \begin{center}
+        \setlength{\unitlength}{1cm}
+        \begin{picture}(8.5,5.5)
+        \put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/dafx_fig1.png}}
+        \end{picture}
+    \end{center}
 \protect\caption{
 The spiral wavelet is a product of wavelets along time, log-frequency, and octave index. Blue and green oscillations represent the real and imaginary parts. The red envelope represents the complex modulus.
 Partials of an hypothetical harmonic sound are marked as thick dots.
@@ -203,16 +203,16 @@ define a family of bandpass filters centered at frequencies
 $ \lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$,
 where the indices $j_{1} \in \mathbb{Z}$ and $\chi_{1} \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
 \begin{equation}
-	\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
-	\quad\mathrm{i.e.}\quad
-	\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
+    \widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}(\lambda^{-1}\omega)
+    \quad\mathrm{i.e.}\quad
+    \psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \label{eq:wavelet-dilations}
 \end{equation}
 
 The wavelet transform convolves an input signal $x(t)$ with the filter bank of $\psi_{\lambda_1}$'s. We denote convolutions along time by the operator $\overset{t}{\ast}$. Applying complex modulus to all wavelet convolutions results in the "scalogram" matrix
 \begin{equation}
-	x_1(t, \log \lambda_1) =
-	|x \overset{t}{\ast} \psi_{\lambda_1}| \quad \text{for all } \lambda_1 > 0,
+    x_1(t, \log \lambda_1) =
+    |x \overset{t}{\ast} \psi_{\lambda_1}| \quad \text{for all } \lambda_1 > 0,
 \label{eq:scalogram}
 \end{equation}
 
@@ -258,7 +258,7 @@ The time scattering transform defined in Equation (\ref{eq:x2-time}) decomposes 
 
 We write $\overset{\chi_{1}}{\ast}$ to denote convolutions along the log-frequency axis, i.e. along chromas.  Wavelet scattering is extended to two-dimensional convolutions by plugging Equation (\ref{eq:wavelet-joint}) into the definition of $x_2$ in Equation (\ref{eq:x2-time}):
 \begin{equation}
-x_{2}(t,\log \lambda_{1},\log \lambda_{2}) = 
+x_{2}(t,\log \lambda_{1},\log \lambda_{2}) =
 \vert x_{1} \overset{t, \chi_{1}}{\ast} \psi_{\lambda_{2}} \vert =
 \vert x_{1} \overset{t}{\ast} \psi_{\alpha} \overset{\chi_{1}}{\ast} \psi_{\beta} \vert.
 \label{eq:x2-joint}
@@ -284,14 +284,14 @@ We roll up the log-frequency variable $\log \lambda_1$ into a pitch spiral makin
 In this setting, the fundamental frequency $f_0$ is aligned with its power-of-two harmonics $2 f_0$, $4 f_0$, $8 f_0$ and so forth. Likewise, the perfect fifth $3 f_0$ is aligned with $6 f_0$. As the number of harmonics per octave increase exponentially, the alignment of upper harmonics \textemdash{} $5 f_0$, $7 f_0$, and so forth \textemdash{} in the spiral is less crucial, because it can also be recovered with convolutions along chromas for $\beta^{-1}$ of the order of a few semitones.
 
 \begin{figure}[t]
-	\begin{center}
-		\setlength{\unitlength}{1cm}
-		\begin{picture}(8,7)
-		\put(0,0){\includegraphics[height=7cm]{../figures/fig2/dafx_fig2.png}}
-		\end{picture}
-	\end{center}
-	\protect\caption{
-	Two spiral wavelets $\psi_{\lambda_2}(t,\log \lambda_1, \lfloor \log \lambda_1 \rfloor)$ in the time-frequency plane, with different values of $\lambda_2 = (\alpha,\beta,\gamma)$. Left: $\alpha^{-1} = 120\text{ ms}$, $\beta^{-1} = - 0.25\text{ octave}$, $\gamma^{-1} = +2\text{ octaves}$. Right: $\alpha^{-1} = 60\text{ ms}$, $\beta^{-1} = +0.5\text{ octave}$,  $\gamma^{-1} = -4\text{ octaves}$. Darker color levels corresponds to greater values of the real part.
+    \begin{center}
+        \setlength{\unitlength}{1cm}
+        \begin{picture}(8,7)
+        \put(0,0){\includegraphics[height=7cm]{../figures/fig2/dafx_fig2.png}}
+        \end{picture}
+    \end{center}
+    \protect\caption{
+    Two spiral wavelets $\psi_{\lambda_2}(t,\log \lambda_1, \lfloor \log \lambda_1 \rfloor)$ in the time-frequency plane, with different values of $\lambda_2 = (\alpha,\beta,\gamma)$. Left: $\alpha^{-1} = 120\text{ ms}$, $\beta^{-1} = - 0.25\text{ octave}$, $\gamma^{-1} = +2\text{ octaves}$. Right: $\alpha^{-1} = 60\text{ ms}$, $\beta^{-1} = +0.5\text{ octave}$,  $\gamma^{-1} = -4\text{ octaves}$. Darker color levels corresponds to greater values of the real part.
 \label{fig:unrolled-spiral-wavelets}
 }
 \end{figure}
@@ -356,7 +356,7 @@ the local maxima of $x_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamm
 This plane satisfies the Cartesian equation
 \begin{equation}
 \alpha +
-\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta + 
+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta +
 \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma = 0.
 \label{eq:cartesian-equation}
 \end{equation}
@@ -449,16 +449,16 @@ The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha
 An important caveat is that the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\nu(t)$, i.e. where the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ cross zero.
 
 \begin{figure}[t]
-	\begin{center}
-		\setlength{\unitlength}{1cm}
-		\begin{picture}(8,10.5)
-		\put(0,0){\includegraphics[width=8cm]{../figures/fig3/dafx_fig3.png}}
-		\end{picture}
-	\end{center}
-	\protect\caption{
-	Top: scalogram of a musical note from Berio's \emph{Sequenza V} for trombone, around 3'45".
-	Observe that the attack part (a) has increasing pitch and increasing brightness, whereas the release part (b) has decreasing pitch and decreasing brightness.
-	Bottom: spiral scattering coefficients for $t$ and $\log \lambda_1$ specified by (a) and (b), $\alpha^-1$ fixed at 46 ms, $\beta^{-1}$ ranging from $-1\text{ octave}$ to $+1\text{ octave}$, and $\gamma^{-1}$ ranging from $-4\text{ octaves}$ to $+1\text{ octaves}$. As expected, highest values are concentrated in the bottom left corner for (a) and in the top right corner for (b).
+    \begin{center}
+        \setlength{\unitlength}{1cm}
+        \begin{picture}(8,10.5)
+        \put(0,0){\includegraphics[width=8cm]{../figures/fig3/dafx_fig3.png}}
+        \end{picture}
+    \end{center}
+    \protect\caption{
+    Top: scalogram of a musical note from Berio's \emph{Sequenza V} for trombone, around 3'45".
+    Observe that the attack part (a) has increasing pitch and increasing brightness, whereas the release part (b) has decreasing pitch and decreasing brightness.
+    Bottom: spiral scattering coefficients for $t$ and $\log \lambda_1$ specified by (a) and (b), $\alpha^-1$ fixed at 46 ms, $\beta^{-1}$ ranging from $-1\text{ octave}$ to $+1\text{ octave}$, and $\gamma^{-1}$ ranging from $-4\text{ octaves}$ to $+1\text{ octaves}$. As expected, highest values are concentrated in the bottom left corner for (a) and in the top right corner for (b).
 \label{fig:berio-scalogram}
 }
 \end{figure}
@@ -473,5 +473,5 @@ The spiral model we have presented is well-known in music theory and experimenta
 \nocite{*}
 \bibliographystyle{IEEEbib}
 \bibliography{Lostanlen_DAFx15} % requires file DAFx15_tmpl.bib
- 
+
 \end{document}
