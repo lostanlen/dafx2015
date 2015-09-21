@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  21 SEP 2015 09:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  21 SEP 2015 10:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -347,7 +347,7 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
-No file Lostanlen_DAFx15.aux.
+(./Lostanlen_DAFx15.aux)
 \openout1 = `Lostanlen_DAFx15.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
@@ -365,6 +365,7 @@ LaTeX Font Info:    ... okay on input line 151.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 151.
 LaTeX Font Info:    ... okay on input line 151.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 151.
+
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -453,18 +454,12 @@ s wavelet
  []
 
 
-LaTeX Warning: Citation `Kereliuk2008' on page 1 undefined on input line 169.
-
-
-LaTeX Warning: Citation `Hennequin2011' on page 1 undefined on input line 169.
-
-
 Overfull \hbox (1.12991pt too wide) in paragraph at lines 177--178
 []\T1/ptm/m/n/9 Section 2 gives a for-mal def-i-ni-tion of the spi-ral scat-ter
 -ing trans-
  []
 
-<../figures/fig1/dafx_fig1.png, id=6, 227.53004pt x 142.25145pt>
+<../figures/fig1/dafx_fig1.png, id=56, 227.53004pt x 142.25145pt>
 File: ../figures/fig1/dafx_fig1.png Graphic file (type png)
 
 <use ../figures/fig1/dafx_fig1.png>
@@ -481,112 +476,24 @@ Overfull \hbox (4.2678pt too wide) in paragraph at lines 184--185
 
 
  <../figures/fig1/dafx_fig1.png>]
-
-LaTeX Warning: Reference `eq:S1' on page 2 undefined on input line 230.
-
-
-LaTeX Warning: Reference `eq:S1' on page 2 undefined on input line 239.
-
-
-LaTeX Warning: Citation `Anden2012' on page 2 undefined on input line 249.
-
-
-LaTeX Warning: Citation `Anden2014DSS' on page 2 undefined on input line 249.
-
-
-LaTeX Warning: Reference `eq:x2-time' on page 2 undefined on input line 253.
-
-
-LaTeX Warning: Citation `Anden2014PhD' on page 2 undefined on input line 253.
-
-
-LaTeX Warning: Reference `eq:wavelet-joint' on page 2 undefined on input line 2
-59.
-
-
-LaTeX Warning: Reference `eq:x2-time' on page 2 undefined on input line 259.
-
-
-LaTeX Warning: Reference `eq:x2-joint' on page 2 undefined on input line 273.
-
-
 Overfull \hbox (1.04341pt too wide) in paragraph at lines 275--276
 \T1/ptm/m/n/9 across oc-taves at fixed chroma, in con-junc-tion with reg-u-lar-
 ity along
  []
 
-
-LaTeX Warning: Reference `fig:spiral-wavelets' on page 2 undefined on input lin
-e 277.
-
-<../figures/fig2/dafx_fig2.png, id=32, 250.1847pt x 241.65282pt>
+<../figures/fig2/dafx_fig2.png, id=91, 250.1847pt x 241.65282pt>
 File: ../figures/fig2/dafx_fig2.png Graphic file (type png)
 
 <use ../figures/fig2/dafx_fig2.png>
 Package pdftex.def Info: ../figures/fig2/dafx_fig2.png used on input line 290.
 (pdftex.def)             Requested size: 206.2102pt x 199.16928pt.
-
-
-LaTeX Warning: Reference `fig:unrolled-spiral-wavelets' on page 2 undefined on 
-input line 307.
-
-[2 <../figures/fig2/dafx_fig2.png>]
-
-LaTeX Warning: Reference `eq:x2-time' on page 3 undefined on input line 318.
-
-
-LaTeX Warning: Reference `eq:x2-joint' on page 3 undefined on input line 318.
-
-
-LaTeX Warning: Citation `Shepard1964' on page 3 undefined on input line 329.
-
-
-LaTeX Warning: Citation `Risset1969' on page 3 undefined on input line 329.
-
-
-LaTeX Warning: Citation `Deutsch2008' on page 3 undefined on input line 329.
-
-
-LaTeX Warning: Citation `Warren2003' on page 3 undefined on input line 329.
-
-
+ [2 <../figures/fig2/dafx_fig2.png>]
 Overfull \hbox (8.35332pt too wide) in paragraph at lines 351--358
 \T1/ptm/m/n/9 Observe that $[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 t\OT1/cmr/m/n/9 )
 $ \T1/ptm/m/n/9 in-duces a change of fun-da-men-tal fre-quency, where-
  []
 
-
-LaTeX Warning: Reference `eq:zero-mean' on page 3 undefined on input line 366.
-
-
-LaTeX Warning: Reference `eq:cartesian-equation' on page 3 undefined on input l
-ine 366.
-
-
-LaTeX Warning: Citation `Delprat1992' on page 3 undefined on input line 366.
-
-
-LaTeX Warning: Reference `eq:e-theta-1' on page 3 undefined on input line 401.
-
-
-LaTeX Warning: Reference `eq:h-nu-1' on page 3 undefined on input line 401.
-
-
-LaTeX Warning: Reference `eq:factorization' on page 3 undefined on input line 4
-17.
-
-
-LaTeX Warning: Reference `eq:zero-mean' on page 3 undefined on input line 417.
-
-[3]
-
-LaTeX Warning: Citation `Delprat1992' on page 4 undefined on input line 439.
-
-
-LaTeX Warning: Reference `eq:cartesian-equation' on page 4 undefined on input l
-ine 447.
-
-<../figures/fig3/dafx_fig3.png, id=72, 227.53004pt x 293.05486pt>
+[3] <../figures/fig3/dafx_fig3.png, id=149, 227.53004pt x 293.05486pt>
 File: ../figures/fig3/dafx_fig3.png Graphic file (type png)
 
 <use ../figures/fig3/dafx_fig3.png>
@@ -599,29 +506,16 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 481.
  (./Lostanlen_DAFx15.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 481.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 481.
-
-
-Package rerunfilecheck Warning: File `Lostanlen_DAFx15.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Lostanlen_DAFx15.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  A037F46CF78BCD253F2536D87998C601;920.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `Lostanlen_DAFx15.out' has not changed.
+(rerunfilecheck)             Checksum: A037F46CF78BCD253F2536D87998C601;920.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 481.
  )
 (\end occurred when \ifx on line 59 was incomplete) 
 Here is how much of TeX's memory you used:
- 8105 strings out of 493117
- 119398 string characters out of 6135433
+ 8120 strings out of 493117
+ 119609 string characters out of 6135433
  218477 words of memory out of 5000000
- 11371 multiletter control sequences out of 15000+600000
+ 11384 multiletter control sequences out of 15000+600000
  44995 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,17n,38p,811b,371s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -641,10 +535,10 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Lostanlen_DAFx15.pdf (4 pages, 1465080 bytes).
+Output written on Lostanlen_DAFx15.pdf (4 pages, 1465806 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
+ 222 PDF objects out of 1000 (max. 8388607)
+ 195 compressed objects within 2 object streams
  56 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 
