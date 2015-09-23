@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  23 SEP 2015 12:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  23 SEP 2015 12:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -499,6 +499,14 @@ Overfull \hbox (8.35332pt too wide) in paragraph at lines 351--358
 $ \T1/ptm/m/n/9 in-duces a change of fun-da-men-tal fre-quency, where-
  []
 
+
+Overfull \hbox (2.11719pt too wide) in paragraph at lines 378--379
+[]\T1/ptm/m/n/9 spectral smooth-ness: $\OMS/cmsy/m/n/9 k\OT1/cmr/m/n/9 d([] \OM
+S/cmsy/m/n/9 j[]j\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 =\OT1/cmr/m/n/9 d\OML/cmm/m/it
+/9 !\OMS/cmsy/m/n/9 k[] ^^B k\OT1/cmr/m/n/9 1\OML/cmm/m/it/9 =[]\OMS/cmsy/m/n/9
+ k ^^\ \OML/cmm/m/it/9 Q=^^U[]$\T1/ptm/m/n/9 . 
+ []
+
 [3] <../figures/fig3/dafx_fig3.png, id=149, 227.53004pt x 293.05486pt>
 File: ../figures/fig3/dafx_fig3.png Graphic file (type png)
 
@@ -541,7 +549,7 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Lostanlen_DAFx15.pdf (4 pages, 1465834 bytes).
+Output written on Lostanlen_DAFx15.pdf (4 pages, 1466311 bytes).
 PDF statistics:
  225 PDF objects out of 1000 (max. 8388607)
  198 compressed objects within 2 object streams
