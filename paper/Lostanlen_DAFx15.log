@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  21 SEP 2015 10:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  23 SEP 2015 11:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -508,6 +508,10 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 481.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 481.
 Package rerunfilecheck Info: File `Lostanlen_DAFx15.out' has not changed.
 (rerunfilecheck)             Checksum: A037F46CF78BCD253F2536D87998C601;920.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 481.
  )
 (\end occurred when \ifx on line 59 was incomplete) 
@@ -535,7 +539,7 @@ ts/symbols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Lostanlen_DAFx15.pdf (4 pages, 1465806 bytes).
+Output written on Lostanlen_DAFx15.pdf (4 pages, 1465820 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  195 compressed objects within 2 object streams
