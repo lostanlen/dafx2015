@@ -343,23 +343,23 @@ This section studies the decomposition of the deformed source-filter model in th
 Let $e(t)=\sum_{n}\delta(t - n)$ be a harmonic signal and
 $t\mapsto\theta(t)$ a time warp function. We define a warped source
 as $e_{\theta}(t)=(e\circ\theta)(t)$. Similarly, we compose a
-filter $h(t)$ and a warp $t\mapsto\nu(t)$ to define $h_{\nu}(t)=(h\circ\nu)(t)$.
+filter $h(t)$ and a warp $t\mapsto\eta(t)$ to define $h_{\eta}(t)=(h\circ\eta)(t)$.
 The warped source-filter model is the signal
 \begin{equation}
-x_{\theta, \nu}(t) =
-(e_{\theta} \overset{t}{\ast} h_{\nu})(t)
+x_{\theta, \eta}(t) =
+(e_{\theta} \overset{t}{\ast} h_{\eta})(t)
 \label{eq:source-filter}
 \end{equation}
 Observe that $\dot{\theta}(t)$ induces a change of fundamental frequency, where\-as
-$\dot{\nu}(t)$ accounts for a local dilation of the spectral
+$\dot{\eta}(t)$ accounts for a local dilation of the spectral
 envelope $\vert\widehat{h}\vert(\omega)$.
-We show in this section that, for $\dot{\theta}(t)$ and $\dot{\nu}(t)$ reasonably regular over the support of first-order wavelets,
+We show in this section that, for $\dot{\theta}(t)$ and $\dot{\eta}(t)$ reasonably regular over the support of first-order wavelets,
 the local maxima of $x_{2}$ are clustered on a plane in the $(\alpha,\beta,\gamma)$ space of scattering coefficients.
 This plane satisfies the Cartesian equation
 \begin{equation}
 \alpha +
 \dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta +
-\dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)}\gamma = 0.
+\dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)}\gamma = 0.
 \label{eq:cartesian-equation}
 \end{equation}
 In a polyphonic context, this result means that harmonic sounds overlapping both in time and frequency could be resolved according to their respective source-filter velocities.
@@ -369,13 +369,13 @@ Our proof is driven by harmonicity and spectral smoothness properties \textemdas
 
 
 \subsection{Source-filter factorization in the scalogram}
-Given $\lambda_1$ near the $p^{\textrm{th}}$ partial $p \dot{\theta}(t)$ where $p \in \mathbb{N}$, we linearize $\theta(t)$ and $\nu(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work under the following assumptions:
+Given $\lambda_1$ near the $p^{\textrm{th}}$ partial $p \dot{\theta}(t)$ where $p \in \mathbb{N}$, we linearize $\theta(t)$ and $\eta(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work under the following assumptions:
 
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \begin{enumerate}
 \item $Q$ large enough to discriminate the $p^\text{th}$ partial: $Q>2p$,
 \item slowly varying source: $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty} \ll \lambda_{1}/Q$,
-\item slowly varying filter: $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}/Q$, and
+\item slowly varying filter: $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$, and
 \item spectral smoothness: $\Vert\mathrm{d}( \log \vert \hat{h} \vert ) / \mathrm{d} \omega \Vert_{\infty} \times \Vert 1 / \dot{\eta} \Vert \ll Q / \lambda_{1}$.
 \end{enumerate}
 
@@ -391,28 +391,28 @@ According to (b), the scalogram of the warped source $e_\theta (t)$ can be repla
 \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert.
 \label{eq:e-theta-1}
 \end{equation}
-According to (c), we linearize $\nu(t)$ over the support of $\psi_{\lambda_1}(t)$.
+According to (c), we linearize $\eta(t)$ over the support of $\psi_{\lambda_1}(t)$.
 According to (d), we approximate $\hat{h}(\omega)$ by a constant over the frequential support of the wavelet and factorize the filtering as a product:
 \begin{equation}
-\left( h_\nu \ast \psi_{\lambda_1} \right)(t) \approx
-h_{1}(\log \lambda_1 - \log \dot{\nu}(t)) \times
-\psi_{\lambda_1}\left( \frac{\nu(t)}{\dot{\nu}(t)} \right).
+\left( h_\eta \ast \psi_{\lambda_1} \right)(t) \approx
+h_{1}(\log \lambda_1 - \log \dot{\eta}(t)) \times
+\psi_{\lambda_1}\left( \frac{\eta(t)}{\dot{\eta}(t)} \right).
 \label{eq:h-nu-1}
 \end{equation}
-By plugging Equation (\ref{eq:e-theta-1}) into Equation (\ref{eq:h-nu-1}), $x_1$ appears as a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log \dot{\theta}(t)$ and $\log \dot{\nu}(t)$:
+By plugging Equation (\ref{eq:e-theta-1}) into Equation (\ref{eq:h-nu-1}), $x_1$ appears as a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log \dot{\theta}(t)$ and $\log \dot{\eta}(t)$:
 \begin{multline}
 x_1(t,\log \lambda_1) = \\
 e_{1}(\log \lambda_1 - \log \dot{\theta}(t))
-h_{1}(\log \lambda_1 - \log \dot{\nu}(t)).
+h_{1}(\log \lambda_1 - \log \dot{\eta}(t)).
 \label{eq:factorization}
 \end{multline}
 
 \subsection{Harmonicity and spectral smoothness properties}
-The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\nu}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
+The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\eta}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
 \begin{equation}
 e_{\theta,1}\overset{j_{1}}{\ast}\psi_{\gamma}\approx0
 \quad\mbox{and}\quad
-h_{\nu,1}\overset{\chi_{1}}{\ast}\psi_{\beta}\approx0.
+h_{\eta,1}\overset{\chi_{1}}{\ast}\psi_{\beta}\approx0.
 \label{eq:zero-mean}
 \end{equation}
 Gathering Equations (\ref{eq:factorization}) and (\ref{eq:zero-mean}) into the definition of spiral scattering yields
@@ -421,7 +421,7 @@ x_1 \overset{t,\chi_{1},j_{1}}{\ast} \psi_{\lambda_2} =
 \left[
 \left( e_{1,\theta} \overset{\chi_{1}}{\ast} \psi_{\beta} \right)
 \times
-\left( h_{1,\nu} \overset{j_{1}}{\ast} \psi_{\gamma} \right)
+\left( h_{1,\eta} \overset{j_{1}}{\ast} \psi_{\gamma} \right)
 \right]
 \overset{t}{\ast} \psi_\alpha,
 \end{equation}
@@ -430,29 +430,29 @@ where the superscripts $t$, $\chi_{1}$, and $j_{1}$ denote convolutions along ti
 
 
 \subsection{Extraction of instantaneous frequencies}
-As a final step, we state that the phase of $( e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} )$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the filter scalogram after convolution across octaves $( h_{\nu,1} \overset{j_{1}}{\ast} \psi_{\gamma} )$ is $ - \gamma \ddot{\nu}(t)/\dot{\nu}(t)$. As long as
+As a final step, we state that the phase of $( e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} )$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the filter scalogram after convolution across octaves $( h_{\eta,1} \overset{j_{1}}{\ast} \psi_{\gamma} )$ is $ - \gamma \ddot{\eta}(t)/\dot{\eta}(t)$. As long as
 \begin{equation}
 \alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
 \quad
 \text{and}
 \quad
-\alpha \geq \left \vert \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right \vert,
+\alpha \geq \left \vert \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right \vert,
 \end{equation}
 the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$ \cite{Delprat1992}. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
 \begin{multline}
 x_2(t,\log \lambda_1, \log \lambda_2) \approx \\
 \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
-\vert h_{\nu,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
-\left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\vert h_{\eta,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
+\left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{multline}
-The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation (\ref{eq:cartesian-equation}) follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ have small relative variations:
+The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation (\ref{eq:cartesian-equation}) follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\eta}(t)/\dot{\eta}(t)$ have small relative variations:
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
 \quad \text{and} \quad
-\left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
+\left \vert \frac{\dddot{\eta}(t)}{\ddot{\eta}(t)} - \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \right \vert \ll T^{-1}.
 \end{equation}
-An important caveat is that the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\nu(t)$, i.e. where the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\nu}(t)/\dot{\nu}(t)$ cross zero.
+An important caveat is that the inequalities above do not hold at inflexion points of the diffeomorphisms $\theta(t)$ and $\eta(t)$, i.e. where the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\eta}(t)/\dot{\eta}(t)$ cross zero.
 
 \begin{figure}[t]
     \begin{center}
@@ -469,7 +469,7 @@ An important caveat is that the inequalities above do not hold at inflexion poin
 }
 \end{figure}
 
-In the example of a trombone signal, glissando can be modelized by $\ddot{\theta} / \dot{\theta}(t)$ in the source-filter model, whereas the brassiness profile induces a timbral velocity $\ddot{\nu}(t) / \dot{\nu}(t)$. Figure 3 illustrates that these two velocities are stably disentangled and characterized.
+In the example of a trombone signal, glissando can be modelized by $\ddot{\theta} / \dot{\theta}(t)$ in the source-filter model, whereas the brassiness profile induces a timbral velocity $\ddot{\eta}(t) / \dot{\eta}(t)$. Figure 3 illustrates that these two velocities are stably disentangled and characterized.
 
 \section{Conclusions}
 
