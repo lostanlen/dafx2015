@@ -4,7 +4,7 @@
 C.~Kereliuk and P.~Depalle,
 \newblock ``{Improved Hidden Markov Model Partial Tracking Through
   Time-frequency Analysis},''
-\newblock in {\em Proc. DAFx}, 2008, pp. 1--6.
+\newblock in {\em Proc. DAFx}, 2008.
 
 \bibitem{Hennequin2011}
 R.~Hennequin, R.~Badeau, and B.~David,
@@ -16,17 +16,12 @@ R.~Hennequin, R.~Badeau, and B.~David,
 \bibitem{Anden2012}
 J.~And\'{e}n and S.~Mallat,
 \newblock ``{Scattering Representation of Modulated Sounds},''
-\newblock {\em Proc. DAFx}, , no. 3, pp. 15--18, 2012.
+\newblock {\em Proc. DAFx}, , no. 3, 2012.
 
-\bibitem{Anden2014DSS}
-J.~And\'{e}n and S.~Mallat,
-\newblock ``{Deep Scattering Spectrum},''
-\newblock {\em IEEE Trans. Sig. Proc.}, vol. 62, no. 16, pp. 4114--4128, 2014.
-
-\bibitem{Anden2014PhD}
-J.~And\'{e}n,
-\newblock {\em {Time and Frequency Scattering for Audio Classification}},
-\newblock Ph.D. thesis, \'{E}cole Polytechnique, 2014.
+\bibitem{Anden2015}
+J.~And\'{e}n, V.~Lostanlen, and S.~Mallat,
+\newblock ``{Joint Time-frequency Scattering for Audio Classification},''
+\newblock {\em Proc. IEEE MLSP}, 2015.
 
 \bibitem{Shepard1964}
 R.~Shepard,
@@ -55,5 +50,11 @@ N.~Delprat, B.~Escudi\'{e}, P.~Guillemain, R.~Kronland-Martinet,
 \newblock ``{Asymptotic Wavelet and Gabor Analysis: Extraction of Instantaneous
   Frequencies},''
 \newblock {\em IEEE Trans. Inf. Theory}, vol. 38, pp. 644--664, 1992.
+
+\bibitem{Patil2012}
+K.~Patil, D.~Pressnitzer, S.~Shamma, and M.~Elhilali,
+\newblock ``{Music in our ears: the biological bases of musical timbre
+  perception},''
+\newblock {\em PLoS Computational Biology}, vol. 8, no. 11, 2012.
 
 \end{thebibliography}
