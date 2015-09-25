@@ -216,7 +216,6 @@ The wavelet transform convolves an input signal $x(t)$ with the filter bank of $
     |x \overset{t}{\ast} \psi_{\lambda_1}| \quad \text{for all } \lambda_1 > 0,
 \label{eq:scalogram}
 \end{equation}
-
 whose frequential axis is uniformly sampled by the binary logarithm $\log \lambda_1$. The scalogram $x_1$ localizes the energy of $x(t)$ around frequencies $\lambda_1$ over durations $2 Q / \lambda_1$, trading frequency resolution for time resolution.
 
 The constant-Q transform (CQT) $S_1 x$ corresponds to a lowpass filtering of $x_1$ with a window $\phi_T(t)$ of size $T$:
@@ -305,6 +304,7 @@ The wavelet $\psi_{\lambda_2}$ is now defined as a product between wavelets in t
 \psi_{\gamma}(\lfloor \log \lambda_1 \rfloor).
 \label{eq:wavelet-shepard}
 \end{equation}
+
 Examples of the "spiral wavelet" $\psi_{\lambda_2}$ are shown in Figure \ref{fig:unrolled-spiral-wavelets} for different values of $\alpha$, $\beta$ and $\gamma$. To ensure invertibility and energy conservation, the quefrencies $\beta$ and $\gamma$ must take negative values, including zero. We adopt the shorthand notation
 \begin{equation}
 \log \lambda_2 =
@@ -312,7 +312,6 @@ Examples of the "spiral wavelet" $\psi_{\lambda_2}$ are shown in Figure \ref{fig
 \log \vert \beta \vert, \sign \beta,
 \log \vert \gamma \vert, \sign \gamma \right)
 \end{equation}
-
 to specify their indexing. In the special case $\beta = 0$, $\psi_\beta$ is no longer a wavelet but a low-pass filter whose support covers one octave. By convention, the corresponding log-quefrency index is $\log \vert \beta \vert = - \infty$. The same remark applies to $\psi_{\gamma}$ for $\gamma=0$, which covers six octaves. Since its Fourier transform $\widehat{\psi}_{\lambda_2}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$, both measured in octaves per second.
 
 We write $\overset{j_{1}}{\ast}$ to denote convolutions across neighboring octaves.
@@ -366,11 +365,8 @@ In a polyphonic context, this result means that harmonic sounds overlapping both
 
 Our proof is driven by harmonicity and spectral smoothness properties \textemdash{} Equation (\ref{eq:zero-mean}) \textemdash{} and derives Equation (\ref{eq:cartesian-equation}) from the computation of wavelet ridges on the pitch spiral \cite{Delprat1992}.
 
-
-
 \subsection{Source-filter factorization in the scalogram}
 Given $\lambda_1$ near the $p^{\textrm{th}}$ partial $p \dot{\theta}(t)$ where $p \in \mathbb{N}$, we linearize $\theta(t)$ and $\eta(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work under the following assumptions:
-
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \begin{enumerate}
 \item $Q$ large enough to discriminate the $p^\text{th}$ partial: $Q>2p$,
@@ -378,7 +374,6 @@ Given $\lambda_1$ near the $p^{\textrm{th}}$ partial $p \dot{\theta}(t)$ where $
 \item slowly varying filter: $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$, and
 \item spectral smoothness: $\Vert\mathrm{d}( \log \vert \hat{h} \vert ) / \mathrm{d} \omega \Vert_{\infty} \times \Vert 1 / \dot{\eta} \Vert_{\infty} \ll Q / \lambda_{1}$.
 \end{enumerate}
-
 According to (a), partials $p^{\prime} \neq p$ have a negligible contribution to the scalogram of the source at the log-frequency $\log \lambda_1$. For lack of any interference, this scalogram is constant through time, and we may drop the dependency in $t$:
 \begin{equation}
 \vert e \overset{t}{\ast} \psi_{\lambda_1} \vert \approx
@@ -391,8 +386,7 @@ According to (b), the scalogram of the warped source $e_\theta (t)$ can be repla
 \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert.
 \label{eq:e-theta-1}
 \end{equation}
-According to (c), we linearize $\eta(t)$ over the support of $\psi_{\lambda_1}(t)$.
-According to (d), we approximate $\hat{h}(\omega)$ by a constant over the frequential support of the wavelet and factorize the filtering as a product:
+According to (c), we linearize $\eta(t)$ over the support of $\psi_{\lambda_1}(t)$. According to (d), we approximate $\hat{h}(\omega)$ by a constant over the frequential support of the wavelet and factorize the filtering as a product:
 \begin{equation}
 \left( h_\eta \ast \psi_{\lambda_1} \right)(t) \approx
 \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right)
@@ -400,38 +394,36 @@ According to (d), we approximate $\hat{h}(\omega)$ by a constant over the freque
 \psi_{\lambda_1}\left( \frac{\eta(t)}{\dot{\eta}(t)} \right).
 \label{eq:h-nu-1}
 \end{equation}
-By plugging Equation (\ref{eq:e-theta-1}) into Equation (\ref{eq:h-nu-1}), $x_1$ appears as a separable product between $e_1$ and $h_1$, moving in log-frequency at respective velocities $\log \dot{\theta}(t)$ and $\log \dot{\eta}(t)$:
-\begin{multline}
-x_1(t,\log \lambda_1) = \\
-e_{1}(\log \lambda_1 - \log \dot{\theta}(t))
-h_{1}(\log \lambda_1 - \log \dot{\eta}(t)).
+By plugging Equation (\ref{eq:e-theta-1}) into Equation (\ref{eq:h-nu-1}), the scalogram of the deformable source-filter model appears as a separable product:
+\begin{equation}
+\vert x_{\theta,\eta} \overset{t}{\ast} \psi_{\lambda_1} \vert (t) =
+\vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert
+\times
+\left \vert \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right) \right \vert.
 \label{eq:factorization}
-\end{multline}
+\end{equation}
 
 \subsection{Harmonicity and spectral smoothness properties}
 The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\eta}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
 \begin{equation}
-e_{\theta,1}\overset{j_{1}}{\ast}\psi_{\gamma}\approx0
-\quad\mbox{and}\quad
-h_{\eta,1}\overset{\chi_{1}}{\ast}\psi_{\beta}\approx0.
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \approx 0
+\quad
+\text{ and }
+\quad
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big \vert \approx 0.
 \label{eq:zero-mean}
 \end{equation}
 Gathering Equations (\ref{eq:factorization}) and (\ref{eq:zero-mean}) into the definition of spiral scattering yields
-\begin{equation}
-x_1 \overset{t,\chi_{1},j_{1}}{\ast} \psi_{\lambda_2} =
-\left[
-\left( e_{1,\theta} \overset{\chi_{1}}{\ast} \psi_{\beta} \right)
-\times
-\left( h_{1,\eta} \overset{j_{1}}{\ast} \psi_{\gamma} \right)
-\right]
-\overset{t}{\ast} \psi_\alpha,
-\end{equation}
+\begin{eqnarray}
+x_{\theta,\eta}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
+ = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha} \nonumber,
+\end{eqnarray}
 where the superscripts $t$, $\chi_{1}$, and $j_{1}$ denote convolutions along time, chromas and octaves respectively.
 
 
 
 \subsection{Extraction of instantaneous frequencies}
-As a final step, we state that the phase of $( e_{\theta,1} \overset{\chi}{\ast} \psi_{\beta} )$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of the filter scalogram after convolution across octaves $( h_{\eta,1} \overset{j_{1}}{\ast} \psi_{\gamma} )$ is $ - \gamma \ddot{\eta}(t)/\dot{\eta}(t)$. As long as
+As a final step, we state that the phase of $( \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi}{\ast} \psi_{\beta} )$ is $\beta\times(\log \lambda_1 - \log p \dot{\theta}(t))$. By differentiating this quantity along $t$ for fixed $\log \lambda_1$, we obtain an instantaneous frequency of $- \beta \ddot{\theta}(t)/\dot{\theta}(t)$. Similarly, the instantaneous frequency of $( \vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_{1}}{\ast} \psi_{\gamma} )$ is $ - \gamma \ddot{\eta}(t)/\dot{\eta}(t)$. As long as
 \begin{equation}
 \alpha \geq \left \vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right \vert
 \quad
