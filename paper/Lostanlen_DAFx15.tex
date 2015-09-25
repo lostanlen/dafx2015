@@ -432,11 +432,13 @@ As a final step, we state that the phase of $( \vert e_\theta \overset{t}{\ast} 
 \alpha \geq \left \vert \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right \vert,
 \end{equation}
 the envelopes of these two convolutions are almost constant over the support of $\psi_{\alpha}(t)$ \cite{Delprat1992}. We conclude with the following approximate closed-form expression for the spiral scattering coefficients of the deformed source-filter model:
-\begin{multline}
-x_2(t,\log \lambda_1, \log \lambda_2) \approx \\
-\vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
-\vert h_{\eta,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
-\left \vert \widehat{\psi}_{\alpha} \left( -\frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right) \right \vert.
+\begin{eqnarray}
+\mkern-60mu
+x_2(t,\log \lambda_1, \log \lambda_2) = 
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big\vert
+\times
+\Big\vert \vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \nonumber \mkern-310mu \\
+& \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{multline}
 The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation (\ref{eq:cartesian-equation}) follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\eta}(t)/\dot{\eta}(t)$ have small relative variations:
