@@ -192,8 +192,12 @@ Partials of an hypothetical harmonic sound are marked as thick dots.
 \end{figure}
 
 
+
+
 \section{From time scattering to spiral scattering}
 This section builds the spiral scattering transform progressively as a cascade of wavelet transforms along time, log-frequency, and octave index. All three variables share the same framework.
+
+
 
 \subsection{Time scattering}
 
@@ -247,6 +251,8 @@ x_2 \overset{t}{\ast} \phi_T =
 \end{equation}
 
 Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time warps of $x(t)$ as long as they do not exceed $Q^{-1}$, i.e. one semitone. This implies that small modulations, such as tremolo and vibrato, are accurately linearized \cite{Anden2012}.
+
+
 
 \subsection{Joint time-frequency scattering}
 
@@ -331,11 +337,12 @@ Rolling up pitches into a spiral is a well-established idea in music, if only be
 
 
 
-
 \section{Deformations of the source-filter model}
 A classical model for voiced speech production consists in the convolution of a harmonic glottal source $e(t)$ with a vocal tract filter $h(t)$.
 Introducing independent deformations to both components brings realistic variability to pitch and spectral envelope.
 This section studies the decomposition of the deformed source-filter model in the spiral scattering transform.
+
+
 
 \subsection{Overview}
 
@@ -365,7 +372,10 @@ In a polyphonic context, this result means that harmonic sounds overlapping both
 
 Our proof is driven by harmonicity and spectral smoothness properties \textemdash{} Equation (\ref{eq:zero-mean}) \textemdash{} and derives Equation (\ref{eq:cartesian-equation}) from the computation of wavelet ridges on the pitch spiral \cite{Delprat1992}.
 
+
+
 \subsection{Source-filter factorization in the scalogram}
+
 Given $\lambda_1$ near the $p^{\textrm{th}}$ partial $p \dot{\theta}(t)$ where $p \in \mathbb{N}$, we linearize $\theta(t)$ and $\eta(t)$ over the support of the first-order wavelet $\psi_{\lambda_1}(t)$. We work under the following assumptions:
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \begin{enumerate}
@@ -403,7 +413,9 @@ By plugging Equation (\ref{eq:e-theta-1}) into Equation (\ref{eq:h-nu-1}), the s
 \label{eq:factorization}
 \end{equation}
 
+
 \subsection{Harmonicity and spectral smoothness properties}
+
 The second step in the proof consists in showing that the convolution along chromas with $\psi_\beta$ only applies to $e_{1,\theta}$, whereas the convolution across octaves with $\psi_\gamma$ only applies to $h_{1,\eta}$. Indeed, all wavelets are designed to carry a negligible mean value, i.e. convolving them with a constant yields zero. Therefore, the harmonicity and spectral smothness properties rewrite as
 \begin{equation}
 \Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \approx 0
@@ -419,7 +431,6 @@ x_{\theta,\eta}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \
  = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha} \nonumber,
 \end{eqnarray}
 where the superscripts $t$, $\chi_{1}$, and $j_{1}$ denote convolutions along time, chromas and octaves respectively.
-
 
 
 \subsection{Extraction of instantaneous frequencies}
@@ -441,7 +452,7 @@ x_2(t,\log \lambda_1, \log \lambda_2) =
 & \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{eqnarray}
-The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation (\ref{eq:cartesian-equation}) follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T (t)$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\eta}(t)/\dot{\eta}(t)$ have small relative variations:
+The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha(t)$ is a bump centered at the frequency $\alpha$. Equation (\ref{eq:cartesian-equation}) follows immediately from the above formula. The same result holds for the averaged coefficients $S_2 x = x_2 \ast \phi_T$ if the velocities $\ddot{\theta}(t)/\dot{\theta}(t)$ or $\ddot{\eta}(t)/\dot{\eta}(t)$ have small relative variations:
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
 \quad \text{and} \quad
