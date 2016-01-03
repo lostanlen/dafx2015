@@ -167,7 +167,7 @@ We present a new representation of harmonic sounds that linearizes the dynamics 
 
 \section{Introduction}
 
-The spectro-temporal evolution of harmonic spectra conveys essential information to audio classification, blind source separation, transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures.
+The spectro-temporal evolution of harmonic sounds conveys essential information to audio classification, blind source separation, transcription, as well as other processing tasks. This information is however difficult to capture in time-varying, polyphonic mixtures.
 On one hand, spectrogram-based pattern recognition algorithms \cite{Kereliuk2008} are exposed to detection errors as they enforce strong constraints on the shape of harmonic templates. On the other, time-varying generalizations of matrix factorization \cite{Hennequin2011} are under-constrained and thus may fail to converge to a satisfying solution. In this article, we address the characterization of harmonic structures without any detection nor training step.
 
 Wavelets have long proven to provide meaningful, sparse activations as long as they operate on a dimension on which the signal has already some regularity. Although a single sine wave draws a regular edge on the time-frequency plane, a harmonic comb is made of distant sharp peaks over the log-frequency axis, an irregular pattern that is hard to characterize globally. This irregularity weakens the discriminative power of existing wavelet-like representations, such as Mel-frequency cepstral coefficients (MFCC).
@@ -182,7 +182,7 @@ Section 2 gives a formal definition of the spiral scattering transform. Section 
     \begin{center}
         \setlength{\unitlength}{1cm}
         \begin{picture}(8.5,5.5)
-        \put(0,0){\includegraphics[width=8.5cm]{../figures/fig1/dafx_fig1.png}}
+        \put(0,0){\includegraphics[width=8.5cm]{dafx_fig1.png}}
         \end{picture}
     \end{center}
 \protect\caption{
@@ -204,7 +204,7 @@ This section builds the spiral scattering transform progressively as a cascade o
 
 An analytic "mother" wavelet is a complex filter $\psi(t)$
 whose Fou\-rier transform $\widehat{\psi}(\omega)$ is concentrated over the
-dimensionless frequency interval $[1-1/2Q,1+1/2Q]$, where the quality factor $Q$ is in the typical range $12$\textendash$24$. Dilations of this wavelet
+dimensionless frequency interval $[1-Q/2,1+Q/2]$, where the quality factor $Q$ is in the typical range $12$\textendash$24$. Dilations of this wavelet
 define a family of bandpass filters centered at frequencies
 $ \lambda_{1} = 2^{j_{1} + \frac{\chi_{1}}{Q}}$,
 where the indices $j_{1} \in \mathbb{Z}$ and $\chi_{1} \in \{1\ldots\,Q\}$ respectively denote octave and chroma:
@@ -257,7 +257,7 @@ Due to the constant-Q property, $S_1 x$ and $S_2 x$ are stable to small time war
 
 \subsection{Joint time-frequency scattering}
 
-The time scattering transform defined in Equation (\ref{eq:x2-time}) decomposes each frequency band separately, and so cannot properly capture the coherence of time-frequency structures, such as those induced by pitch contour. To remedy this, And\'{e}n et al. \cite{Anden2015} have redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is a modulation frequency in Hertz and $\beta$ is a frequency along log-frequencies in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
+The time scattering transform defined in Equation (\ref{eq:x2-time}) decomposes each frequency band separately, and thus cannot properly capture the coherence of time-frequency structures, such as those induced by pitch contour. To remedy this, And\'{e}n et al. \cite{Anden2015} have redefined the wavelets $\psi_{\lambda_2}$'s as functions of both time and log-frequency, indexed by pairs $\lambda_2 = (\alpha,\beta)$, where $\alpha$ is a modulation frequency in Hertz and $\beta$ is a frequency along log-frequencies in cycles per octaves. The joint wavelets $\psi_{\lambda_2}(t,\log \lambda_1)$ factorize as
 \begin{equation}
 \psi_{\lambda_2}(t,\log \lambda_1) = \psi_\alpha (t) \times \psi_\beta (\log \lambda_1).
 \label{eq:wavelet-joint}
@@ -277,7 +277,7 @@ The joint time-frequency scattering transform corresponds to the "cortical trans
 
 \subsection{Spiral scattering}
 
-The time-frequency scattering transform defined in Equation (\ref{eq:x2-joint}) provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure of voiced sounds, such as vowels or musical notes. The temporal evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
+The time-frequency scattering transform defined in Equation (\ref{eq:x2-joint}) provides template-free features for pitch variability along time. However, it is unaware of the harmonic structure of voiced sounds, such as vowels or musical notes. The multiscale evolution of this structure yields relevant information about attack transients and formantic changes, almost independently from the pitch contour.
 
 In order to capture this information, we extend the joint time-frequency scattering transform to encompass regularity in time across octaves at fixed chroma, in conjunction with regularity along neighboring constant-Q bands. Just like wavelet filterbanks along time and log-frequency have been defined in the two previous subsections, we capitalize on harmonicity by introducing a third wavelet filterbank.
 
@@ -294,7 +294,7 @@ In this setting, the fundamental frequency $f_0$ is aligned with its power-of-tw
     \begin{center}
         \setlength{\unitlength}{1cm}
         \begin{picture}(8,7)
-        \put(0,0){\includegraphics[height=7cm]{../figures/fig2/dafx_fig2.png}}
+        \put(0,0){\includegraphics[height=7cm]{dafx_fig2.png}}
         \end{picture}
     \end{center}
     \protect\caption{
@@ -312,6 +312,8 @@ The wavelet $\psi_{\lambda_2}$ is now defined as a product between wavelets in t
 \label{eq:wavelet-shepard}
 \end{equation}
 
+In the previous definition, $\psi_{\beta}$ operates over the rectilinear log-frequency variable $\log \lambda_1$, not over the circular chroma variable $\chi_1 = \{ \log \lambda_1 \}$. This is to avoid artifacts at octave boundaries.
+
 Examples of the "spiral wavelet" $\psi_{\lambda_2}$ are shown in Figure \ref{fig:unrolled-spiral-wavelets} for different values of $\alpha$, $\beta$ and $\gamma$. To ensure invertibility and energy conservation, the quefrencies $\beta$ and $\gamma$ must take negative values, including zero. We adopt the shorthand notation
 \begin{equation}
 \log \lambda_2 =
@@ -319,7 +321,7 @@ Examples of the "spiral wavelet" $\psi_{\lambda_2}$ are shown in Figure \ref{fig
 \log \vert \beta \vert, \sign \beta,
 \log \vert \gamma \vert, \sign \gamma \right)
 \end{equation}
-to specify their indexing. In the special case $\beta = 0$, $\psi_\beta$ is no longer a wavelet but a low-pass filter whose support covers one octave. By convention, the corresponding log-quefrency index is $\log \vert \beta \vert = - \infty$. The same remark applies to $\psi_{\gamma}$ for $\gamma=0$, which covers six octaves. Since its Fourier transform $\widehat{\psi}_{\lambda_2}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$, both measured in octaves per second.
+to specify their indexing. In the special case $\beta = 0$, $\psi_\beta$ is no longer a wavelet but a low-pass filter whose support covers one octave. By convention, the corresponding log-frequency index is $\log \vert \beta \vert = - \infty$. The same remark applies to $\psi_{\gamma}$ for $\gamma=0$, which covers six octaves. Since its Fourier transform $\widehat{\psi}_{\lambda_2}$  is centered at $(\alpha,\beta,\gamma)$, the spiral wavelet $\psi_{\lambda_2}$ has a pitch chroma velocity of $\alpha/\beta$ and a pitch height velocity of $\alpha/\gamma$, both measured in octaves per second.
 
 We write $\overset{j_{1}}{\ast}$ to denote convolutions across neighboring octaves.
 The definition for $x_2$ is comparable to Equations (\ref{eq:x2-time}) and (\ref{eq:x2-joint}):
@@ -333,7 +335,7 @@ x_{2}(t,\log \lambda_{1},\log \lambda_{2})
 \label{eq:x2-spiral}
 \end{equation}
 
-Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by Shepard \cite{Shepard1964}, Risset \cite{Risset1969}, and Deutsch \cite{Deutsch2008} to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex \cite{Warren2003}.
+Rolling up pitches into a spiral is a well-established idea in music, if only because of circularity of musical pitch classes. It has been studied by Shepard \cite{Shepard1964}, Risset \cite{Risset1969}, and Deutsch \cite{Deutsch2008} to build paradoxes in perception of pitch, and is corroborated by functional imaging of the auditory cortex (see Warren \cite{Warren2003}).
 
 
 
@@ -464,7 +466,7 @@ The Fourier spectrum $\vert \widehat{\psi}_\alpha(\omega) \vert$ of $\psi_\alpha
     \begin{center}
         \setlength{\unitlength}{1cm}
         \begin{picture}(8,10.5)
-        \put(0,0){\includegraphics[width=8cm]{../figures/fig3/dafx_fig3.png}}
+        \put(0,0){\includegraphics[width=8cm]{dafx_fig3.png}}
         \end{picture}
     \end{center}
     \protect\caption{
