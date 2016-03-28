@@ -23,6 +23,12 @@ J.~And\'{e}n, V.~Lostanlen, and S.~Mallat,
 \newblock ``{Joint Time-frequency Scattering for Audio Classification},''
 \newblock {\em Proc. IEEE MLSP}, 2015.
 
+\bibitem{Patil2012}
+K.~Patil, D.~Pressnitzer, S.~Shamma, and M.~Elhilali,
+\newblock ``{Music in our ears: the biological bases of musical timbre
+  perception},''
+\newblock {\em PLoS Computational Biology}, vol. 8, no. 11, 2012.
+
 \bibitem{Shepard1964}
 R.~Shepard,
 \newblock ``{Circularity in Judgments of Relative Pitch},''
@@ -50,11 +56,5 @@ N.~Delprat, B.~Escudi\'{e}, P.~Guillemain, R.~Kronland-Martinet,
 \newblock ``{Asymptotic Wavelet and Gabor Analysis: Extraction of Instantaneous
   Frequencies},''
 \newblock {\em IEEE Trans. Inf. Theory}, vol. 38, pp. 644--664, 1992.
-
-\bibitem{Patil2012}
-K.~Patil, D.~Pressnitzer, S.~Shamma, and M.~Elhilali,
-\newblock ``{Music in our ears: the biological bases of musical timbre
-  perception},''
-\newblock {\em PLoS Computational Biology}, vol. 8, no. 11, 2012.
 
 \end{thebibliography}
