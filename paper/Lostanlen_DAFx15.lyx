@@ -1,0 +1,2166 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+% Template LaTeX file for DAFx-14 papers
+%
+% To generate the correct references using BibTeX, run
+%     latex, bibtex, latex, latex
+% modified...
+% - from DAFx-00 to DAFx-02 by Florian Keiler, 2002-07-08
+% - from DAFx-02 to DAFx-03 by Gianpaolo Evangelista
+% - from DAFx-05 to DAFx-06 by Vincent Verfaille, 2006-02-05
+% - from DAFx-06 to DAFx-07 by Vincent Verfaille, 2007-01-05
+%                          and Sylvain Marchand, 2007-01-31
+% - from DAFx-07 to DAFx-08 by Henri Penttinen, 2007-12-12
+%                          and Jyri Pakarinen 2008-01-28
+% - from DAFx-08 to DAFx-09 by Giorgio Prandi, Fabio Antonacci 2008-10-03
+% - from DAFx-09 to DAFx-10 by Hannes Pomberger 2010-02-01
+% - from DAFx-10 to DAFx-12 by Jez Wells 2011
+% - from DAFx-12 to DAFx-14 by Sascha Disch 2013
+%
+% Template with hyper-references (links) active after conversion to pdf
+% (with the distiller) or if compiled with pdflatex.
+%
+% 20060205: added package 'hypcap' to correct hyperlinks to figures and tables
+%                      use of \papertitle and \paperauthorA, etc for same title in PDF and Metadata
+%
+% 1) Please compile using latex or pdflatex.
+% 2) If using pdflatex, you need your figures in a file format other than eps! e.g. png or jpg is working
+% 3) Please use "paperftitle" and "pdfauthor" definitions below
+
+%------------------------------------------------------------------------------------------
+%  !  !  !  !  !  !  !  !  !  !  !  ! user defined variables  !  !  !  !  !  !  !  !  !  !  !  !  !  !
+% Please use these commands to define title and author of the paper:
+\def\papertitle{Wavelet Scattering on the Pitch Spiral}
+\def\paperauthorA{Vincent Lostanlen}
+\def\paperauthorB{St\'{e}phane Mallat}
+\def\paperauthorC{Joseph Fourier}
+\def\paperauthorD{Claude Shannon}
+\hyphenation{wave-let}
+\hyphenation{whereas}
+
+%------------------------------------------------------------------------------------------
+\usepackage{dafx_15}
+\usepackage{amsfonts}\usepackage{amsthm}\usepackage{euscript}
+\usepackage{ifpdf}
+
+
+\usepackage[english]{babel}
+\usepackage{caption}
+\usepackage{color}
+
+
+\setcounter{page}{1}
+\ninept
+
+\usepackage{times}
+% Saves a lot of ouptut space in PDF... after conversion with the distiller
+% Delete if you cannot get PS fonts working on your system.
+
+% pdf-tex settings: detect automatically if run by latex or pdflatex
+\newif\ifpdf
+\ifx\pdfoutput\relax
+\else
+   \ifcase\pdfoutput
+      \pdffalse
+   \else
+      \pdftrue
+\fi
+
+\ifpdf % compiling with pdflatex
+  \usepackage[pdftex,
+    pdftitle={\papertitle},
+    pdfauthor={\paperauthorA, \paperauthorB, \paperauthorC, \paperauthorD},
+    colorlinks=false, % links are activated as colror boxes instead of color text
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen; especially useful if working with a big screen :-)
+  ]{hyperref}
+  \pdfcompresslevel=9
+  \usepackage[pdftex]{graphicx}
+  \usepackage[figure,table]{hypcap}
+\else % compiling with latex
+  \usepackage[dvips]{epsfig,graphicx}
+  \usepackage[dvips,
+    colorlinks=false, % no color links
+    bookmarksnumbered, % use section numbers with bookmarks
+    pdfstartview=XYZ % start with zoom=100% instead of full screen
+  ]{hyperref}
+  % hyperrefs are active in the pdf file after conversion
+  \usepackage[figure,table]{hypcap}
+\fi
+
+\title{\papertitle}
+
+%-------------SINGLE-AUTHOR HEADER STARTS (uncomment below if your paper has a single author)-----------------------
+\affiliation{
+\paperauthorA, \paperauthorB
+\sthanks{This work is supported by the ERC InvariantClass 320959. The source code to reproduce figures and experiments is available
+at \texttt{www.github.com/lostanlen/scattering.m}.}}
+{\href{http://di.ens.fr/data/}{Department of Computer Science},
+\'{E}cole normale sup\'{e}rieure \\
+Paris, France \\
+{\tt \href{mailto:vincent.lostanlen@ens.fr}{vincent.lostanlen@ens.fr}}
+}
+\usepackage{amsopn}
+\DeclareMathOperator{\sign}{sign}
+
+%-----------------------------------SINGLE-AUTHOR HEADER ENDS------------------------------------------------------
+
+%---------------TWO-AUTHOR HEADER STARTS (uncomment below if your paper has two authors)-----------------------
+%\twoaffiliations{
+%\paperauthorA, \sthanks{This work was supported by the XYZ Foundation}}
+%{\href{http://dafx14.fau.de}{Fraunhofer IIS,} \\ Friedrich-Alexander University Erlangen\\ Erlangen, Germany\\
+%{\tt \href{mailto:dafx14@audiolabs-erlangen.de}{dafx14@audiolabs-erlangen.de}}
+%}
+%{\paperauthorB, \sthanks{This guy is a very good fellow}}
+%{\href{http://music.nuim.ie/}{Dept. of Music,} \\ National University of Ireland\\ Maynooth, Ireland\\
+%{\tt \href{mailto:papers@dafx13.nuim.ie}{papers@dafx13.nuim.ie}}
+%}
+%-------------------------------------TWO-AUTHOR HEADER ENDS------------------------------------------------------
+
+%---------------THREE-AUTHOR HEADER STARTS (uncomment below if your paper has three authors)-----------------------
+%\threeaffiliations{
+%\paperauthorA, \sthanks{This work was supported by the XYZ Foundation}}
+%{\href{http://dafx14.fau.de}{Fraunhofer IIS,} \\ Friedrich-Alexander University Erlangen\\ Erlangen, Germany\\
+%{\tt \href{mailto:dafx14@audiolabs-erlangen.de}{dafx14@audiolabs-erlangen.de}}
+%}
+%{\paperauthorB, \sthanks{This guy is a very good fellow}}
+%{\href{http://music.nuim.ie/}{Dept. of Music,} \\ National University of Ireland\\ Maynooth, Ireland\\
+%{\tt \href{mailto:papers@dafx13.nuim.ie}{papers@dafx13.nuim.ie}}
+%}
+%{\paperauthorC,\sthanks{Illustrious contributor}}
+%{\href{http://dafx14.fau.de}{Spectral Labs,} \\ Somewhere above the sky\\ {\tt \href{mailto:spectrum@sinus.oids}{mailto:spectrum@sinus.oids}}
+%}
+%-------------------------------------THREE-AUTHOR HEADER ENDS------------------------------------------------------
+
+%----------------FOUR-AUTHOR HEADER STARTS (uncomment below if your paper has four authors)-----------------------
+%\fouraffiliations{
+%\paperauthorA, \sthanks{This work was supported by the XYZ Foundation}}
+%{\href{http://dafx14.fau.de}{Fraunhofer IIS,} \\ Friedrich-Alexander University Erlangen\\ Erlangen, Germany\\
+%{\tt \href{mailto:dafx14@audiolabs-erlangen.de}{dafx14@audiolabs-erlangen.de}}
+%}
+%{\paperauthorB, \sthanks{This guy is a very good fellow}}
+%{\href{http://music.nuim.ie/}{Dept. of Music,} \\ National University of Ireland\\ Maynooth, Ireland\\
+%{\tt \href{mailto:papers@dafx13.nuim.ie}{papers@dafx13.nuim.ie}}
+%}
+%{\paperauthorC,\sthanks{Illustrious contributor}}
+%{\href{http://dafx14.fau.de}{Spectral Labs,} \\ Somewhere above the sky\\ {\tt \href{mailto:spectrum@sinus.oids}{mailto:spectrum@sinus.oids}}
+%}
+%{\paperauthorD,\sthanks{Yes, senior}}
+%{\href{http://www.audiolabs-erlangen.com}{Communications Office, Somewhere else,} \\ Centre for Something \\ {\tt \href{mailto:some@where.no }{some@where.no}}
+%}
+%-------------------------------------FOUR-AUTHOR HEADER ENDS------------------------------------------------------
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-1
+\fontencoding T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% more pdf-tex settings:
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+ifpdf
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% used graphic file format for pdflatex
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+DeclareGraphicsExtensions
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+.png,.jpg,.pdf
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+else
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% used graphic file format for latex
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+DeclareGraphicsExtensions
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+.eps
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+We present a new representation of harmonic sounds that linearizes the dynamics
+ of pitch and spectral envelope, while remaining stable to deformations
+ in the time-frequency plane.
+ It is an instance of the scattering transform, a generic operator which
+ cascades wavelet convolutions and modulus nonlinearities.
+ It is derived from the pitch spiral, in that convolutions are successively
+ performed in time, log-frequency, and octave index.
+ We give a closed-form approximation of spiral scattering coefficients for
+ a nonstationary generalization of the harmonic source-filter model.
+ 
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+The spectro-temporal evolution of harmonic sounds conveys essential information
+ to audio classification, blind source separation, transcription, as well
+ as other processing tasks.
+ This information is however difficult to capture in time-varying, polyphonic
+ mixtures.
+ On one hand, spectrogram-based pattern recognition algorithms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kereliuk2008"
+
+\end_inset
+
+ are exposed to detection errors as they enforce strong constraints on the
+ shape of harmonic templates.
+ On the other, time-varying generalizations of matrix factorization 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hennequin2011"
+
+\end_inset
+
+ are under-constrained and thus may fail to converge to a satisfying solution.
+ In this article, we address the characterization of harmonic structures
+ without any detection nor training step.
+\end_layout
+
+\begin_layout Standard
+Wavelets have long proven to provide meaningful, sparse activations as long
+ as they operate on a dimension on which the signal has already some regularity.
+ Although a single sine wave draws a regular edge on the time-frequency
+ plane, a harmonic comb is made of distant sharp peaks over the log-frequency
+ axis, an irregular pattern that is hard to characterize globally.
+ This irregularity weakens the discriminative power of existing wavelet-like
+ representations, such as Mel-frequency cepstral coefficients (MFCC).
+\end_layout
+
+\begin_layout Standard
+To recover regularity across partials within a wavelet framework, we capitalize
+ on the fact that power-of-two harmonics are exactly one octave apart.
+ By rolling up the log-frequency axis into a spiral, such that octave intervals
+ correspond to full turns, these partials get aligned on a radius.
+ Consequently, introducing the integer-valued octave variable reveals harmonic
+ regularity that was not explicit in the plane of time and log-frequency.
+\end_layout
+
+\begin_layout Standard
+Once specified the variables of time, log-frequency, and octave index, our
+ representation merely consists in cascading three wavelet decompositions
+ along them and applying complex modulus.
+ Thus, the constant-Q scalogram is "scattered" into channels over which
+ main factors of time variability are disentangled and regularized, yet
+ harmonicity is preserved.
+\end_layout
+
+\begin_layout Standard
+Section 2 gives a formal definition of the spiral scattering transform.
+ Section 3 introduces a nonstationary formulation of the source-filter model
+ relying on time warps, and shows that its variabilities in pitch and spectral
+ envelope are jointly linearized by the spiral scattering transform.
+ Section 4 provides a visual interpretation of the spiral scattering coefficient
+s of a nonstationary musical note.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+unitlength}{1cm}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{picture}
+\end_layout
+
+\end_inset
+
+(8.5,5.5) 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0,0)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename dafx_fig1.png
+	lyxscale 10
+	width 8.5cm
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{picture}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+protect
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ The spiral wavelet is a product of wavelets along time, log-frequency,
+ and octave index.
+ Blue and green oscillations represent the real and imaginary parts.
+ The red envelope represents the complex modulus.
+ Partials of an hypothetical harmonic sound are marked as thick dots.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:spiral-wavelets"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+From time scattering to spiral scattering
+\end_layout
+
+\begin_layout Standard
+This section builds the spiral scattering transform progressively as a cascade
+ of wavelet transforms along time, log-frequency, and octave index.
+ All three variables share the same framework.
+\end_layout
+
+\begin_layout Subsection
+Time scattering
+\end_layout
+
+\begin_layout Standard
+An analytic "mother" wavelet is a complex filter 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+ whose Fou\SpecialChar \-
+rier transform 
+\begin_inset Formula $\widehat{\psi}(\omega)$
+\end_inset
+
+ is concentrated over the dimensionless frequency interval 
+\begin_inset Formula $[1-Q/2,1+Q/2]$
+\end_inset
+
+, where the quality factor 
+\begin_inset Formula $Q$
+\end_inset
+
+ is in the typical range 
+\begin_inset Formula $12$
+\end_inset
+
+–
+\begin_inset Formula $24$
+\end_inset
+
+.
+ Dilations of this wavelet define a family of bandpass filters centered
+ at frequencies 
+\begin_inset Formula $\lambda_{1}=2^{j_{1}+\frac{\chi_{1}}{Q}}$
+\end_inset
+
+, where the indices 
+\begin_inset Formula $j_{1}\in\mathbb{Z}$
+\end_inset
+
+ and 
+\begin_inset Formula $\chi_{1}\in\{1\ldots\,Q\}$
+\end_inset
+
+ respectively denote octave and chroma: 
+\begin_inset Formula 
+\begin{equation}
+\widehat{\psi}_{\lambda_{1}}(\omega)=\widehat{\psi}(\lambda^{-1}\omega)\quad\mathrm{i.e.}\quad\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).\label{eq:wavelet-dilations}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The wavelet transform convolves an input signal 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ with the filter bank of 
+\begin_inset Formula $\psi_{\lambda_{1}}$
+\end_inset
+
+'s.
+ We denote convolutions along time by the operator 
+\begin_inset Formula $\overset{t}{\ast}$
+\end_inset
+
+.
+ Applying complex modulus to all wavelet convolutions results in the "scalogram"
+ matrix 
+\begin_inset Formula 
+\begin{equation}
+x_{1}(t,\log\lambda_{1})=|x\overset{t}{\ast}\psi_{\lambda_{1}}|\quad\text{for all }\lambda_{1}>0,\label{eq:scalogram}
+\end{equation}
+
+\end_inset
+
+whose frequential axis is uniformly sampled by the binary logarithm 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+.
+ The scalogram 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ localizes the energy of 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ around frequencies 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ over durations 
+\begin_inset Formula $2Q/\lambda_{1}$
+\end_inset
+
+, trading frequency resolution for time resolution.
+\end_layout
+
+\begin_layout Standard
+The constant-Q transform (CQT) 
+\begin_inset Formula $S_{1}x$
+\end_inset
+
+ corresponds to a lowpass filtering of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ with a window 
+\begin_inset Formula $\phi_{T}(t)$
+\end_inset
+
+ of size 
+\begin_inset Formula $T$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{equation}
+S_{1}x(t,\log\lambda_{1})=x_{1}\overset{t}{\ast}\phi_{T}=|x\overset{t}{\ast}\psi_{\lambda_{1}}|\overset{t}{\ast}\phi_{T}.\label{eq:S1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To recover the amplitude modulations lost when averaging by 
+\begin_inset Formula $\phi_{T}$
+\end_inset
+
+ in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:S1"
+
+\end_inset
+
+), the time scattering transform also convolves 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ with a second filterbank of wavelets 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ and applies complex modulus to get 
+\begin_inset Formula 
+\begin{equation}
+x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\overset{t}{\ast}\psi_{\lambda_{2}}\vert=\vert\vert x\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{t}{\ast}\psi_{\lambda_{2}}\vert.\label{eq:x2-time}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The wavelets 
+\begin_inset Formula $\psi_{\lambda_{2}}(t)$
+\end_inset
+
+ have a quality factor in the range 
+\begin_inset Formula $1$
+\end_inset
+
+–
+\begin_inset Formula $2$
+\end_inset
+
+, though we choose to keep the same notation 
+\begin_inset Formula $\psi$
+\end_inset
+
+ for simplicity.
+ Like in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:S1"
+
+\end_inset
+
+), averaging in time creates invariance to translation in time up to 
+\begin_inset Formula $T$
+\end_inset
+
+, yielding 
+\begin_inset Formula 
+\begin{equation}
+S_{2}x(t,\log\lambda_{1},\log\lambda_{2})=x_{2}\overset{t}{\ast}\phi_{T}=\vert\vert x\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{t}{\ast}\psi_{\lambda_{2}}\vert\overset{t}{\ast}\phi_{T}.\label{eq:S2-time}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Due to the constant-Q property, 
+\begin_inset Formula $S_{1}x$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{2}x$
+\end_inset
+
+ are stable to small time warps of 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ as long as they do not exceed 
+\begin_inset Formula $Q^{-1}$
+\end_inset
+
+, i.e.
+ one semitone.
+ This implies that small modulations, such as tremolo and vibrato, are accuratel
+y linearized 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Anden2012"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Joint time-frequency scattering
+\end_layout
+
+\begin_layout Standard
+The time scattering transform defined in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x2-time"
+
+\end_inset
+
+) decomposes each frequency band separately, and thus cannot properly capture
+ the coherence of time-frequency structures, such as those induced by pitch
+ contour.
+ To remedy this, Andén et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Anden2015"
+
+\end_inset
+
+ have redefined the wavelets 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+'s as functions of both time and log-frequency, indexed by pairs 
+\begin_inset Formula $\lambda_{2}=(\alpha,\beta)$
+\end_inset
+
+, where 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is a modulation frequency in Hertz and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ is a frequency along log-frequencies in cycles per octaves.
+ The joint wavelets 
+\begin_inset Formula $\psi_{\lambda_{2}}(t,\log\lambda_{1})$
+\end_inset
+
+ factorize as 
+\begin_inset Formula 
+\begin{equation}
+\psi_{\lambda_{2}}(t,\log\lambda_{1})=\psi_{\alpha}(t)\times\psi_{\beta}(\log\lambda_{1}).\label{eq:wavelet-joint}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We write 
+\begin_inset Formula $\overset{\chi_{1}}{\ast}$
+\end_inset
+
+ to denote convolutions along the log-frequency axis, i.e.
+ along chromas.
+ Wavelet scattering is extended to two-dimensional convolutions by plugging
+ Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:wavelet-joint"
+
+\end_inset
+
+) into the definition of 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x2-time"
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\begin{equation}
+x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\overset{t,\chi_{1}}{\ast}\psi_{\lambda_{2}}\vert=\vert x_{1}\overset{t}{\ast}\psi_{\alpha}\overset{\chi_{1}}{\ast}\psi_{\beta}\vert.\label{eq:x2-joint}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The joint time-frequency scattering transform corresponds to the "cortical
+ transform" introduced by Shamma and his team to formalize his findings
+ in auditory neuroscience 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Patil2012"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Spiral scattering
+\end_layout
+
+\begin_layout Standard
+The time-frequency scattering transform defined in Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x2-joint"
+
+\end_inset
+
+) provides template-free features for pitch variability along time.
+ However, it is unaware of the harmonic structure of voiced sounds, such
+ as vowels or musical notes.
+ The multiscale evolution of this structure yields relevant information
+ about attack transients and formantic changes, almost independently from
+ the pitch contour.
+\end_layout
+
+\begin_layout Standard
+In order to capture this information, we extend the joint time-frequency
+ scattering transform to encompass regularity in time across octaves at
+ fixed chroma, in conjunction with regularity along neighboring constant-Q
+ bands.
+ Just like wavelet filterbanks along time and log-frequency have been defined
+ in the two previous subsections, we capitalize on harmonicity by introducing
+ a third wavelet filterbank.
+\end_layout
+
+\begin_layout Standard
+We roll up the log-frequency variable 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+ into a pitch spiral making one full turn at each octave (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:spiral-wavelets"
+
+\end_inset
+
+).
+ Since a frequency interval of one octave corresponds to one unit in binary
+ logarithms 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+, pitch height and pitch chroma in the spiral correspond to integer part
+ 
+\begin_inset Formula $\lfloor\log\lambda_{1}\rfloor$
+\end_inset
+
+ and fractional part 
+\begin_inset Formula $\{\log\lambda_{1}\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\log\lambda_{1}=\lfloor\log\lambda_{1}\rfloor+\{\log\lambda_{1}\}=j_{1}+\frac{\chi_{1}}{Q}.\label{eq:integer-part and fractional part}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this setting, the fundamental frequency 
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ is aligned with its power-of-two harmonics 
+\begin_inset Formula $2f_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $4f_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $8f_{0}$
+\end_inset
+
+ and so forth.
+ Likewise, the perfect fifth 
+\begin_inset Formula $3f_{0}$
+\end_inset
+
+ is aligned with 
+\begin_inset Formula $6f_{0}$
+\end_inset
+
+.
+ As the number of harmonics per octave increase exponentially, the alignment
+ of upper harmonics — 
+\begin_inset Formula $5f_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $7f_{0}$
+\end_inset
+
+, and so forth — in the spiral is less crucial, because it can also be recovered
+ with convolutions along chromas for 
+\begin_inset Formula $\beta^{-1}$
+\end_inset
+
+ of the order of a few semitones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+unitlength}{1cm}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{picture}
+\end_layout
+
+\end_inset
+
+(8,7) 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0,0)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename dafx_fig2.png
+	height 7cm
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{picture}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+protect
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ Two spiral wavelets 
+\begin_inset Formula $\psi_{\lambda_{2}}(t,\log\lambda_{1})$
+\end_inset
+
+ in the time-frequency plane, with different values of 
+\begin_inset Formula $\lambda_{2}=(\alpha,\beta,\gamma)$
+\end_inset
+
+.
+ Left: 
+\begin_inset Formula $\alpha^{-1}=120\text{ ms}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta^{-1}=-0.25\text{ octave}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma^{-1}=+2\text{ octaves}$
+\end_inset
+
+.
+ Right: 
+\begin_inset Formula $\alpha^{-1}=60\text{ ms}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta^{-1}=+0.5\text{ octave}$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma^{-1}=-4\text{ octaves}$
+\end_inset
+
+.
+ Darker color levels corresponds to greater values of the real part.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:unrolled-spiral-wavelets"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The wavelet 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ is now defined as a product between wavelets in time, log-frequency, and
+ octave index: 
+\begin_inset Formula 
+\begin{equation}
+\psi_{\lambda_{2}}(t,\log\lambda_{1})=\psi_{\alpha}(t)\times\psi_{\beta}(\log\lambda_{1})\times\psi_{\gamma}(\lfloor\log\lambda_{1}\rfloor).\label{eq:wavelet-shepard}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the previous definition, 
+\begin_inset Formula $\psi_{\beta}$
+\end_inset
+
+ operates over the rectilinear log-frequency variable 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+, not over the circular chroma variable 
+\begin_inset Formula $\chi_{1}=\{\log\lambda_{1}\}$
+\end_inset
+
+.
+ This is to avoid artifacts at octave boundaries.
+\end_layout
+
+\begin_layout Standard
+Examples of the "spiral wavelet" 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:unrolled-spiral-wavelets"
+
+\end_inset
+
+ for different values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+.
+ To ensure invertibility and energy conservation, the quefrencies 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ must take negative values, including zero.
+ We adopt the shorthand notation 
+\begin_inset Formula 
+\begin{equation}
+\log\lambda_{2}=\left(\log\alpha,\log\vert\beta\vert,\sign\beta,\log\vert\gamma\vert,\sign\gamma\right)
+\end{equation}
+
+\end_inset
+
+to specify their indexing.
+ In the special case 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+, 
+\begin_inset Formula $\psi_{\beta}$
+\end_inset
+
+ is no longer a wavelet but a low-pass filter whose support covers one octave.
+ By convention, the corresponding log-frequency index is 
+\begin_inset Formula $\log\vert\beta\vert=-\infty$
+\end_inset
+
+.
+ The same remark applies to 
+\begin_inset Formula $\psi_{\gamma}$
+\end_inset
+
+ for 
+\begin_inset Formula $\gamma=0$
+\end_inset
+
+, which covers six octaves.
+ Since its Fourier transform 
+\begin_inset Formula $\widehat{\psi}_{\lambda_{2}}$
+\end_inset
+
+ is centered at 
+\begin_inset Formula $(\alpha,\beta,\gamma)$
+\end_inset
+
+, the spiral wavelet 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ has a pitch chroma velocity of 
+\begin_inset Formula $\alpha/\beta$
+\end_inset
+
+ and a pitch height velocity of 
+\begin_inset Formula $\alpha/\gamma$
+\end_inset
+
+, both measured in octaves per second.
+\end_layout
+
+\begin_layout Standard
+We write 
+\begin_inset Formula $\overset{j_{1}}{\ast}$
+\end_inset
+
+ to denote convolutions across neighboring octaves.
+ The definition for 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is comparable to Equations (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x2-time"
+
+\end_inset
+
+) and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:x2-joint"
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\begin{equation}
+\begin{split}x_{2}(t,\log\lambda_{1},\log\lambda_{2}) & =\vert x_{1}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}\vert\\
+ & =\vert x_{1}\overset{t}{\ast}\psi_{\alpha}\overset{\chi_{1}}{\ast}\psi_{\beta}\overset{j_{1}}{\ast}\psi_{\gamma}\vert.
+\end{split}
+\label{eq:x2-spiral}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rolling up pitches into a spiral is a well-established idea in music, if
+ only because of circularity of musical pitch classes.
+ It has been studied by Shepard 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Shepard1964"
+
+\end_inset
+
+, Risset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Risset1969"
+
+\end_inset
+
+, and Deutsch 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Deutsch2008"
+
+\end_inset
+
+ to build paradoxes in perception of pitch, and is corroborated by functional
+ imaging of the auditory cortex (see Warren 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Warren2003"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Deformations of the source-filter model
+\end_layout
+
+\begin_layout Standard
+A classical model for voiced speech production consists in the convolution
+ of a harmonic glottal source 
+\begin_inset Formula $e(t)$
+\end_inset
+
+ with a vocal tract filter 
+\begin_inset Formula $h(t)$
+\end_inset
+
+.
+ Introducing independent deformations to both components brings realistic
+ variability to pitch and spectral envelope.
+ This section studies the decomposition of the deformed source-filter model
+ in the spiral scattering transform.
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $e(t)=\sum_{n}\delta(t-n)$
+\end_inset
+
+ be a harmonic signal and 
+\begin_inset Formula $t\mapsto\theta(t)$
+\end_inset
+
+ a time warp function.
+ We define a warped source as 
+\begin_inset Formula $e_{\theta}(t)=(e\circ\theta)(t)$
+\end_inset
+
+.
+ Similarly, we compose a filter 
+\begin_inset Formula $h(t)$
+\end_inset
+
+ and a warp 
+\begin_inset Formula $t\mapsto\eta(t)$
+\end_inset
+
+ to define 
+\begin_inset Formula $h_{\eta}(t)=(h\circ\eta)(t)$
+\end_inset
+
+.
+ The warped source-filter model is the signal 
+\begin_inset Formula 
+\begin{equation}
+x_{\theta,\eta}(t)=(e_{\theta}\overset{t}{\ast}h_{\eta})(t)\label{eq:source-filter}
+\end{equation}
+
+\end_inset
+
+Observe that 
+\begin_inset Formula $\dot{\theta}(t)$
+\end_inset
+
+ induces a change of fundamental frequency, where\SpecialChar \-
+as 
+\begin_inset Formula $\dot{\eta}(t)$
+\end_inset
+
+ accounts for a local dilation of the spectral envelope 
+\begin_inset Formula $\vert\widehat{h}\vert(\omega)$
+\end_inset
+
+.
+ We show in this section that, for 
+\begin_inset Formula $\dot{\theta}(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{\eta}(t)$
+\end_inset
+
+ reasonably regular over the support of first-order wavelets, the local
+ maxima of 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ are clustered on a plane in the 
+\begin_inset Formula $(\alpha,\beta,\gamma)$
+\end_inset
+
+ space of scattering coefficients.
+ This plane satisfies the Cartesian equation 
+\begin_inset Formula 
+\begin{equation}
+\alpha+\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta+\dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)}\gamma=0.\label{eq:cartesian-equation}
+\end{equation}
+
+\end_inset
+
+In a polyphonic context, this result means that harmonic sounds overlapping
+ both in time and frequency could be resolved according to their respective
+ source-filter velocities.
+\end_layout
+
+\begin_layout Standard
+Our proof is driven by harmonicity and spectral smoothness properties —
+ Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:zero-mean"
+
+\end_inset
+
+) — and derives Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cartesian-equation"
+
+\end_inset
+
+) from the computation of wavelet ridges on the pitch spiral 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Delprat1992"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Source-filter factorization in the scalogram
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ near the 
+\begin_inset Formula $p^{\textrm{th}}$
+\end_inset
+
+ partial 
+\begin_inset Formula $p\dot{\theta}(t)$
+\end_inset
+
+ where 
+\begin_inset Formula $p\in\mathbb{N}$
+\end_inset
+
+, we linearize 
+\begin_inset Formula $\theta(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\eta(t)$
+\end_inset
+
+ over the support of the first-order wavelet 
+\begin_inset Formula $\psi_{\lambda_{1}}(t)$
+\end_inset
+
+.
+ We work under the following assumptions: 
+\begin_inset FormulaMacro
+\newcommand{\labelenumi}{(\alph{enumi})}
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Q$
+\end_inset
+
+ large enough to discriminate the 
+\begin_inset Formula $p^{\text{th}}$
+\end_inset
+
+ partial: 
+\begin_inset Formula $Q>2p$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Enumerate
+slowly varying source: 
+\begin_inset Formula $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Enumerate
+slowly varying filter: 
+\begin_inset Formula $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+, and 
+\end_layout
+
+\begin_layout Enumerate
+spectral smoothness: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\hphantom{\quad}\Vert\mathrm{d}(\log\vert\hat{h}\vert)/\mathrm{d}\omega\Vert_{\infty}\times\Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+According to (a), partials 
+\begin_inset Formula $p^{\prime}\neq p$
+\end_inset
+
+ have a negligible contribution to the scalogram of the source at the log-freque
+ncy 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+.
+ For lack of any interference, this scalogram is constant through time,
+ and we may drop the dependency in 
+\begin_inset Formula $t$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{equation}
+\vert e\overset{t}{\ast}\psi_{\lambda_{1}}\vert\approx\vert\widehat{\psi}_{\lambda_{1}}(p)\vert.
+\end{equation}
+
+\end_inset
+
+According to (b), the scalogram of the warped source 
+\begin_inset Formula $e_{\theta}(t)$
+\end_inset
+
+ can be replaced by the scalogram of the original source translated along
+ the log-frequency axis at the velocity 
+\begin_inset Formula $\log\dot{\theta}(t)$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{equation}
+\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert(t)=\vert e\overset{t}{\ast}\psi_{\lambda_{1}}\vert(\theta(t))\approx\vert\widehat{\psi}_{\lambda_{1}}(p\dot{\theta}(t))\vert.\label{eq:e-theta-1}
+\end{equation}
+
+\end_inset
+
+According to (c), we linearize 
+\begin_inset Formula $\eta(t)$
+\end_inset
+
+ over the support of 
+\begin_inset Formula $\psi_{\lambda_{1}}(t)$
+\end_inset
+
+.
+ According to (d), we approximate 
+\begin_inset Formula $\hat{h}(\omega)$
+\end_inset
+
+ by a constant over the frequential support of the wavelet and factorize
+ the filtering as a product: 
+\begin_inset Formula 
+\begin{equation}
+\left(h_{\eta}\ast\psi_{\lambda_{1}}\right)(t)\approx\hat{h}\left(\frac{\lambda_{1}}{\dot{\eta}(t)}\right)\times\psi_{\lambda_{1}}\left(\frac{\eta(t)}{\dot{\eta}(t)}\right).\label{eq:h-nu-1}
+\end{equation}
+
+\end_inset
+
+By plugging Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:e-theta-1"
+
+\end_inset
+
+) into Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:h-nu-1"
+
+\end_inset
+
+), the scalogram of the deformable source-filter model appears as a separable
+ product: 
+\begin_inset Formula 
+\begin{equation}
+\vert x_{\theta,\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert(t)=\vert\widehat{\psi}_{\lambda_{1}}(p\dot{\theta}(t))\vert\times\left\vert \hat{h}\left(\frac{\lambda_{1}}{\dot{\eta}(t)}\right)\right\vert .\label{eq:factorization}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Harmonicity and spectral smoothness properties
+\end_layout
+
+\begin_layout Standard
+The second step in the proof consists in showing that the convolution along
+ chromas with 
+\begin_inset Formula $\psi_{\beta}$
+\end_inset
+
+ only applies to 
+\begin_inset Formula $e_{1,\theta}$
+\end_inset
+
+, whereas the convolution across octaves with 
+\begin_inset Formula $\psi_{\gamma}$
+\end_inset
+
+ only applies to 
+\begin_inset Formula $h_{1,\eta}$
+\end_inset
+
+.
+ Indeed, all wavelets are designed to carry a negligible mean value, i.e.
+ convolving them with a constant yields zero.
+ Therefore, the harmonicity and spectral smothness properties rewrite as
+ 
+\begin_inset Formula 
+\begin{equation}
+\Big\vert\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big\vert\approx0\quad\text{ and }\quad\Big\vert\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big\vert\approx0.\label{eq:zero-mean}
+\end{equation}
+
+\end_inset
+
+Gathering Equations (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:factorization"
+
+\end_inset
+
+) and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:zero-mean"
+
+\end_inset
+
+) into the definition of spiral scattering yields 
+\begin_inset Formula 
+\begin{eqnarray}
+x_{\theta,\eta}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}\mkern-72mu\\
+= & \left[\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times\Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right]\overset{t}{\ast}\psi_{\alpha},\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+where the superscripts 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $\chi_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $j_{1}$
+\end_inset
+
+ denote convolutions along time, chromas and octaves respectively.
+\end_layout
+
+\begin_layout Subsection
+Extraction of instantaneous frequencies
+\end_layout
+
+\begin_layout Standard
+As a final step, we state that the phase of 
+\begin_inset Formula $(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi}{\ast}\psi_{\beta})$
+\end_inset
+
+ is 
+\begin_inset Formula $\beta\times(\log\lambda_{1}-\log p\dot{\theta}(t))$
+\end_inset
+
+.
+ By differentiating this quantity along 
+\begin_inset Formula $t$
+\end_inset
+
+ for fixed 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+, we obtain an instantaneous frequency of 
+\begin_inset Formula $-\beta\ddot{\theta}(t)/\dot{\theta}(t)$
+\end_inset
+
+.
+ Similarly, the instantaneous frequency of 
+\begin_inset Formula $(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma})$
+\end_inset
+
+ is 
+\begin_inset Formula $-\gamma\ddot{\eta}(t)/\dot{\eta}(t)$
+\end_inset
+
+.
+ As long as 
+\begin_inset Formula 
+\begin{equation}
+\alpha\geq\left\vert \frac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta\right\vert \quad\text{and}\quad\alpha\geq\left\vert \frac{\ddot{\eta}(t)}{\dot{\eta}(t)}\gamma\right\vert ,
+\end{equation}
+
+\end_inset
+
+the envelopes of these two convolutions are almost constant over the support
+ of 
+\begin_inset Formula $\psi_{\alpha}(t)$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Delprat1992"
+
+\end_inset
+
+.
+ We conclude with the following approximate closed-form expression for the
+ spiral scattering coefficients of the deformed source-filter model: 
+\begin_inset Formula 
+\begin{eqnarray}
+\mkern-60mux_{2}(t,\log\lambda_{1},\log\lambda_{2})=\Big\vert\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big\vert\times\Big\vert\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big\vert\mkern-310mu\nonumber \\
+ & \times\left\vert \widehat{\psi}_{\alpha}\left(-\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)}\beta-\dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)}\gamma\right)\right\vert .\label{eq:x2-sourcefilter}
+\end{eqnarray}
+
+\end_inset
+
+The Fourier spectrum 
+\begin_inset Formula $\vert\widehat{\psi}_{\alpha}(\omega)\vert$
+\end_inset
+
+ of 
+\begin_inset Formula $\psi_{\alpha}(t)$
+\end_inset
+
+ is a bump centered at the frequency 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cartesian-equation"
+
+\end_inset
+
+) follows immediately from the above formula.
+ The same result holds for the averaged coefficients 
+\begin_inset Formula $S_{2}x=x_{2}\ast\phi_{T}$
+\end_inset
+
+ if the velocities 
+\begin_inset Formula $\ddot{\theta}(t)/\dot{\theta}(t)$
+\end_inset
+
+ or 
+\begin_inset Formula $\ddot{\eta}(t)/\dot{\eta}(t)$
+\end_inset
+
+ have small relative variations: 
+\begin_inset Formula 
+\begin{equation}
+\left\vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)}-\frac{\ddot{\theta}(t)}{\dot{\theta}(t)}\right\vert \ll T^{-1}\quad\text{and}\quad\left\vert \frac{\dddot{\eta}(t)}{\ddot{\eta}(t)}-\frac{\ddot{\eta}(t)}{\dot{\eta}(t)}\right\vert \ll T^{-1}.
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+unitlength}{1cm}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{picture}
+\end_layout
+
+\end_inset
+
+(8,10.5) 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0,0)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename dafx_fig3.png
+	width 8cm
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{picture}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+protect
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ Top: scalogram of a musical note from Berio's 
+\emph on
+Sequenza V
+\emph default
+ for trombone, around 3'45".
+ Observe that the attack part (a) has increasing pitch and increasing brightness
+, whereas the release part (b) has decreasing pitch and decreasing brightness.
+ Bottom: spiral scattering coefficients for 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $\log\lambda_{1}$
+\end_inset
+
+ specified by (a) and (b), 
+\begin_inset Formula $\alpha^{-1}$
+\end_inset
+
+ fixed at 46 ms, 
+\begin_inset Formula $\beta^{-1}$
+\end_inset
+
+ ranging from 
+\begin_inset Formula $-1\text{ octave}$
+\end_inset
+
+ to 
+\begin_inset Formula $+1\text{ octave}$
+\end_inset
+
+, and 
+\begin_inset Formula $\gamma^{-1}$
+\end_inset
+
+ ranging from 
+\begin_inset Formula $-4\text{ octaves}$
+\end_inset
+
+ to 
+\begin_inset Formula $+1\text{ octaves}$
+\end_inset
+
+.
+ As expected, highest values are concentrated in the bottom left corner
+ for (a) and in the top right corner for (b).
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:berio-scalogram"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the example of a trombone signal, glissando can be modeled by 
+\begin_inset Formula $\ddot{\theta}(t)/\dot{\theta}(t)$
+\end_inset
+
+ in the source-filter model, whereas the brassiness profile induces a timbral
+ velocity 
+\begin_inset Formula $\ddot{\eta}(t)/\dot{\eta}(t)$
+\end_inset
+
+.
+ Figure 3 illustrates that these two velocities are stably disentangled
+ and characterized.
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+The spiral model we have presented is well-known in music theory and experimenta
+l psychology 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Shepard1964, Risset1969, Deutsch2008"
+
+\end_inset
+
+.
+ However, existing methods in audio signal processing do not fully take
+ advantage from its richness, because they either picture pitch on a line
+ (e.g.
+ MFCC) or on a circle (e.g.
+ chroma features).
+ In this article, we have shown how spiral scattering can represent the
+ transientness of harmonic sounds.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+  
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "Lostanlen_DAFx15"
+options "IEEEbib"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% requires file DAFx15_tmpl.bib
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
